@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -61,32 +60,18 @@
         android:gravity="center_horizontal"
         android:textSize="20sp"/>
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/btn_Facebook"
-                android:layout_marginTop="10dp"
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/relativeLayout_Facebook"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="130dp"
-                android:src="@drawable/ic_facebook"
-                android:background="@android:color/transparent"/>
+                android:layout_height="match_parent" >
 
-            <ImageButton
-                android:id="@+id/btn_Twitter"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:src="@drawable/ic_twitter"
-                android:background="@android:color/transparent"/>
-        </TableRow>
-    </TableLayout>
+                <ImageButton
+                    android:id="@+id/btn_Facebook"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_facebook"
+                    android:background="@android:color/transparent"
+                    android:layout_alignParentEnd="false" />
+            </LinearLayout>
 </LinearLayout>
