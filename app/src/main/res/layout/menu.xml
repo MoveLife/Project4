@@ -32,7 +32,8 @@
                     android:layout_gravity="center"
                     android:src="@drawable/ic_map"
                     android:scaleType="fitCenter"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:onClick="act_Map"/>
 
                 <TextView
                     android:id="@+id/text_Map"
@@ -58,7 +59,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_status"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:onClick="act_Status"/>
 
                 <TextView
                     android:id="@+id/text_Status"
@@ -84,7 +86,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_categories"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:onClick="act_Categories"/>
 
                 <TextView
                     android:id="@+id/text_Categories"
@@ -117,7 +120,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_friends"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:onClick="act_Friends"/>
 
                 <TextView
                     android:id="@+id/text_Friends"
@@ -143,7 +147,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_events"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:onClick="act_Events"/>
 
                 <TextView
                     android:id="@+id/text_Events"
@@ -169,7 +174,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_login"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:onClick="act_Login"/>
 
                 <TextView
                     android:id="@+id/text_Login"
