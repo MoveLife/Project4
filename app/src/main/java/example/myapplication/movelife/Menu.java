@@ -7,10 +7,23 @@ import android.view.View;
 
 public class Menu extends Activity {
 
+    DatabaseUpdater updater;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
+        updater = new DatabaseUpdater();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        if(updater.isRunning()) {
+            updater.exit();
+        }
+    }
+    private void startUpdater() {
+        updater.start(this);
     }
 
     public void act_Login (View view) {
