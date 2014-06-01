@@ -9,11 +9,13 @@ import example.myapplication.movelife.R;
 
 
 public class MainActivity extends Activity {
+		DatabaseUpdater updater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        updater = new DatabaseUpdater();
     }
 
 
@@ -36,5 +38,17 @@ public class MainActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+		@Override
+		public void onStop() {
+			super.onStop();
+			if(updater.isRunning()) {
+				updater.exit();
+			}
+		}
+		
+		private void startUpdater() {
+			updater.start(this);
+		}
 
 }
