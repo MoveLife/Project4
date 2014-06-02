@@ -3,7 +3,10 @@ package example.myapplication.movelife;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuInflater;
 import android.view.View;
+
+import java.util.zip.Inflater;
 
 public class Menu extends Activity {
 
@@ -15,6 +18,7 @@ public class Menu extends Activity {
         setContentView(R.layout.menu);
         updater = new DatabaseUpdater();
     }
+
     @Override
     public void onStop() {
         super.onStop();
@@ -22,9 +26,12 @@ public class Menu extends Activity {
             updater.exit();
         }
     }
+
     private void startUpdater() {
         updater.start(this);
     }
+
+
 
     public void act_Login (View view) {
         Intent intent = new Intent(this, Login.class);
@@ -49,5 +56,12 @@ public class Menu extends Activity {
     public void act_Events (View view) {
         Intent intent = new Intent(this, Events.class);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        MenuInflater x = getMenuInflater();
+        x.inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }
