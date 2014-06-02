@@ -84,5 +84,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AccountSettings"
+            android:label="@string/app_name"
+            android:parentActivityName=".Menu">
+            <intent-filter>
+                <action android:name="example.myapplication.movelife.AccountSettings" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>
