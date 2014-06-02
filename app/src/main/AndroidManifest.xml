@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="example.myapplication.movelife" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> origin/Armindo_Branch
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <activity
             android:name="example.myapplication.movelife.Splash"
             android:label="@string/app_name" >
@@ -20,7 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Menu"
             android:label="@string/app_name" >
@@ -31,7 +36,8 @@
         </activity>
         <activity
             android:name=".Login"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:parentActivityName=".Menu">
             <intent-filter>
                 <action android:name="example.myapplication.movelife.Login" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -39,7 +45,8 @@
         </activity>
         <activity
             android:name=".Categories"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:parentActivityName=".Menu">
             <intent-filter>
                 <action android:name="example.myapplication.movelife.Categories" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -47,7 +54,8 @@
         </activity>
         <activity
             android:name=".Events"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:parentActivityName=".Menu">
             <intent-filter>
                 <action android:name="example.myapplication.movelife.Events" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -55,7 +63,8 @@
         </activity>
         <activity
             android:name=".Friends"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:parentActivityName=".Menu">
             <intent-filter>
                 <action android:name="example.myapplication.movelife.Friends" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -63,7 +72,8 @@
         </activity>
         <activity
             android:name=".Map"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:parentActivityName=".Menu">
             <intent-filter>
                 <action android:name="example.myapplication.movelife.Map" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -71,9 +81,19 @@
         </activity>
         <activity
             android:name=".Status"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:parentActivityName=".Menu">
             <intent-filter>
                 <action android:name="example.myapplication.movelife.Status" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".AccountSettings"
+            android:label="@string/app_name"
+            android:parentActivityName=".Menu">
+            <intent-filter>
+                <action android:name="example.myapplication.movelife.AccountSettings" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
