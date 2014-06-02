@@ -23,7 +23,7 @@
                 android:orientation="vertical" >
 
                 <LinearLayout
-                    android:id="@+id/layout_Baker"
+                    android:id="@+id/layout_Bakery"
                     android:layout_width="fill_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="1dp"
@@ -32,21 +32,21 @@
                     android:orientation="vertical" >
 
                     <ImageButton
-                        android:id="@+id/btn_Baker"
+                        android:id="@+id/btn_Bakery"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_map"
+                        android:src="@drawable/ic_bakery"
                         android:scaleType="fitCenter"
                         android:background="@android:color/transparent"
-                        android:onClick="act_Baker"/>
+                        android:onClick="act_Bakery"/>
 
                     <TextView
-                        android:id="@+id/text_Baker"
+                        android:id="@+id/text_Bakery"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Baker"
+                        android:text="Bakkerijen"
                         android:textSize="20sp"/>
                 </LinearLayout>
 
@@ -64,7 +64,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_status"
+                        android:src="@drawable/ic_bar"
                         android:background="@android:color/transparent"
                         android:onClick="act_Bars"/>
 
@@ -91,7 +91,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_categories"
+                        android:src="@drawable/ic_cafe"
                         android:background="@android:color/transparent"
                         android:onClick="act_Cafe"/>
 
@@ -117,7 +117,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_map"
+                        android:src="@drawable/ic_club"
                         android:scaleType="fitCenter"
                         android:background="@android:color/transparent"
                         android:onClick="act_Clubs"/>
@@ -144,7 +144,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_map"
+                        android:src="@drawable/ic_museum"
                         android:scaleType="fitCenter"
                         android:background="@android:color/transparent"
                         android:onClick="act_Museum"/>
@@ -171,7 +171,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_map"
+                        android:src="@drawable/ic_restaurant"
                         android:scaleType="fitCenter"
                         android:background="@android:color/transparent"
                         android:onClick="act_Restaurant"/>
@@ -206,7 +206,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_friends"
+                        android:src="@drawable/ic_bank"
                         android:background="@android:color/transparent"
                         android:onClick="act_Banks"/>
 
@@ -233,7 +233,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_events"
+                        android:src="@drawable/ic_bookshops"
                         android:background="@android:color/transparent"
                         android:onClick="act_Bookshops"/>
 
@@ -260,7 +260,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_login"
+                        android:src="@drawable/ic_cinema"
                         android:background="@android:color/transparent"
                         android:onClick="act_Cinema"/>
 
@@ -286,7 +286,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_login"
+                        android:src="@drawable/ic_lounge"
                         android:background="@android:color/transparent"
                         android:onClick="act_Lounges"/>
 
@@ -312,7 +312,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_login"
+                        android:src="@drawable/ic_rentals"
                         android:background="@android:color/transparent"
                         android:onClick="act_Rentals"/>
 
@@ -338,7 +338,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_login"
+                        android:src="@drawable/ic_supermarket"
                         android:background="@android:color/transparent"
                         android:onClick="act_Supermarket"/>
 
