@@ -64,16 +64,11 @@ public class DatabaseUpdater extends Thread {
 	
 	private void update() {
 		sleep = ONE_HOUR;
+		String[] keys = {"cities","companies","companytype","events","eventsjoined","favourites","reviews","users"};
 		ContentValues cv = new ContentValues();
-		cv.put("cities",0);
-		cv.put("companies",0);
-		cv.put("companytype",0);
-		cv.put("events",0);
-		cv.put("eventsjoined",0);
-		cv.put("favourites",0);
-		cv.put("reviews",0);
-		cv.put("users",0);
-		String[] keys = cv.keySet().toArray(new String[0]);
+		for(String k : keys) {
+			cv.put(k,0);
+		}
 		Cursor c = LocalDatabaseConnector.get("updatetime",keys);
 		if(c.moveToFirst()) {
 			for(String k : keys) {
