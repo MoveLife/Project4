@@ -19,8 +19,10 @@ public class Company {
 	private String telephone;
 	private String description;
 	private Integer buystate;
-	
-	private void setAll(Integer cid,String postcode,String address,Double rating,Integer type,String telephone,String description,Integer buystate) {
+
+
+
+    private void setAll(Integer cid,String postcode,String address,Double rating,Integer type,String telephone,String description,Integer buystate) {
 		this.cid = cid;
 		this.postcode = postcode;
 		this.address = address;

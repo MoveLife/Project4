@@ -2,8 +2,8 @@
 ## Android Studio
 #################
 
-*.lock
-*.bin
+.gradle/*
+
 
 
 
