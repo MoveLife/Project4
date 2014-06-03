@@ -20,9 +20,7 @@ public class Menu extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        //Check of je myAccount aanklikt en start daarna de activiteit AccountSettings.
         int id = item.getItemId();
         if (id == R.id.myAccount) {
             Intent intent = new Intent(this, AccountSettings.class);
