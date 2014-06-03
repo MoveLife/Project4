@@ -15,6 +15,7 @@ public class Menu extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
         updater = new DatabaseUpdater();
+        overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
     }
 
     @Override
@@ -43,6 +44,12 @@ public class Menu extends Activity {
         if(updater.isRunning()) {
             updater.exit();
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
     }
 
     private void startUpdater() {
