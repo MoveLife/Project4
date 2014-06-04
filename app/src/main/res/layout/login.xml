@@ -12,10 +12,11 @@
         android:gravity="center_horizontal"/>
 
     <ImageView
+        android:id="@+id/iv_picture_pic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_login_person"
         android:gravity="center_horizontal"
+        android:visibility="invisible"
         android:layout_marginTop="20dp"/>
 
     <EditText
@@ -37,6 +38,13 @@
         android:layout_marginLeft="50dp"
         android:inputType="textPassword"
         android:hint="Paswoord"/>
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:textSize="18sp" />
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/relativeLayout_login"
@@ -62,16 +70,33 @@
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/relativeLayout_Facebook"
+                xmlns:facebook="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="wrap_content" >
 
-                <ImageButton
-                    android:id="@+id/btn_Facebook"
-                    android:layout_marginTop="20dp"
-                    android:layout_width="match_parent"
+                <com.facebook.widget.LoginButton
+                    android:id="@+id/fb_login_button"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_facebook"
-                    android:background="@android:color/transparent"
-                    android:layout_alignParentEnd="false" />
+                    android:layout_marginTop="5dp"
+                    facebook:confirm_logout="false"
+                    facebook:fetch_user_info="true" />
             </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/update_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="update_status" />
+
+        <Button
+            android:id="@+id/post_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="post_image" />
+        </LinearLayout>
 </LinearLayout>
