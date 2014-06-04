@@ -2,11 +2,14 @@ package example.myapplication.movelife;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import android.database.Cursor;
 
 public class Company {
 	private static List<Company> companies;
+	private static Map<Integer,List<Company>> companiesOfType = new HashMap<Integer,List<Company>>();
 	private int bid;
 	private String name;
 	private double latitude;
@@ -101,6 +104,20 @@ public class Company {
 			createCompanyList();
 		}
 		return companies;
+	}
+
+	public static List<Company> getCompaniesOfType(Integer type) {
+		if(!companiesOfType.containsKey(type)) {
+			List<Company> allCompanies = getCompanies();
+			List<Company> filtered = new ArrayList<Company>();
+			for(Company c : allCompanies) {
+				if(type.equals(c.getType())) {
+					filtered.add(c);
+				}
+			}
+			companiesOfType.put(type,filtered);
+		}
+		return companiesOfType.get(type);
 	}
 
 	public int getBid() {
