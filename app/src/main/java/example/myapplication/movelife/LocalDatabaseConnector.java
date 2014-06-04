@@ -7,6 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class LocalDatabaseConnector {
+
+
+
+
 	private static final String DATABASE_NAME = "MoveLife";
 	private static final int DATABASE_VERSION = 1;
 	private static Context context;
@@ -29,6 +33,9 @@ public class LocalDatabaseConnector {
 	}
 	
 	public static long insert(String table,String nullColumnHack,ContentValues values) {
+
+
+
 		return database.insert(table,nullColumnHack,values);
 	}
 	
