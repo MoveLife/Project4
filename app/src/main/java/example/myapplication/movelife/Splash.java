@@ -10,6 +10,8 @@ public class Splash extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
+        overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
+
         Thread timer = new Thread() {
             public void run(){
                 try{
