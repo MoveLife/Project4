@@ -4,14 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import example.myapplication.movelife.R;
-
-/**
- * Created by Thomas on 14-5-2014.
- */
-
-
-
 public class Splash extends Activity {
 
     @Override
@@ -21,13 +13,14 @@ public class Splash extends Activity {
         Thread timer = new Thread() {
             public void run(){
                 try{
-                    sleep(5000);
+                    sleep(3000);
 
             }catch (InterruptedException e){
                     e.printStackTrace();
                 }finally {
                     Intent openStartingPoint = new Intent("example.myapplication.movelife.MENU");
                     startActivity(openStartingPoint);
+                    finish();
                 }
                 }
 
