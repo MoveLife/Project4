@@ -1,67 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-<LinearLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
 
-
-    <ListView
-        android:id="@+id/bedrijfnaam"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        >
-    </ListView>
-
-
-
-    </LinearLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <TextView
-        android:id="@android:id/empty"
+    <ImageView
+        android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/empty_list" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
 
+        android:src="@drawable/ic_launcher" />
 
+    <TextView
+        android:id="@+id/Bedrijfsnaam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/imageView1"
+        android:text="Bedrijfsnaam 1"
+        android:textSize="16sp" />
 
+    <TextView
+        android:id="@+id/Bedrijfdesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView1"
+        android:layout_alignLeft="@+id/Bedrijfsnaam"
+        android:text="Description" />
 
-
-
-
-
-
-
-
-</LinearLayout>
+</RelativeLayout> 
