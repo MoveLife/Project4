@@ -23,13 +23,15 @@ public  class Friends extends Activity {
 
     ContentValues cv = new ContentValues();
     ListView listView;
-    List<Company> lijst = new ArrayList<Company>();
+   // List<Company> lijst = new ArrayList<Company>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bedrijflist);
         LocalDatabaseConnector.init(this);
-        //cv.put("bid", 10);
+        List<Company> lijst = Company.getCompanies();
+       //cv.put("bid", 10);
        // cv.put("name", "Mijnbedrijf" );
        // cv.put("latitude", 1.1);
        // cv.put("longitude", 1.2);
@@ -43,7 +45,7 @@ public  class Friends extends Activity {
 
 
       //  LocalDatabaseConnector.insert("companies", null, cv);
-        Log.d("lijst", lijst.toString());
+       // Log.d("lijst", lijst.toString());
        // Log.d("lol",""+ LocalDatabaseConnector.insert("companies", null, cv));
         Log.d("companysize", ""+ Company.getCompanies().size());
 

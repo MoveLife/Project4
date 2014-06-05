@@ -9,8 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/icon" />
 
     <TextView
         android:id="@+id/Bedrijfsnaam"
@@ -19,7 +18,7 @@
         android:layout_marginLeft="23dp"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/imageView1"
-        android:text="Bedrijfsnaam 1"
+        android:text="@string/bedrijfsnaam"
         android:textSize="16sp" />
 
     <TextView
@@ -28,6 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/imageView1"
         android:layout_alignLeft="@+id/Bedrijfsnaam"
-        android:text="Description" />
+        android:text="@string/description" />
 
 </RelativeLayout> 

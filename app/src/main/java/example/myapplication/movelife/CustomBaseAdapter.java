@@ -36,9 +36,10 @@ public class CustomBaseAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.bedrijf_info, null);
             holder = new ViewHolder();
+            assert convertView != null;
             holder.txtDesc = (TextView) convertView.findViewById(R.id.Bedrijfdesc);
             holder.txtTitle = (TextView) convertView.findViewById(R.id.Bedrijfsnaam);
-            holder.imageView = (ImageView) convertView.findViewById(R.id.imageView1);
+            //holder.imageView = (ImageView) convertView.findViewById(R.id.imageView1);
             convertView.setTag(holder);
         }
         else {
@@ -49,7 +50,7 @@ public class CustomBaseAdapter extends BaseAdapter {
 
         holder.txtDesc.setText(company.getDescription());
         holder.txtTitle.setText(company.getName());
-        holder.imageView.setImageResource(R.id.imageView1);
+        //holder.imageView.setImageResource(R.id.imageView1);
 
         return convertView;
     }
