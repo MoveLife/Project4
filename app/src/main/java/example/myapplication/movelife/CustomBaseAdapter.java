@@ -66,6 +66,6 @@ public class CustomBaseAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return lijst.indexOf(getItem(position));
+        return position;
     }
 }

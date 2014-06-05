@@ -34,8 +34,6 @@ public class LocalDatabaseConnector {
 	
 	public static long insert(String table,String nullColumnHack,ContentValues values) {
 
-
-
 		return database.insert(table,nullColumnHack,values);
 	}
 	
