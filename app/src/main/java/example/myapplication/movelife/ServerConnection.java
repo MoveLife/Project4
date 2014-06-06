@@ -203,4 +203,25 @@ public class ServerConnection {
 		}
 		return json;
 	}
+<<<<<<< HEAD
+=======
+	
+	public static void set() {
+		/*
+		password
+		username?
+		email
+		addevent
+		joinevent
+		leaveevent
+		addfriend
+		removefriend
+		deleteevent
+		addreview
+		addpicture
+		approvepicture
+		editevent
+		*/
+	}
+>>>>>>> master
 }

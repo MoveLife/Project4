@@ -3,6 +3,7 @@ package example.myapplication.movelife;
 
 import android.app.Activity;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -21,10 +22,15 @@ import com.google.android.gms.maps.model.MarkerOptions;
  public class Map extends Activity implements LocationListener {
     GoogleMap map;
 
+=======
+
+public class Map extends Activity{
+>>>>>>> master
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map);
+<<<<<<< HEAD
 
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
@@ -66,3 +72,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
     }
 
 }
+=======
+        overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
+    }
+}
+>>>>>>> master

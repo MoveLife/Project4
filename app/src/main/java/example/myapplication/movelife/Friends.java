@@ -9,5 +9,9 @@ public class Friends extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.friends);
+<<<<<<< HEAD
+=======
+        overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
+>>>>>>> master
     }
 }

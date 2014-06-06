@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MoveLife.iml" filepath="$PROJECT_DIR$/MoveLife.iml" />
       <module fileurl="file://$PROJECT_DIR$/Project4.iml" filepath="$PROJECT_DIR$/Project4.iml" />
       <module fileurl="file://$PROJECT_DIR$/Project4_Armindo.iml" filepath="$PROJECT_DIR$/Project4_Armindo.iml" />
       <module fileurl="file://$PROJECT_DIR$/Projectapp.iml" filepath="$PROJECT_DIR$/Projectapp.iml" />
       <module fileurl="file://$PROJECT_DIR$/Resistproject.iml" filepath="$PROJECT_DIR$/Resistproject.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libraries/facebook/facebook.iml" filepath="$PROJECT_DIR$/libraries/facebook/facebook.iml" />
     </modules>
   </component>
 </project>
