@@ -57,6 +57,7 @@ public class Login extends FragmentActivity {
                     Login_btn_Login.setVisibility(View.GONE);
                     accountText.setVisibility(View.GONE);
                     Login_btn_createAccount.setVisibility(View.GONE);
+                    profilePictureView.setVisibility(View.VISIBLE);
                 } else {
                     userName.setText("You are not logged in");
                     profilePictureView.setVisibility(View.GONE);
@@ -70,10 +71,8 @@ public class Login extends FragmentActivity {
         public void call(Session session, SessionState state,
                          Exception exception) {
             if (state.isOpened()) {
-
                 Log.d("FacebookSampleActivity", "Facebook session opened");
             } else if (state.isClosed()) {
-
                 Log.d("FacebookSampleActivity", "Facebook session closed");
             }
         }
@@ -83,7 +82,6 @@ public class Login extends FragmentActivity {
     public void onResume() {
         super.onResume();
         uiHelper.onResume();
-
     }
 
     @Override
@@ -109,5 +107,4 @@ public class Login extends FragmentActivity {
         super.onSaveInstanceState(savedState);
         uiHelper.onSaveInstanceState(savedState);
     }
-
 }
