@@ -227,7 +227,13 @@ pip-log.txt
 #Translations
 *.mo
 
-#Mr Developer
-.mr.developer.cfg
-*.bin
+
+
+
+#############
+## Android Studio
+#############
+
 *.lock
+*.bin
+

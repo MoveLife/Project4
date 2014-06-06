@@ -8,5 +8,6 @@ public class Status extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.status);
+        overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
     }
 }

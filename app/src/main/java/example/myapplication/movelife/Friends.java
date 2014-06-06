@@ -28,6 +28,7 @@ public  class Friends extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.bedrijflist);
         LocalDatabaseConnector.init(this);
         List<Company> lijst = Company.getCompanies();
@@ -52,6 +53,10 @@ public  class Friends extends Activity {
         listView = (ListView) findViewById(R.id.lijst1);
         CustomBaseAdapter adapter = new CustomBaseAdapter(this, lijst);
         listView.setAdapter(adapter);
+
+
+        //setContentView(R.layout.friends);
+        overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
 
     }
 

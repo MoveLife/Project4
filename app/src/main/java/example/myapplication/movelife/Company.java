@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.database.Cursor;
+import android.util.SparseArray;
 
 public class Company {
 	private static List<Company> companies;
+	private static SparseArray<List<Company>> companiesOfType = new SparseArray<List<Company>>();
 	private int bid;
 	private String name;
 	private double latitude;
@@ -103,6 +105,20 @@ public class Company {
 			createCompanyList();
 		}
 		return companies;
+	}
+
+	public static List<Company> getCompaniesOfType(Integer type) {
+		if(companiesOfType.indexOfKey(type) < 0) {
+			List<Company> allCompanies = getCompanies();
+			List<Company> filtered = new ArrayList<Company>();
+			for(Company c : allCompanies) {
+				if(type.equals(c.getType())) {
+					filtered.add(c);
+				}
+			}
+			companiesOfType.put(type,filtered);
+		}
+		return companiesOfType.get(type);
 	}
 
 	public int getBid() {
