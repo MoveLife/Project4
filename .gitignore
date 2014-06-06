@@ -2,7 +2,10 @@
 ## Android Studio
 #################
 
-.gradle\*
+.gradle\
+.idea
+.idea\workspace.xml
+build\
 
 
 
@@ -227,3 +230,4 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 *.bin
+*.lock
