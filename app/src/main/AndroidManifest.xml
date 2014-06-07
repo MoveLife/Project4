@@ -37,7 +37,7 @@
 
                     android:name="com.google.android.maps.v2.API_KEY"
 
-                    android:value="AIzaSyAogMhsjSonf_hynAE6ir_oM6_-EiAe3P8"/>
+                    android:value="AIzaSyDaqxBPsB8LAGmqac1Yr4XEqYPNVFZUAAo"/>
 
         <activity
             android:name="example.myapplication.movelife.Splash"
