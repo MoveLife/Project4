@@ -30,7 +30,7 @@ public class Map extends Activity implements LocationListener {
 
             LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-          //  lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
 
             map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
                     .getMap();
