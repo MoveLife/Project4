@@ -12,11 +12,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomBaseAdapter extends BaseAdapter {
+public class CustomBaseAdapterAlleBedrijven extends BaseAdapter {
     Context context;
     List<Company> lijst = new ArrayList<Company>();
 
-    public CustomBaseAdapter(Context context, List<Company> items) {
+    public CustomBaseAdapterAlleBedrijven(Context context, List<Company> items) {
         this.context = context;
         this.lijst = items;
     }
