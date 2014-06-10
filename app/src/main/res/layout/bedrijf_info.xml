@@ -4,7 +4,7 @@
     >
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/iv_bedrijfIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -12,12 +12,12 @@
         android:src="@drawable/icon" />
 
     <TextView
-        android:id="@+id/Bedrijfsnaam"
+        android:id="@+id/tv_bedrijfnaam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="23dp"
         android:layout_marginTop="10dp"
-        android:layout_toRightOf="@+id/imageView1"
+        android:layout_toRightOf="@+id/iv_bedrijfIcon"
         android:text="@string/bedrijfsnaam"
         android:textSize="16sp" />
 
@@ -25,8 +25,8 @@
         android:id="@+id/Bedrijfdesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView1"
-        android:layout_alignLeft="@+id/Bedrijfsnaam"
+        android:layout_alignBottom="@+id/iv_bedrijfIcon"
+        android:layout_alignLeft="@+id/tv_bedrijfnaam"
         android:text="@string/description" />
 
 </RelativeLayout> 
