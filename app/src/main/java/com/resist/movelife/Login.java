@@ -1,4 +1,4 @@
-package example.myapplication.movelife;
+package com.resist.movelife;
 
 import android.content.Intent;
 import android.os.Bundle;

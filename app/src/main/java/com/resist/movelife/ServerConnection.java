@@ -1,4 +1,4 @@
-package example.myapplication.movelife;
+package com.resist.movelife;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;

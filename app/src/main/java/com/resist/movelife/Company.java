@@ -1,4 +1,4 @@
-package example.myapplication.movelife;
+package com.resist.movelife;
 
 import java.util.ArrayList;
 import java.util.List;
