@@ -28,14 +28,14 @@ public class Events extends Activity {
         setContentView(R.layout.alle_bedrijf_info);
 
         passedVar = getIntent().getStringExtra(Friends.ID_EXTRA);
-        passedVar1 = getIntent().getStringExtra(Friends.ID_EXTRA1);
+       // passedVar1 = getIntent().getStringExtra(Friends.ID_EXTRA1);
 
 
         passedView = (TextView) findViewById(R.id.tv_bedrijfsnaam);
         passedView.setText(passedVar);
 
-        passedView1 = (TextView) findViewById(R.id.tv_bedrijfsinfo);
-        passedView1.setText(passedVar1);
+       // passedView1 = (TextView) findViewById(R.id.tv_bedrijfsinfo);
+       // passedView1.setText(passedVar1);
 
 
         // LocalDatabaseConnector.init(this);

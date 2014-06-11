@@ -91,7 +91,7 @@ public  class Friends extends ListActivity implements
 
           Intent intent = new Intent(this, Events.class);
           intent.putExtra(ID_EXTRA, Company.getCompanies().get(0).getName() );
-          intent.putExtra(ID_EXTRA1, Company.getCompanies().get(0).getDescription() );
+         // intent.putExtra(ID_EXTRA1, Company.getCompanies().get(0).getDescription() );
           startActivity(intent);
 
     }
