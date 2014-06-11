@@ -5,13 +5,20 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 
 public class Events extends Activity{
 
-    ContentValues cv = new ContentValues();
-    ListView listView;
+    //ContentValues cv = new ContentValues();
+   // ListView listView;
+
+    String passedVar = null;
+    private TextView passedView = null;
+
+    String passedVar1 = null;
+    private TextView passedView1 = null;
 
 
 
@@ -20,18 +27,34 @@ public class Events extends Activity{
         super.onCreate(savedInstanceState);
       //  setContentView(R.layout.events);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
+        setContentView(R.layout.alle_bedrijf_info);
 
-        setContentView(R.layout.alle_bedrijf_info_list);
-        LocalDatabaseConnector.init(this);
-        List<Company> lijst = Company.getCompanies();
-
-
-        listView = (ListView) findViewById(R.id.listView);
+        passedVar= getIntent().getStringExtra(Friends.ID_EXTRA);
+        passedVar1= getIntent().getStringExtra(Friends.ID_EXTRA1);
 
 
+        passedView = (TextView) findViewById(R.id.tv_bedrijfsnaam);
+        passedView.setText(passedVar);
 
-        CustomBaseAdapterAlleBedrijfInfo adapter = new CustomBaseAdapterAlleBedrijfInfo(this, lijst);
-        listView.setAdapter(adapter);
+        passedView1 = (TextView) findViewById(R.id.tv_bedrijfsinfo);
+        passedView1.setText(passedVar1);
+
+
+
+
+
+
+
+        // LocalDatabaseConnector.init(this);
+       // List<Company> lijst = Company.getCompanies();
+
+
+      //  listView = (ListView) findViewById(R.id.listView);
+
+
+
+      //  CustomBaseAdapterAlleBedrijfInfo adapter = new CustomBaseAdapterAlleBedrijfInfo(this, lijst);
+//        listView.setAdapter(adapter);
 
 
 
