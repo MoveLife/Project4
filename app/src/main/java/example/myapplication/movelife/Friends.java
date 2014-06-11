@@ -71,8 +71,9 @@ public  class Friends extends ListActivity implements
 
 
         listView = (ListView) findViewById(android.R.id.list);
-
-
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
+        overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
     }
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,
