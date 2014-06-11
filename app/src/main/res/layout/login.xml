@@ -11,10 +11,10 @@
         android:textSize="40sp"
         android:gravity="center_horizontal"/>
 
-    <ImageView
+    <com.facebook.widget.ProfilePictureView
+        android:id="@+id/profilePicture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_login_person"
         android:gravity="center_horizontal"
         android:layout_marginTop="20dp"/>
 
@@ -37,22 +37,38 @@
         android:layout_marginLeft="50dp"
         android:inputType="textPassword"
         android:hint="Paswoord"/>
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:textSize="18sp" />
 
-            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/relativeLayout_login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/relativeLayout_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
-                <Button
-                    android:id="@+id/Login_btn_Login"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_centerHorizontal="true"
-                    android:text="Login" />
-            </RelativeLayout>
+        <Button
+            android:id="@+id/Login_btn_Login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="70dp"
+            android:text="Login" />
+        <Button
+            android:id="@+id/Login_btn_createAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/Login_btn_Login"
+            android:text="Maak account" />
+    </RelativeLayout>
 
     <TextView
+        android:id="@+id/accountText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -60,18 +76,22 @@
         android:gravity="center_horizontal"
         android:textSize="20sp"/>
 
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/relativeLayout_Facebook"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:facebook="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/relativeLayout_FBloginbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
 
-                <ImageButton
-                    android:id="@+id/btn_Facebook"
-                    android:layout_marginTop="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_facebook"
-                    android:background="@android:color/transparent"
-                    android:layout_alignParentEnd="false" />
-            </LinearLayout>
+        <com.facebook.widget.LoginButton
+            android:id="@+id/fb_login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            facebook:confirm_logout="false"
+            facebook:fetch_user_info="true" />
+    </RelativeLayout>
+
 </LinearLayout>

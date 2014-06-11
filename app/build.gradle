@@ -20,4 +20,14 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    dependencies {
+        compile 'com.google.android.gms:play-services:4.4.52'
+        compile fileTree(include: ['*.jar'], dir: 'libs')
+        compile files('build/libs/Parse-1.5.1.jar')
+        compile project(':libraries:facebook')
+    }
+
+    configurations {
+        all*.exclude group: 'com.android.support', module: 'support-v4'
+    }
 }
