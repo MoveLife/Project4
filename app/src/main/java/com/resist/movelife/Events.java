@@ -4,6 +4,7 @@ package com.resist.movelife;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -40,15 +41,16 @@ public class Events extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
-
-                Intent intent = new Intent();
-                intent.setClass(getBaseContext(), Map.class);
-
                 map.setGoToLocation(latitude, longtitude);
-                startActivity(intent);
+
+                Log.d("Checkingla", ""+latitude);
+                Log.d("Checkinglo", ""+longtitude);
+
+
+               Intent intent = new Intent();
+               intent.setClass(getBaseContext(), Map.class);
+
+               startActivity(intent);
 
             }
         });

@@ -8,6 +8,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -38,11 +39,7 @@ public class Map extends Activity implements LocationListener {
         //  lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
         setUpMapIfNeeded();
 
-
-
-
     }
-
 
     private void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.
@@ -57,10 +54,6 @@ public class Map extends Activity implements LocationListener {
         }
     }
 
-
-
-
-
     public void setGoToLocation(double latitude, double longtitude) {
 
 
@@ -70,6 +63,9 @@ public class Map extends Activity implements LocationListener {
                     new LatLng(latitude, longtitude)).zoom(12).build();
             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         }
+
+        Log.d("Checkingla", "" + latitude);
+        Log.d("Checkinglo", ""+longtitude);
     }
 
         @Override
