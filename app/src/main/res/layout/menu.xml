@@ -77,7 +77,7 @@
                 android:id="@+id/layout_Categories"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="2dp"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical" >
@@ -98,7 +98,13 @@
                     android:layout_gravity="center"
                     android:text="Categorieën"
                     android:textSize="20sp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    </LinearLayout>
             </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -186,7 +192,13 @@
                     android:layout_gravity="center"
                     android:text="Inloggen"
                     android:textSize="20sp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    </LinearLayout>
             </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

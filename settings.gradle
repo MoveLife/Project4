@@ -1,2 +1,3 @@
-include ':app'
+include ':app', ':menudrawer'
 include ':libraries:facebook'
+project(':menudrawer').projectDir = new File('libraries/menudrawer/menudrawer')

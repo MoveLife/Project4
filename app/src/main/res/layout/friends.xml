@@ -1,7 +1,150 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/top"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/center_point"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true"/>
+
+    <LinearLayout
+        android:id="@+id/left_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_weight="6"
+        android:layout_alignRight="@+id/center_point">
+
+        <ImageButton
+            android:id="@+id/btn_Map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_map"
+            android:background="@android:color/transparent"
+            android:onClick="act_Map"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center"
+            android:layout_marginBottom="-20dp" />
+
+        <TextView
+            android:id="@+id/text_Map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Map"
+            android:textSize="20sp"/>
+
+        <ImageButton
+            android:id="@+id/btn_Status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/ic_status"
+            android:background="@android:color/transparent"
+            android:onClick="act_Status"
+            android:layout_marginBottom="-20dp" />
+
+        <TextView
+            android:id="@+id/text_Status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Status"
+            android:textSize="20sp"/>
+
+        <ImageButton
+            android:id="@+id/btn_Categories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_categories"
+            android:background="@android:color/transparent"
+            android:onClick="act_Categories"
+            android:layout_marginBottom="-20dp" />
+
+        <TextView
+            android:id="@+id/text_Categories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Categorieën"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/right_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_alignLeft="@+id/center_point">
+
+        <ImageButton
+            android:id="@+id/btn_Friends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_friends"
+            android:background="@android:color/transparent"
+            android:onClick="act_Friends"
+            android:layout_weight="1"
+            android:layout_marginBottom="-20dp" />
+
+        <TextView
+            android:id="@+id/text_Friends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Vrienden"
+            android:textSize="20sp"/>
+
+
+        <ImageButton
+            android:id="@+id/btn_Events"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_events"
+            android:background="@android:color/transparent"
+            android:onClick="act_Events"
+            android:layout_weight="1"
+            android:layout_marginBottom="-20dp" />
+
+        <TextView
+            android:id="@+id/text_Events"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Evenementen"
+            android:textSize="20sp"/>
+
+        <ImageButton
+            android:id="@+id/btn_Login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_login"
+            android:background="@android:color/transparent"
+            android:onClick="act_Login"
+            android:layout_weight="1"
+            android:layout_marginBottom="-20dp" />
+
+        <TextView
+            android:id="@+id/text_Login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Inloggen"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
+</RelativeLayout>

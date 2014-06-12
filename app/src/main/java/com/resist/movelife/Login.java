@@ -23,11 +23,10 @@ public class Login extends FragmentActivity {
     private Button Login_btn_createAccount;
     private TextView userName;
     private UiLifecycleHelper uiHelper;
-    private ProfilePictureView profilePicture;
     private EditText loginEmail;
     private EditText loginPassword;
     private TextView accountText;
-    private ProfilePictureView profilePictureView;
+    public ProfilePictureView profilePictureView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,9 +70,9 @@ public class Login extends FragmentActivity {
         public void call(Session session, SessionState state,
                          Exception exception) {
             if (state.isOpened()) {
-                Log.d("FacebookSampleActivity", "Facebook session opened");
+                Log.d("LoginActivity", "Facebook session opened");
             } else if (state.isClosed()) {
-                Log.d("FacebookSampleActivity", "Facebook session closed");
+                Log.d("LoginActivity", "Facebook session closed");
             }
         }
     };

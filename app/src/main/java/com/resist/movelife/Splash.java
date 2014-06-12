@@ -20,7 +20,7 @@ public class Splash extends Activity {
             }catch (InterruptedException e){
                     e.printStackTrace();
                 }finally {
-                    Intent openStartingPoint = new Intent("example.myapplication.movelife.MENU");
+                    Intent openStartingPoint = new Intent("com.resist.movelife.MENU");
                     startActivity(openStartingPoint);
                     finish();
                 }

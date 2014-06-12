@@ -38,7 +38,7 @@ public class CustomBaseAdapter extends BaseAdapter {
             holder = new ViewHolder();
             assert convertView != null;
             holder.txtDesc = (TextView) convertView.findViewById(R.id.Bedrijfdesc);
-            holder.txtTitle = (TextView) convertView.findViewById(R.id.Bedrijfsnaam);
+            holder.txtTitle = (TextView) convertView.findViewById(R.id.tv_bedrijfnaam);
             //holder.imageView = (ImageView) convertView.findViewById(R.id.imageView1);
             convertView.setTag(holder);
         }
