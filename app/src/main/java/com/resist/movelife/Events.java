@@ -2,7 +2,10 @@ package com.resist.movelife;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -17,36 +20,38 @@ public class Events extends Activity {
 
     String passedVar1 = null;
     private TextView passedView1 = null;
+    Button button;
+    Map map = new Map();
 
+    double latitude = Company.getCompanies().get(0).getLatitude();
+    double longtitude = Company.getCompanies().get(0).getLongitude();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //  setContentView(R.layout.events);
-       // overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
+        overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
         setContentView(R.layout.alle_bedrijf_info);
-
         passedVar = getIntent().getStringExtra(Friends.ID_EXTRA);
-       // passedVar1 = getIntent().getStringExtra(Friends.ID_EXTRA1);
-
-
         passedView = (TextView) findViewById(R.id.tv_bedrijfsnaam);
         passedView.setText(passedVar);
 
-       // passedView1 = (TextView) findViewById(R.id.tv_bedrijfsinfo);
-       // passedView1.setText(passedVar1);
+      button = (Button)findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
 
-        // LocalDatabaseConnector.init(this);
-        // List<Company> lijst = Company.getCompanies();
 
 
-        //  listView = (ListView) findViewById(R.id.listView);
+                Intent intent = new Intent();
+                intent.setClass(getBaseContext(), Map.class);
 
+                map.setGoToLocation(latitude, longtitude);
+                startActivity(intent);
 
-        //  CustomBaseAdapterAlleBedrijfInfo adapter = new CustomBaseAdapterAlleBedrijfInfo(this, lijst);
-//        listView.setAdapter(adapter);
-
+            }
+        });
 
     }
 }

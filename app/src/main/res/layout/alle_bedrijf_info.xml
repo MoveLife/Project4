@@ -57,8 +57,8 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Informatie"
             android:id="@+id/textView6"
-            android:layout_below="@+id/rb_rating"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerVertical="true"
+            android:layout_alignEnd="@+id/tv_bedrijfsinfo" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,6 +68,14 @@
             android:layout_below="@+id/textView6"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="81dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bekijk op kaart"
+            android:id="@+id/button"
+            android:layout_below="@+id/rb_rating"
+            android:layout_alignEnd="@+id/textView6" />
     </RelativeLayout>
 
 </LinearLayout>

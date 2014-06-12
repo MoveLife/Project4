@@ -96,10 +96,13 @@
         <activity
             android:name="com.resist.movelife.Map"
             android:label="@string/app_name"
-            android:parentActivityName="com.resist.movelife.Menu">
+            android:parentActivityName="com.resist.movelife.Menu"
+
+            >
             <intent-filter>
                 <action android:name="com.resist.movelife.Map" />
                 <category android:name="android.intent.category.DEFAULT" />
+
             </intent-filter>
         </activity>
         <activity

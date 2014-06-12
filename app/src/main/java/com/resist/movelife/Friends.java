@@ -49,18 +49,18 @@ public  class Friends extends ListActivity implements
         LocalDatabaseConnector.init(this);
 
 
-        //cv.put("bid", 10);
-        // cv.put("name", "Mijnbedrijf" );
-        // cv.put("latitude", 1.1);
-        // cv.put("longitude", 1.2);
-        // cv.put("cid", 1);
-        // cv.put("postcode", 3124);
-        // cv.put("address", 12);
-        // cv.put("rating", 1.1);
-        // cv.put("telephone", 321);
-        // cv.put("description", "Goed");
-        // cv.put("buystate", 1);
-        //  LocalDatabaseConnector.insert("companies", null, cv);
+        cv.put("bid", 10);
+        cv.put("name", "Mijnbedrijf" );
+        cv.put("latitude", 10);
+         cv.put("longitude", 10);
+         cv.put("cid", 1);
+         cv.put("postcode", 3124);
+         cv.put("address", 12);
+         cv.put("rating", 1.1);
+         cv.put("telephone", 321);
+         cv.put("description", "Goed");
+         cv.put("buystate", 1);
+          LocalDatabaseConnector.insert("companies", null, cv);
         // Log.d("lijst", lijst.toString());
         // Log.d("lol",""+ LocalDatabaseConnector.insert("companies", null, cv));
 
