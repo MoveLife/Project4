@@ -28,8 +28,6 @@ import java.util.List;
 public  class Friends extends ListActivity implements
 
         AdapterView.OnItemClickListener{
-    public final static String ID_EXTRA = "";
-    public final static String ID_EXTRA1 = "";
     // Search EditText
     EditText inputSearch;
     private SearchView searchView;
@@ -49,17 +47,17 @@ public  class Friends extends ListActivity implements
         LocalDatabaseConnector.init(this);
 
 
-     //  cv.put("bid", 10);
-     //   cv.put("name", "Mijnbedrijf" );
-     //   cv.put("latitude", 10);
-     //    cv.put("longitude", 10);
-      //   cv.put("postcode", 3124);
-      //   cv.put("address", 12);
-      //   cv.put("rating", 1.1);
-       //  cv.put("telephone", 321);
-       //  cv.put("description", "Goed");
-       //  cv.put("buystate", 1);
-      //    LocalDatabaseConnector.insert("companies", null, cv);
+       cv.put("bid", 12);
+        cv.put("name", "Mijnderdebedrijf" );
+        cv.put("latitude", 20);
+         cv.put("longitude", 20);
+         cv.put("postcode", 3126);
+         cv.put("address", 15);
+         cv.put("rating", 1.1);
+         cv.put("telephone", 3213);
+         cv.put("description", "Goedhoormaarnietheus");
+         cv.put("buystate", 1);
+          LocalDatabaseConnector.insert("companies", null, cv);
         // Log.d("lijst", lijst.toString());
         // Log.d("lol",""+ LocalDatabaseConnector.insert("companies", null, cv));
 
@@ -89,7 +87,7 @@ public  class Friends extends ListActivity implements
 
 
           Intent intent = new Intent(this, Events.class);
-          intent.putExtra(ID_EXTRA, Company.getCompanies().get(position).getName() );
+          intent.putExtra("position", position);
          // intent.putExtra(ID_EXTRA1, Company.getCompanies().get(0).getDescription() );
           startActivity(intent);
 

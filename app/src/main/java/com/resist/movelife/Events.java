@@ -15,17 +15,8 @@ public class Events extends Activity {
 
     //ContentValues cv = new ContentValues();
     // ListView listView;
-
-    String passedVar = null;
-    private TextView passedView = null;
-
-    String passedVar1 = null;
-    private TextView passedView1 = null;
-    Button button;
+    private Company company;
     //Map map = new Map();
-
-    double latitude = Company.getCompanies().get(0).getLatitude();
-    double longitude = Company.getCompanies().get(0).getLongitude();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +24,12 @@ public class Events extends Activity {
         //  setContentView(R.layout.events);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
         setContentView(R.layout.alle_bedrijf_info);
-        passedVar = getIntent().getStringExtra(Friends.ID_EXTRA);
-        passedView = (TextView) findViewById(R.id.tv_bedrijfsnaam);
-        passedView.setText(passedVar);
+        int pos = getIntent().getIntExtra("position",-1);
+        company = Company.getCompanies().get(pos);
+        TextView tv = (TextView) findViewById(R.id.tv_bedrijfsnaam);
+        tv.setText(company.getName());
 
-      button = (Button)findViewById(R.id.button);
+        Button button = (Button)findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,8 +41,8 @@ public class Events extends Activity {
 
 
                 Intent intent = new Intent(getBaseContext(),Map.class);
-                intent.putExtra("latitude", latitude);
-                intent.putExtra("longitude", longitude);
+                intent.putExtra("latitude", company.getLatitude());
+                intent.putExtra("longitude", company.getLongitude());
                // intent.setClass(getBaseContext(), Map.class);
                startActivity(intent);
 
