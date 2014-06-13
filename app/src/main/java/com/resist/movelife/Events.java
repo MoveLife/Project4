@@ -22,10 +22,10 @@ public class Events extends Activity {
     String passedVar1 = null;
     private TextView passedView1 = null;
     Button button;
-    Map map = new Map();
+    //Map map = new Map();
 
     double latitude = Company.getCompanies().get(0).getLatitude();
-    double longtitude = Company.getCompanies().get(0).getLongitude();
+    double longitude = Company.getCompanies().get(0).getLongitude();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +41,17 @@ public class Events extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                map.setGoToLocation(latitude, longtitude);
+                //map.setGoToLocation(latitude, longitude);
 
-                Log.d("Checkingla", ""+latitude);
-                Log.d("Checkinglo", ""+longtitude);
+               // Log.d("Checkingla", ""+latitude);
+              //  Log.d("Checkinglo", ""+longitude);
 
 
-               Intent intent = new Intent();
-               intent.setClass(getBaseContext(), Map.class);
 
+                Intent intent = new Intent(getBaseContext(),Map.class);
+                intent.putExtra("latitude", latitude);
+                intent.putExtra("longitude", longitude);
+               // intent.setClass(getBaseContext(), Map.class);
                startActivity(intent);
 
             }

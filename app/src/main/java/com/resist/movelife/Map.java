@@ -21,8 +21,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 @SuppressLint("NewApi")
 public class Map extends Activity implements LocationListener {
-   private GoogleMap mMap;
-
+    private GoogleMap mMap;
+    private boolean change = true;
 
 
 
@@ -36,9 +36,11 @@ public class Map extends Activity implements LocationListener {
 
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
        // initilizeMap();
-        //  lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+         lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
         setUpMapIfNeeded();
 
+
+        setGoToLocation();
     }
 
     private void setUpMapIfNeeded() {
@@ -54,49 +56,62 @@ public class Map extends Activity implements LocationListener {
         }
     }
 
-    public void setGoToLocation(double latitude, double longtitude) {
+    public void setGoToLocation() {
+
+        Bundle b = getIntent().getExtras();
 
 
-
-        if (mMap != null) {
-            CameraPosition cameraPosition = new CameraPosition.Builder().target(
-                    new LatLng(latitude, longtitude)).zoom(12).build();
-            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-        }
-
-        Log.d("Checkingla", "" + latitude);
-        Log.d("Checkinglo", ""+longtitude);
-    }
-
-        @Override
-        public void onLocationChanged (Location location){
-            mMap.clear();
+        if (b != null && b.containsKey("latitude") && b.containsKey("longitude")) {
+            double latitude = b.getDouble("latitude");
+            double longitude = b.getDouble("longitude");
+            change = false;
             MarkerOptions mp = new MarkerOptions();
-            mp.position(new LatLng(location.getLatitude(), location.getLongitude()));
+            mp.position(new LatLng(latitude, longitude));
             mp.title("my position");
             mMap.addMarker(mp);
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                    new LatLng(location.getLatitude(), location.getLongitude()), 16));
+                new LatLng(latitude, longitude), 16));
 
+            Log.d("Checkingla", "" + latitude);
+            Log.d("Checkinglo", "" + longitude);
         }
+    }
 
-        @Override
-        public void onProviderDisabled (String provider){
-            // TODO Auto-generated method stub
-
+    @Override
+    public void onLocationChanged(Location location) {
+        if(!change) {
+            return;
         }
+        mMap.clear();
+        MarkerOptions mp = new MarkerOptions();
+        mp.position(new LatLng(location.getLatitude(), location.getLongitude()));
+        mp.title("my position");
+        mMap.addMarker(mp);
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                new LatLng(location.getLatitude(), location.getLongitude()), 16));
 
-        @Override
-        public void onProviderEnabled (String provider){
-            // TODO Auto-generated method stub
+    }
 
-        }
+    @Override
+    public void onProviderDisabled(String provider) {
+        // TODO Auto-generated method stub
 
-        @Override
-        public void onStatusChanged (String provider,int status, Bundle extras){
-            // TODO Auto-generated method stub
+    }
 
-        }
+    @Override
+    public void onProviderEnabled(String provider) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+        // TODO Auto-generated method stub
+
+    }
+
+
+
 
 
 
