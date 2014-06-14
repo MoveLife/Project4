@@ -7,12 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class LocalDatabaseConnector {
-
-
-
-
 	private static final String DATABASE_NAME = "MoveLife";
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 	private static Context context;
 	private static DBHelper helper;
 	private static SQLiteDatabase database;
@@ -33,8 +29,11 @@ public class LocalDatabaseConnector {
 	}
 	
 	public static long insert(String table,String nullColumnHack,ContentValues values) {
-
 		return database.insert(table,nullColumnHack,values);
+	}
+	
+	public static long insert(String table,ContentValues values) {
+		return database.insert(table,null,values);
 	}
 	
 	public static int update(String table,ContentValues values,String whereClause,String[] whereArgs) {
@@ -68,7 +67,7 @@ public class LocalDatabaseConnector {
 		@Override
 		public void onCreate(SQLiteDatabase db) {
 			db.execSQL("CREATE TABLE user (uid INTEGER, email VARCHAR(255) NOT NULL, password TEXT, PRIMARY KEY(uid));");
-			db.execSQL("CREATE TABLE companies (bid INTEGER, name VARCHAR(255) NOT NULL, latitude FLOAT NOT NULL, longitude FLOAT NOT NULL, cid INTEGER, postcode VARCHAR(20), address VARCHAR(255), rating FLOAT, tid INTEGER, telephone VARCHAR(20), description TEXT, buystate INTEGER, PRIMARY KEY(bid));");
+			db.execSQL("CREATE TABLE companies (bid INTEGER, uid INTEGER NOT NULL, name VARCHAR(255) NOT NULL, latitude FLOAT NOT NULL, longitude FLOAT NOT NULL, cid INTEGER, postcode VARCHAR(20), address VARCHAR(255), rating FLOAT, tid INTEGER, telephone VARCHAR(20), description TEXT, buystate INTEGER, PRIMARY KEY(bid));");
 			db.execSQL("CREATE TABLE reviews (uid INTEGER NOT NULL, bid INTEGER NOT NULL, review TEXT, rating FLOAT, PRIMARY KEY(uid,bid));");
 			db.execSQL("CREATE TABLE favourites (bid INTEGER NOT NULL, uid INTEGER NOT NULL, PRIMARY KEY(bid,uid));");
 			db.execSQL("CREATE TABLE companytype (tid INTEGER NOT NULL, companytype VARCHAR(255) NOT NULL, PRIMARY KEY(tid));");
@@ -80,7 +79,7 @@ public class LocalDatabaseConnector {
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			/*
+			
 			db.execSQL("DROP TABLE IF EXISTS user;");
 			db.execSQL("DROP TABLE IF EXISTS companies;");
 			db.execSQL("DROP TABLE IF EXISTS reviews;");
@@ -91,7 +90,7 @@ public class LocalDatabaseConnector {
 			db.execSQL("DROP TABLE IF EXISTS cities;");
 			db.execSQL("DROP TABLE IF EXISTS updatetime;");
 			onCreate(db);
-			*/
+			
 		}
 	}
 }

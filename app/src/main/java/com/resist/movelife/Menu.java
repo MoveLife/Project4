@@ -15,6 +15,7 @@ public class Menu extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
         updater = new DatabaseUpdater();
+        updater.start(this);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
     }
 
