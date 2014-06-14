@@ -13,7 +13,6 @@ android:id="@+id/TestAd"
     android:layout_height="wrap_content"
     ads:adUnitId="ca-app-pub-9004410477588289/1851467258"
     ads:adSize="BANNER"
-
     android:layout_alignParentBottom="true"
     android:layout_centerHorizontal="true" />
 

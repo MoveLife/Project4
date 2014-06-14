@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import com.google.android.gms.ads.*;
 
 public class Menu extends Activity {
 
@@ -16,6 +17,14 @@ public class Menu extends Activity {
         setContentView(R.layout.menu);
         updater = new DatabaseUpdater();
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
+
+        // Look up the AdView as a resource and load a request.
+        AdView adView = (AdView)this.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                //.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("DC5E69B2C6B90CD8B81EDA2BB2729EFF")
+                .build();
+        adView.loadAd(adRequest);
     }
 
     @Override

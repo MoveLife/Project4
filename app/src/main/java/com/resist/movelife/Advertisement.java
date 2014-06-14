@@ -19,7 +19,7 @@ public class Advertisement extends Fragment {
         adView=(AdView)view.findViewById(R.id.MyAdView);
         AdRequest adRequest=new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice("B3EEABB8EE11C2BE770B684D95219ECB")
+                //.addTestDevice("DC5E69B2C6B90CD8B81EDA2BB2729EFF")
                 .build();
         adView.loadAd(adRequest);
 
