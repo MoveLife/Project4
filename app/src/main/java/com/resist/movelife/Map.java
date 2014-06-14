@@ -13,7 +13,6 @@ import android.util.Log;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -35,8 +34,9 @@ public class Map extends Activity implements LocationListener {
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
 
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-       // initilizeMap();
-         lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+
+        // Onderstaande regel uitzetten voor testen in emulator.
+         //  lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
         setUpMapIfNeeded();
 
 

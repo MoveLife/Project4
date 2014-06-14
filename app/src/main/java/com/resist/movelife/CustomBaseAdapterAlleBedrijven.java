@@ -6,7 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -14,21 +15,25 @@ import java.util.List;
 
 
 
-public class CustomBaseAdapterAlleBedrijven extends BaseAdapter  {
+public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filterable {
     Context context;
     List<Company> lijst = new ArrayList<Company>();
+    private List<Company> lijstOrig;
+    private Filter bedrijfFilter;
 
 
     public CustomBaseAdapterAlleBedrijven(Context context, List<Company> items) {
         this.context = context;
         this.lijst = items;
+        this.lijstOrig = items;
     }
-
-
+    public void resetData() {
+        lijst = lijstOrig;
+    }
 
     /*private view holder class*/
     private class ViewHolder {
-        ImageView imageView;
+
         TextView txtTitle;
         TextView txtDesc;
     }
@@ -44,7 +49,6 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter  {
             assert convertView != null;
             holder.txtDesc = (TextView) convertView.findViewById(R.id.Bedrijfdesc);
             holder.txtTitle = (TextView) convertView.findViewById(R.id.Bedrijfsnaam);
-            //holder.imageView = (ImageView) convertView.findViewById(R.id.imageView1);
             convertView.setTag(holder);
         }
         else {
@@ -52,10 +56,8 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter  {
         }
 
         Company company = (Company) getItem(position);
-
         holder.txtDesc.setText(company.getDescription());
         holder.txtTitle.setText(company.getName());
-        //holder.imageView.setImageResource(R.id.imageView1);
 
         return convertView;
     }
@@ -74,4 +76,56 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter  {
     public long getItemId(int position) {
         return position;
     }
+
+    @Override
+    public Filter getFilter() {
+
+        if (bedrijfFilter == null)
+            bedrijfFilter = new BedrijfFilter();
+        return bedrijfFilter;
+    }
+
+    private class BedrijfFilter extends Filter {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            FilterResults results = new FilterResults();
+
+
+            // We implement here the filter logic
+            if (constraint == null || constraint.length() == 0) {
+                // No filter implemented we return all the list
+                results.values = lijst;
+                results.count = lijst.size();
+            }
+            else {
+                // We perform filtering operation
+                List<Company> nLijst = new ArrayList<Company>();
+
+                for (Company p : lijst) {
+                    if (p.getName().toUpperCase().startsWith(constraint.toString().toUpperCase()))
+                        nLijst.add(p);
+                }
+                results.values =  nLijst;
+                results.count = nLijst.size();
+
+            }
+            return results;
+
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+
+            // Now we have to inform the adapter about the new list filtered
+            if (results.count == 0)
+                notifyDataSetInvalidated();
+            else {
+                lijst = (List<Company>) results.values;
+                notifyDataSetChanged();
+            }
+
+
+        }
+    }
+
 }
