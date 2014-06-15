@@ -20,10 +20,12 @@ public class ResultsInfoBedrijven extends Activity {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
         setContentView(R.layout.alle_bedrijf_info);
-        int pos = getIntent().getIntExtra("position",-1);
-        company = Company.getCompanies().get(pos);
+       // int pos = getIntent().getIntExtra("position",-1);
+        company = ZoekBedrijven.filteredCompany;
         TextView tv = (TextView) findViewById(R.id.tv_bedrijfsnaam);
+        TextView tvdesc = (TextView) findViewById(R.id.tv_bedrijfsinfo);
         tv.setText(company.getName());
+        tvdesc.setText(company.getDescription());
 
         Button button = (Button)findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -39,15 +41,4 @@ public class ResultsInfoBedrijven extends Activity {
         });
 
     }
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -21,12 +21,6 @@
         android:text="@string/bedrijfsnaam"
         android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/Bedrijfdesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView1"
-        android:layout_alignLeft="@+id/Bedrijfsnaam"
-        android:text="@string/description" />
+
 
 </RelativeLayout> 

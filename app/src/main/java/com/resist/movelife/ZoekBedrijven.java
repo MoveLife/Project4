@@ -23,6 +23,8 @@ public class ZoekBedrijven extends ListActivity implements
 
     ContentValues cv = new ContentValues();
     ListView listView;
+    public static Company filteredCompany = null;
+    private CustomBaseAdapterAlleBedrijven adapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class ZoekBedrijven extends ListActivity implements
 
         Log.d("companysize", "" + Company.getCompanies().size());
         List<Company> lijst = Company.getCompanies();
-        final CustomBaseAdapterAlleBedrijven adapter = new CustomBaseAdapterAlleBedrijven(this, lijst);
+        adapter = new CustomBaseAdapterAlleBedrijven(this, lijst);
         listView = (ListView) findViewById(android.R.id.list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
@@ -69,14 +71,16 @@ public class ZoekBedrijven extends ListActivity implements
 
     }
 
+
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,
                             long id) {
 
-        String name = String.valueOf(getListView().getItemAtPosition(position));
-        Log.d("id", name);
+        Object obj = adapter.getItem(position);
+        //Log.d("id", name);
         Intent intent = new Intent(this, ResultsInfoBedrijven.class);
-        intent.putExtra("position", position);
+        filteredCompany = (Company)obj;
         startActivity(intent);
 
     }

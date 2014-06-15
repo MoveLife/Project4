@@ -3,8 +3,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical"
-
     android:weightSum="1">
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -15,9 +15,14 @@
         android:textSize="25dp"
         />
 
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
 
 
     <RelativeLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -48,7 +53,6 @@
             android:layout_marginLeft="40dp"
             android:layout_alignBottom="@+id/rb_rating"
             android:src="@android:drawable/btn_star_big_off"
-
             />
 
         <TextView
@@ -57,17 +61,17 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Informatie"
             android:id="@+id/textView6"
-            android:layout_centerVertical="true"
-            android:layout_alignEnd="@+id/tv_bedrijfsinfo" />
+            android:layout_below="@+id/rb_rating"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="82dp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:text="Bedrijfs Informatie"
             android:id="@+id/tv_bedrijfsinfo"
             android:layout_below="@+id/textView6"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="81dp" />
+            android:layout_alignParentStart="true" />
 
         <Button
             android:layout_width="wrap_content"
@@ -75,7 +79,10 @@
             android:text="Bekijk op kaart"
             android:id="@+id/button"
             android:layout_below="@+id/rb_rating"
-            android:layout_alignEnd="@+id/textView6" />
+            android:layout_centerHorizontal="true" />
+
+
     </RelativeLayout>
+    </ScrollView>
 
 </LinearLayout>

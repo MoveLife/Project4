@@ -38,7 +38,7 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filte
     private class ViewHolder {
 
         TextView txtTitle;
-        TextView txtDesc;
+       // TextView txtDesc;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -50,7 +50,7 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filte
             convertView = mInflater.inflate(R.layout.bedrijf_info, null);
             holder = new ViewHolder();
             assert convertView != null;
-            holder.txtDesc = (TextView) convertView.findViewById(R.id.Bedrijfdesc);
+           // holder.txtDesc = (TextView) convertView.findViewById(R.id.Bedrijfdesc);
             holder.txtTitle = (TextView) convertView.findViewById(R.id.Bedrijfsnaam);
             convertView.setTag(holder);
         }
@@ -59,7 +59,7 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filte
         }
 
         Company company = (Company) getItem(position);
-        holder.txtDesc.setText(company.getDescription());
+        //holder.txtDesc.setText(company.get);
         holder.txtTitle.setText(company.getName());
 
         return convertView;
@@ -98,20 +98,20 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filte
             // We implement here the filter logic
             if (constraint == null || constraint.length() == 0) {
                 // No filter implemented we return all the list
-                results.values = lijst;
-                results.count = lijst.size();
+                results.values = Company.getCompanies();
+                results.count = Company.getCompanies().size();
             }
             else {
                 // We perform filtering operation
                 List<Company> nLijst = new ArrayList<Company>();
 
-                for (Company p : lijst) {
+                for (Company p : Company.getCompanies()) {
                     if (p.getName().toUpperCase().startsWith(constraint.toString().toUpperCase()))
                         nLijst.add(p);
                 }
                 results.values =  nLijst;
                 results.count = nLijst.size();
-
+                lijst = nLijst;
             }
             return results;
 
