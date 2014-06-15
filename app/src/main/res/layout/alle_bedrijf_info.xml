@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Naam"
+        android:id="@+id/tv_bedrijfsnaam"
+        android:layout_gravity="center_horizontal"
+        android:textSize="25dp"
+        />
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/iv_bedrijfsfoto"
+            android:layout_marginTop="42dp"
+            android:src="@drawable/icon"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb_rating"
+            android:layout_marginTop="36dp"
+            android:layout_below="@+id/iv_bedrijfsfoto"
+            android:layout_alignParentStart="true" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ib_favo"
+            android:layout_alignTop="@+id/rb_rating"
+            android:layout_toRightOf="@+id/rb_rating"
+            android:layout_marginLeft="40dp"
+            android:layout_alignBottom="@+id/rb_rating"
+            android:src="@android:drawable/btn_star_big_off"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Informatie"
+            android:id="@+id/textView6"
+            android:layout_centerVertical="true"
+            android:layout_alignEnd="@+id/tv_bedrijfsinfo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bedrijfs Informatie"
+            android:id="@+id/tv_bedrijfsinfo"
+            android:layout_below="@+id/textView6"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="81dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bekijk op kaart"
+            android:id="@+id/button"
+            android:layout_below="@+id/rb_rating"
+            android:layout_alignEnd="@+id/textView6" />
+    </RelativeLayout>
+
+</LinearLayout>

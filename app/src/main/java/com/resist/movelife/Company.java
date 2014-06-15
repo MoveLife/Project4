@@ -1,14 +1,14 @@
 package com.resist.movelife;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.database.Cursor;
 import android.util.SparseArray;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Company {
 	private static List<Company> companies;
-	private static SparseArray<List<Company>> companiesOfType = new SparseArray<List<Company>>();
+    private static SparseArray<List<Company>> companiesOfType = new SparseArray<List<Company>>();
 	private int bid;
 	private int uid;
 	private String name;
@@ -111,6 +111,7 @@ public class Company {
 		return companies;
 	}
 
+
 	public static List<Company> getCompaniesOfType(Integer type) {
 		if(companiesOfType.indexOfKey(type) < 0) {
 			List<Company> allCompanies = getCompanies();
@@ -140,6 +141,7 @@ public class Company {
 		return out;
 	}
 	
+
 	public int getBid() {
 		return bid;
 	}

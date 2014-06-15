@@ -5,9 +5,18 @@
     android:layout_height="fill_parent">
 
 
+    <EditText
+        android:id="@+id/editTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:maxLines="1"
+        android:hint="@string/search_hint"
+        />
+
 
     <ListView
-        android:id="@+id/lijst1"
+        android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </ListView>

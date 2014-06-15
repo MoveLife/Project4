@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.sql.SQLException;
+
 public class LocalDatabaseConnector {
 	private static final String DATABASE_NAME = "MoveLife";
 	private static final int DATABASE_VERSION = 2;
@@ -92,5 +94,21 @@ public class LocalDatabaseConnector {
 			onCreate(db);
 			
 		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	}
 }
