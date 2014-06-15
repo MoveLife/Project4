@@ -19,13 +19,16 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filte
     Context context;
     List<Company> lijst = new ArrayList<Company>();
     private List<Company> lijstOrig;
-    private Filter bedrijfFilter;
+      private Filter bedrijfFilter;
 
 
     public CustomBaseAdapterAlleBedrijven(Context context, List<Company> items) {
         this.context = context;
         this.lijst = items;
         this.lijstOrig = items;
+
+
+
     }
     public void resetData() {
         lijst = lijstOrig;
@@ -69,6 +72,7 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filte
 
     @Override
     public Object getItem(int position) {
+
         return lijst.get(position);
     }
 

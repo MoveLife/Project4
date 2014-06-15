@@ -23,6 +23,7 @@ public class ZoekBedrijven extends ListActivity implements
 
     ContentValues cv = new ContentValues();
     ListView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +89,6 @@ public class ZoekBedrijven extends ListActivity implements
 
         String name = String.valueOf(getListView().getItemAtPosition(position));
         Log.d("id", name);
-
         Intent intent = new Intent(this, ResultsInfoBedrijven.class);
         intent.putExtra("position", position);
         startActivity(intent);
