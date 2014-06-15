@@ -1,10 +1,5 @@
 package com.resist.movelife;
 
-import java.util.regex.Pattern;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.ContentValues;
@@ -15,6 +10,12 @@ import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.util.Patterns;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.regex.Pattern;
 
 
 public class DatabaseUpdater extends Thread {
@@ -59,7 +60,49 @@ public class DatabaseUpdater extends Thread {
 	}
 	
 	private void update(JSONObject json) {
-		//doe iets met de server response
+		JSONArray companies = null;
+		try {
+			companies = json.getJSONArray("companies");
+		} catch (JSONException e) {}
+		if(companies != null && companies.length() > 0) {
+			updateCompanies(companies);
+		}
+	}
+	
+	private void updateCompanies(JSONArray companies) {
+		final String[] ints = {"bid","uid","cid","tid","buystate"};
+		final String[] floats = {"latitude","longitude","rating"};
+		final String[] strings = {"name","postcode","address","telephone","description"};
+		for(int n=0; n < companies.length();n++) {
+			JSONObject company = null;
+			try {
+				company = companies.getJSONObject(n);
+			} catch (JSONException e) {}
+			if(company != null) {
+				ContentValues cv = new ContentValues();
+				for(String column : ints) {
+					try {
+						cv.put(column, company.getInt(column));
+					} catch (JSONException e) {}
+				}
+				for(String column : floats) {
+					try {
+						cv.put(column, company.getDouble(column));
+					} catch (JSONException e) {}
+				}
+				for(String column : strings) {
+					String value = null;
+					try {
+						value = company.getString(column);
+					} catch (JSONException e) {}
+					if(value != null) {
+						cv.put(column, value);
+					}
+				}
+				LocalDatabaseConnector.insert("companies",cv);
+			}
+		}
+        Company.createCompanyList();
 	}
 	
 	private void update() {
@@ -80,8 +123,16 @@ public class DatabaseUpdater extends Thread {
 				cv.put(k,c.getInt(c.getColumnIndex(k)));
 			}
 		}
+		JSONArray json_bids = new JSONArray();
+		int[] bids = Company.getCompanyIDs();
+		for(int bid : bids) {
+			json_bids.put(bid);
+		}
+		cv.put("companies_exclude",json_bids.toString());
 		JSONObject json = ServerConnection.update(cv);
+        cv.remove("companies_exclude");
 		if(json != null) {
+            Log.d("MoveLife",json.toString());
 			try {
 				JSONObject updatetime = json.getJSONObject("updatetime");
 				for(String k : keys) {
@@ -92,7 +143,7 @@ public class DatabaseUpdater extends Thread {
 			}
 			update(json);
 			if(c.getCount() == 0) {
-				LocalDatabaseConnector.insert("updatetime",null,cv);
+				LocalDatabaseConnector.insert("updatetime",cv);
 			} else {
 				LocalDatabaseConnector.update("updatetime",cv);
 			}
@@ -183,7 +234,7 @@ public class DatabaseUpdater extends Thread {
 		ContentValues values = new ContentValues();
 		values.put("uid",uid);
 		values.put("email",email);
-		LocalDatabaseConnector.insert("user",null,values);
+		LocalDatabaseConnector.insert("user",values);
 	}
 	
 	private void registerAccount() {

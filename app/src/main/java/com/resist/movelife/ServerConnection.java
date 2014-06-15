@@ -168,28 +168,12 @@ public class ServerConnection {
 	}
 	
 	public static JSONObject update(ContentValues cv) {
-		return update(cv.getAsInteger("cities"),
-				cv.getAsInteger("companies"),
-				cv.getAsInteger("companytype"),
-				cv.getAsInteger("events"),
-				cv.getAsInteger("eventsjoined"),
-				cv.getAsInteger("favourites"),
-				cv.getAsInteger("reviews"),
-				cv.getAsInteger("users"));
-	}
-	
-	public static JSONObject update(int cities,int companies,int companytype,int events,int eventsjoined,int favourites,int reviews,int users) {
 		JSONObject json = null;
 		Map<String,String> params = new TreeMap<String,String>();
+		for(String key : cv.keySet()) {
+			params.put(key,cv.getAsString(key));
+		}
 		params.put("mode","update");
-		params.put("cities",""+cities);
-		params.put("companies",""+companies);
-		params.put("companytype",""+companytype);
-		params.put("events",""+events);
-		params.put("eventsjoined",""+eventsjoined);
-		params.put("favourites",""+favourites);
-		params.put("reviews",""+reviews);
-		params.put("users",""+users);
 		try {
 			post(params);
 		} catch (IOException e) {

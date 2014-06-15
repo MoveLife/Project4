@@ -19,8 +19,12 @@ public class Menu extends Activity{
         setContentView(R.layout.menu);
         updater = new DatabaseUpdater();
 
-
+        updater.start(this);
+        overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
     }
+
+
+
 
     @Override
     public void onStop() {

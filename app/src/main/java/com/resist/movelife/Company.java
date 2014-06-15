@@ -1,13 +1,16 @@
 package com.resist.movelife;
 
+import android.database.Cursor;
+import android.util.SparseArray;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import android.database.Cursor;
-
 public class Company {
 	private static List<Company> companies;
+    private static SparseArray<List<Company>> companiesOfType = new SparseArray<List<Company>>();
 	private int bid;
+	private int uid;
 	private String name;
 	private double latitude;
 	private double longitude;
@@ -33,21 +36,23 @@ public class Company {
 		this.buystate = buystate;
 	}
 	
-	public Company(int bid,String name,double latitude,double longitude) {
+	public Company(int bid,int uid,String name,double latitude,double longitude) {
 		this.bid = bid;
+		this.uid = uid;
 		this.name = name;
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
 	
-	public Company(int bid,String name,double latitude,double longitude,Integer cid,String postcode,String address,Double rating,Integer type,String telephone,String description,Integer buystate) {
-		this(bid,name,latitude,longitude);
+	public Company(int bid,int uid,String name,double latitude,double longitude,Integer cid,String postcode,String address,Double rating,Integer type,String telephone,String description,Integer buystate) {
+		this(bid,uid,name,latitude,longitude);
 		setAll(cid,postcode,address,rating,type,telephone,description,buystate);
 	}
 	
 	private Company(Cursor c) {
 		this(
 				c.getInt(c.getColumnIndex("bid")),
+				c.getInt(c.getColumnIndex("uid")),
 				c.getString(c.getColumnIndex("name")),
 				c.getDouble(c.getColumnIndex("latitude")),
 				c.getDouble(c.getColumnIndex("longitude"))
@@ -87,15 +92,16 @@ public class Company {
 		setAll(cid,postcode,address,rating,type,telephone,description,buystate);
 	}
 	
-	private static void createCompanyList() {
+	public static void createCompanyList() {
 		companies = new ArrayList<Company>();
-		Cursor c = LocalDatabaseConnector.get("companies",new String[]{"bid","name","latitude","longitude","cid","postcode","address","rating","tid","telephone","description","buystate"});
+		Cursor c = LocalDatabaseConnector.get("companies",new String[]{"bid","uid","name","latitude","longitude","cid","postcode","address","rating","tid","telephone","description","buystate"});
 		if(c.moveToFirst()) {
 			while(!c.isAfterLast()) {
 				companies.add(new Company(c));
 				c.moveToNext();
 			}
 		}
+		c.close();
 	}
 	
 	public static List<Company> getCompanies() {
@@ -105,8 +111,43 @@ public class Company {
 		return companies;
 	}
 
+
+	public static List<Company> getCompaniesOfType(Integer type) {
+		if(companiesOfType.indexOfKey(type) < 0) {
+			List<Company> allCompanies = getCompanies();
+			List<Company> filtered = new ArrayList<Company>();
+			for(Company c : allCompanies) {
+				if(type.equals(c.getType())) {
+					filtered.add(c);
+				}
+			}
+			companiesOfType.put(type,filtered);
+		}
+		return companiesOfType.get(type);
+	}
+
+	public static int[] getCompanyIDs() {
+		Cursor c = LocalDatabaseConnector.get("companies","bid");
+		int[] out = new int[c.getCount()];
+		if(c.moveToFirst()) {
+			int n = 0;
+			while(!c.isAfterLast()) {
+				out[n] = c.getInt(c.getColumnIndex("bid"));
+				c.moveToNext();
+				n++;
+			}
+		}
+		c.close();
+		return out;
+	}
+	
+
 	public int getBid() {
 		return bid;
+	}
+	
+	public int getUid() {
+		return uid;
 	}
 
 	public double getLatitude() {

@@ -3,6 +3,7 @@ package com.resist.movelife;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 
 
 
@@ -12,22 +13,17 @@ public class Splash extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
-        Thread timer = new Thread() {
-            public void run(){
-                try{
-                    sleep(3000);
+        overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
 
-            }catch (InterruptedException e){
-                    e.printStackTrace();
-                }finally {
-                    Intent openStartingPoint = new Intent("com.resist.movelife.MENU");
-                    startActivity(openStartingPoint);
-                    finish();
-                }
-                }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent i = new Intent(Splash.this,Menu.class);
+                startActivity(i);
+                finish();
+            }
+        },3000);
 
-        };
-        timer.start();
     }
 }
 
