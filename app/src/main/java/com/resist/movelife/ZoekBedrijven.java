@@ -31,20 +31,6 @@ public class ZoekBedrijven extends ListActivity implements
         setContentView(R.layout.bedrijflist);
         LocalDatabaseConnector.init(this);
 
-        // cv.put("bid", 14);
-        //cv.put("name", "Hansworst" );
-        // cv.put("latitude", 25);
-        //  cv.put("longitude", 25);
-        //  cv.put("postcode", 3126);
-        //  cv.put("address", 15);
-        //  cv.put("rating", 1.1);
-        //  cv.put("telephone", 3213);
-        //  cv.put("description", "Dit is leuk");
-        //  cv.put("buystate", 1);
-        //   LocalDatabaseConnector.insert("companies", null, cv);
-        // Log.d("lijst", lijst.toString());
-        // Log.d("lol",""+ LocalDatabaseConnector.insert("companies", null, cv));
-
         Log.d("companysize", "" + Company.getCompanies().size());
         List<Company> lijst = Company.getCompanies();
         final CustomBaseAdapterAlleBedrijven adapter = new CustomBaseAdapterAlleBedrijven(this, lijst);
