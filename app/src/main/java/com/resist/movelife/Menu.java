@@ -21,10 +21,15 @@ public class Menu extends Activity{
 
         updater.start(this);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
+        
+         // Look up the AdView as a resource and load a request.
+        AdView adView = (AdView)this.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                //.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("DC5E69B2C6B90CD8B81EDA2BB2729EFF")
+                .build();
+        adView.loadAd(adRequest);
     }
-
-
-
 
     @Override
     public void onStop() {
@@ -92,7 +97,6 @@ public class Menu extends Activity{
            Intent intent = new Intent(this, ZoekBedrijven.class);
            startActivity(intent);
        }
-
 
         return super.onOptionsItemSelected(item);
     }
