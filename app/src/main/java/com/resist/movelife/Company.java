@@ -7,8 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Company {
+	public static final int TYPE_BAKERY = 1;
+	public static final int TYPE_BANK = 2;
+	public static final int TYPE_BAR = 3;
+	public static final int TYPE_BOOKSHOP = 4;
+	public static final int TYPE_CAFE = 5;
+	public static final int TYPE_CINEMA = 6;
+	public static final int TYPE_CLUB = 7;
+	public static final int TYPE_LOUNGE = 8;
+	public static final int TYPE_MUSEUM = 9;
+	public static final int TYPE_RESTAURANT = 10;
+	public static final int TYPE_SUPERMARKET = 11;
 	private static List<Company> companies;
-    private static SparseArray<List<Company>> companiesOfType = new SparseArray<List<Company>>();
+	private static SparseArray<List<Company>> companiesOfType = new SparseArray<List<Company>>();
 	private int bid;
 	private int uid;
 	private String name;
@@ -25,7 +36,7 @@ public class Company {
 
 
 
-    private void setAll(Integer cid,String postcode,String address,Double rating,Integer type,String telephone,String description,Integer buystate) {
+	private void setAll(Integer cid,String postcode,String address,Double rating,Integer type,String telephone,String description,Integer buystate) {
 		this.cid = cid;
 		this.postcode = postcode;
 		this.address = address;
