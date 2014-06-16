@@ -58,52 +58,109 @@ public class DatabaseUpdater extends Thread {
 			}
 		}
 	}
-	
-	private void update(JSONObject json) {
-		JSONArray companies = null;
-		try {
-			companies = json.getJSONArray("companies");
-		} catch (JSONException e) {}
-		if(companies != null && companies.length() > 0) {
-			updateCompanies(companies);
-		}
-	}
-	
-	private void updateCompanies(JSONArray companies) {
-		final String[] ints = {"bid","uid","cid","tid","buystate"};
-		final String[] floats = {"latitude","longitude","rating"};
-		final String[] strings = {"name","postcode","address","telephone","description"};
-		for(int n=0; n < companies.length();n++) {
+
+    private ContentValues getCompanyCV(JSONObject company) {
+        final String[] ints = {"bid","uid","cid","tid","buystate"};
+        final String[] floats = {"latitude","longitude","rating"};
+        final String[] strings = {"name","postcode","address","telephone","description"};
+        ContentValues cv = new ContentValues();
+        for(String column : ints) {
+            try {
+                cv.put(column, company.getInt(column));
+            } catch (JSONException e) {}
+        }
+        for(String column : floats) {
+            try {
+                cv.put(column, company.getDouble(column));
+            } catch (JSONException e) {}
+        }
+        for(String column : strings) {
+            String value = null;
+            try {
+                value = company.getString(column);
+            } catch (JSONException e) {}
+            if(value != null) {
+                cv.put(column, value);
+            }
+        }
+        return cv;
+    }
+
+	private void insertCompanies(JSONArray companies) {
+		for(int n=0;n < companies.length();n++) {
 			JSONObject company = null;
 			try {
 				company = companies.getJSONObject(n);
 			} catch (JSONException e) {}
 			if(company != null) {
-				ContentValues cv = new ContentValues();
-				for(String column : ints) {
-					try {
-						cv.put(column, company.getInt(column));
-					} catch (JSONException e) {}
-				}
-				for(String column : floats) {
-					try {
-						cv.put(column, company.getDouble(column));
-					} catch (JSONException e) {}
-				}
-				for(String column : strings) {
-					String value = null;
-					try {
-						value = company.getString(column);
-					} catch (JSONException e) {}
-					if(value != null) {
-						cv.put(column, value);
-					}
-				}
-				LocalDatabaseConnector.insert("companies",cv);
+				LocalDatabaseConnector.insert("companies",getCompanyCV(company));
 			}
 		}
-        Company.createCompanyList();
 	}
+
+    private void deleteCompanies(JSONArray companies) {
+        String[] bids = new String[companies.length()];
+        StringBuilder where = new StringBuilder();
+        where.append("bid IN(");
+        for(int n=0;n < companies.length();n++) {
+            try {
+              bids[n] = companies.getString(n);
+            } catch (JSONException e) {}
+            if(n != 0) {
+                where.append(",");
+            }
+            where.append("?");
+        }
+        where.append(")");
+        LocalDatabaseConnector.delete("companies",where.toString(),bids);
+    }
+
+    private void updateCompanies(JSONArray companies) {
+        for(int n=0;n < companies.length();n++) {
+            JSONObject company = null;
+            try {
+                company = companies.getJSONObject(n);
+            } catch (JSONException e) {}
+            if(company != null) {
+                ContentValues cv = getCompanyCV(company);
+                LocalDatabaseConnector.update("companies",cv,"bid = ?",new String[] {cv.getAsString("bid")});
+            }
+        }
+    }
+
+    private void update(JSONObject json) {
+        boolean rebuildCompanies = false;
+        JSONArray companies = null;
+        JSONArray companies_delete = null;
+        JSONArray companies_update = null;
+        try {
+            companies = json.getJSONArray("companies");
+        } catch (JSONException e) {}
+        try {
+            companies_delete = json.getJSONArray("deleted_companies");
+        } catch (JSONException e) {}
+        try {
+            companies_update = json.getJSONArray("updated_companies");
+        } catch (JSONException e) {}
+        if(companies != null && companies.length() > 0) {
+            insertCompanies(companies);
+            rebuildCompanies = true;
+            sleep += ONE_HOUR;
+        }
+        if(companies_delete != null && companies_delete.length() > 0) {
+            deleteCompanies(companies_delete);
+            rebuildCompanies = true;
+            sleep += ONE_HOUR;
+        }
+        if(companies_update != null && companies_update.length() > 0) {
+            updateCompanies(companies_update);
+            rebuildCompanies = true;
+            sleep += ONE_HOUR;
+        }
+        if(rebuildCompanies) {
+            Company.createCompanyList();
+        }
+    }
 	
 	private void update() {
 		sleep = ONE_HOUR;
