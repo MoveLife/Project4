@@ -13,18 +13,19 @@ import android.util.Log;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 @SuppressLint("NewApi")
 public class Map extends Activity implements LocationListener {
     private GoogleMap mMap;
     private boolean change = true;
-
-
-
 
 
     @Override
@@ -36,10 +37,9 @@ public class Map extends Activity implements LocationListener {
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         // Onderstaande regel uitzetten voor testen in emulator.
-         //  lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+        //  lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
         setUpMapIfNeeded();
-
-
+        getMarkers();
         setGoToLocation();
     }
 
@@ -70,7 +70,7 @@ public class Map extends Activity implements LocationListener {
             mp.title("my position");
             mMap.addMarker(mp);
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                new LatLng(latitude, longitude), 16));
+                    new LatLng(latitude, longitude), 16));
 
             Log.d("Checkingla", "" + latitude);
             Log.d("Checkinglo", "" + longitude);
@@ -79,13 +79,15 @@ public class Map extends Activity implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
-        if(!change) {
+        List<Company> lijst = new ArrayList<Company>();
+
+        if (!change) {
             return;
         }
         mMap.clear();
         MarkerOptions mp = new MarkerOptions();
         mp.position(new LatLng(location.getLatitude(), location.getLongitude()));
-        mp.title("my position");
+        mp.title(lijst.get(0).getName());
         mMap.addMarker(mp);
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                 new LatLng(location.getLatitude(), location.getLongitude()), 16));
@@ -111,9 +113,58 @@ public class Map extends Activity implements LocationListener {
     }
 
 
+    public void getMarkers() {
 
 
+        //Cursor cursor = LocalDatabaseConnector.get("companies", "latitude");
+
+
+        final List<Company> array = Company.getCompanies();
+        int i = 0;
+        for (Company store : array) {
+            LatLng l = new LatLng(store.getLatitude(), store.getLongitude());
+
+            MarkerOptions marker = new MarkerOptions()
+                    .position(l)
+                    .title(store.getName())
+                    .snippet("" + store.getType())
+                    .snippet("" + store.getRating())
+                    .icon(BitmapDescriptorFactory
+                            .defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+            mMap.addMarker(marker);
+            ++i;
+            Log.d("markerlog", "" + array);
+
+        }
+
+       mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+
+           @Override
+           public void onInfoWindowClick(Marker marker) {
+
+               try {
+                   Company store = array
+                           .get(Integer.parseInt(marker
+                                   .getSnippet()));
+
+                 // set details
+
+
+
+
+                   double storeLat = store.getLatitude();
+                   double storelng = store.getLongitude();
+
+               } catch (ArrayIndexOutOfBoundsException e) {
+                   Log.e("ArrayIndexOutOfBoundsException", " Occured");
+               }
+
+           }
+       });
 
 
     }
+
+}
+
 
