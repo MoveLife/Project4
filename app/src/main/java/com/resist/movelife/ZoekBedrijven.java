@@ -23,7 +23,6 @@ public class ZoekBedrijven extends ListActivity implements
 
     ContentValues cv = new ContentValues();
     ListView listView;
-    public static Company filteredCompany = null;
     private CustomBaseAdapterAlleBedrijven adapter = null;
 
     @Override
@@ -80,7 +79,7 @@ public class ZoekBedrijven extends ListActivity implements
         Object obj = adapter.getItem(position);
         //Log.d("id", name);
         Intent intent = new Intent(this, ResultsInfoBedrijven.class);
-        filteredCompany = (Company)obj;
+        ResultsInfoBedrijven.filteredCompany = (Company)obj;
         startActivity(intent);
 
     }
