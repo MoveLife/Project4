@@ -1,6 +1,5 @@
 package com.resist.movelife;
 
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -27,7 +26,6 @@ public class Map extends Activity implements LocationListener {
     private GoogleMap mMap;
     private boolean change = true;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +35,7 @@ public class Map extends Activity implements LocationListener {
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         // Onderstaande regel uitzetten voor testen in emulator.
-        //  lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
         setUpMapIfNeeded();
         getMarkers();
         setGoToLocation();
@@ -51,7 +49,6 @@ public class Map extends Activity implements LocationListener {
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 // The Map is verified. It is now safe to manipulate the map.
-
             }
         }
     }
@@ -87,11 +84,11 @@ public class Map extends Activity implements LocationListener {
         mMap.clear();
         MarkerOptions mp = new MarkerOptions();
         mp.position(new LatLng(location.getLatitude(), location.getLongitude()));
-        mp.title(lijst.get(0).getName());
+        mp.title("Mijn positie");
         mMap.addMarker(mp);
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                 new LatLng(location.getLatitude(), location.getLongitude()), 16));
-
+        getMarkers();
     }
 
     @Override
@@ -146,19 +143,13 @@ public class Map extends Activity implements LocationListener {
                    Company store = array
                            .get(Integer.parseInt(marker
                                    .getSnippet()));
-
                  // set details
-
-
-
-
                    double storeLat = store.getLatitude();
                    double storelng = store.getLongitude();
 
                } catch (ArrayIndexOutOfBoundsException e) {
                    Log.e("ArrayIndexOutOfBoundsException", " Occured");
                }
-
            }
        });
 
