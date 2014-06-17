@@ -16,8 +16,6 @@ import com.facebook.widget.LoginButton;
 import com.facebook.widget.LoginButton.UserInfoChangedCallback;
 import com.facebook.widget.ProfilePictureView;
 
-
-
 public class Login extends FragmentActivity {
 
     private LoginButton loginBtn;

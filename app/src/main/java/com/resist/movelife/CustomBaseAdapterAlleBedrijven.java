@@ -13,32 +13,25 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filterable {
     Context context;
     List<Company> lijst = new ArrayList<Company>();
     private List<Company> lijstOrig;
-      private Filter bedrijfFilter;
-
+    private Filter bedrijfFilter;
 
     public CustomBaseAdapterAlleBedrijven(Context context, List<Company> items) {
         this.context = context;
         this.lijst = items;
         this.lijstOrig = items;
-
-
-
     }
+
     public void resetData() {
         lijst = lijstOrig;
     }
-
     /*private view holder class*/
     private class ViewHolder {
-
         TextView txtTitle;
-       // TextView txtDesc;
+        // TextView txtDesc;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -50,7 +43,7 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filte
             convertView = mInflater.inflate(R.layout.bedrijf_info, null);
             holder = new ViewHolder();
             assert convertView != null;
-           // holder.txtDesc = (TextView) convertView.findViewById(R.id.Bedrijfdesc);
+            // holder.txtDesc = (TextView) convertView.findViewById(R.id.Bedrijfdesc);
             holder.txtTitle = (TextView) convertView.findViewById(R.id.Bedrijfsnaam);
             convertView.setTag(holder);
         }
@@ -72,7 +65,6 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filte
 
     @Override
     public Object getItem(int position) {
-
         return lijst.get(position);
     }
 
@@ -83,7 +75,6 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filte
 
     @Override
     public Filter getFilter() {
-
         if (bedrijfFilter == null)
             bedrijfFilter = new BedrijfFilter();
         return bedrijfFilter;
@@ -93,7 +84,6 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filte
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults results = new FilterResults();
-
 
             // We implement here the filter logic
             if (constraint == null || constraint.length() == 0) {
@@ -114,7 +104,6 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filte
                 lijst = nLijst;
             }
             return results;
-
         }
 
         @Override
@@ -127,8 +116,6 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filte
                 lijst = (List<Company>) results.values;
                 notifyDataSetChanged();
             }
-
-
         }
     }
 

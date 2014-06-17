@@ -71,21 +71,16 @@ public class Map extends Activity implements LocationListener {
                         );
                     }
                 });
-
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
-
                 AlertDialog alert = builder.create();
                 alert.show();
-
             }
         });
-
-
     }
 
     private void setUpMapIfNeeded() {
@@ -96,13 +91,11 @@ public class Map extends Activity implements LocationListener {
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 // The Map is verified. It is now safe to manipulate the map.
-
             }
         }
     }
 
     public void setGoToLocation() {
-
         Bundle b = getIntent().getExtras();
 
         if (b != null && b.containsKey("latitude") && b.containsKey("longitude")) {
@@ -142,25 +135,22 @@ public class Map extends Activity implements LocationListener {
         mMap.addMarker(mp);
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                 new LatLng(location.getLatitude(), location.getLongitude()), 16));
-    getMarkers();
+        getMarkers();
     }
 
     @Override
     public void onProviderDisabled(String provider) {
         // TODO Auto-generated method stub
-
     }
 
     @Override
     public void onProviderEnabled(String provider) {
         // TODO Auto-generated method stub
-
     }
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
         // TODO Auto-generated method stub
-
     }
 
     public void getMarkers() {
@@ -189,12 +179,10 @@ public class Map extends Activity implements LocationListener {
 
             @Override
             public void onInfoWindowClick(Marker marker) {
-
                 Company store = markerMap.get(marker);
                 ResultsInfoBedrijven.filteredCompany = store;
                 Intent i = new Intent(Map.this, ResultsInfoBedrijven.class);
                 startActivity(i);
-
             }
         });
 
@@ -205,16 +193,13 @@ public class Map extends Activity implements LocationListener {
 
         int id = item.getItemId();
         if (id == R.id.action_search) {
-
             getBakeryMarkers();
-
         }
         return super.onOptionsItemSelected(item);
     }
 
 
     public void getBakeryMarkers(){
-
         mMap.clear();
         final List<Company> array = Company.getCompaniesOfType(1);
         final java.util.Map<Marker, Company> markerMap = new HashMap<Marker, Company>();
@@ -235,7 +220,6 @@ public class Map extends Activity implements LocationListener {
 
             @Override
             public void onInfoWindowClick(Marker marker) {
-
                 Company store = markerMap.get(marker);
                 ResultsInfoBedrijven.filteredCompany = store;
                 Intent i = new Intent(Map.this, ResultsInfoBedrijven.class);
@@ -245,23 +229,35 @@ public class Map extends Activity implements LocationListener {
 
     }
 
-    public void getBankMarkers(){}
-    public void getBarMarkers(){}
-    public void getBookshopMarkers(){}
-    public void getCafeMarkers(){}
-    public void getCinemaMarkers(){}
-    public void getClubMarkers(){}
-    public void getLoungeMarkers(){}
-    public void getMuseumMarkers(){}
-    public void getRestaurantMarkers(){}
-    public void getSupermarketMarkers(){}
+    public void getBankMarkers(){
 
+    }
+    public void getBarMarkers(){
+    }
+    public void getBookshopMarkers(){
 
+    }
+    public void getCafeMarkers(){
 
+    }
+    public void getCinemaMarkers(){
 
+    }
+    public void getClubMarkers(){
 
+    }
+    public void getLoungeMarkers(){
 
+    }
+    public void getMuseumMarkers(){
 
+    }
+    public void getRestaurantMarkers(){
+
+    }
+    public void getSupermarketMarkers(){
+
+    }
 
 }
 
