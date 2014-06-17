@@ -3,15 +3,20 @@ package com.resist.movelife;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.EditText;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -29,6 +34,7 @@ import java.util.List;
 public class Map extends Activity implements LocationListener {
     private GoogleMap mMap;
     private boolean change = true;
+    Context context = this;
 
 
     @Override
@@ -37,13 +43,48 @@ public class Map extends Activity implements LocationListener {
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.map);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
-
-
         setUpMapIfNeeded();
         getMarkers();
         setGoToLocation();
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+
+            public void onMapLongClick(final LatLng latlng) {
+                LayoutInflater li = LayoutInflater.from(context);
+                final View v = li.inflate(R.layout.event_alert, null);
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setView(v);
+                builder.setCancelable(false);
+
+                builder.setPositiveButton("Maak evenement", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        EditText title = (EditText) v.findViewById(R.id.ettitle);
+                        EditText snippet = (EditText) v.findViewById(R.id.etsnippet);
+                        mMap.addMarker(new MarkerOptions()
+                                        .title(title.getText().toString())
+                                        .snippet(snippet.getText().toString())
+                                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                                        .position(latlng)
+                        );
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
 
     }
 
@@ -63,7 +104,6 @@ public class Map extends Activity implements LocationListener {
     public void setGoToLocation() {
 
         Bundle b = getIntent().getExtras();
-
 
         if (b != null && b.containsKey("latitude") && b.containsKey("longitude")) {
             double latitude = b.getDouble("latitude");
@@ -102,7 +142,7 @@ public class Map extends Activity implements LocationListener {
         mMap.addMarker(mp);
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                 new LatLng(location.getLatitude(), location.getLongitude()), 16));
-
+    getMarkers();
     }
 
     @Override
