@@ -14,6 +14,7 @@ public class ResultsInfoBedrijven extends Activity {
 
 
     private Company company;
+    public static Company filteredCompany = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,16 +22,27 @@ public class ResultsInfoBedrijven extends Activity {
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
         setContentView(R.layout.alle_bedrijf_info);
        // int pos = getIntent().getIntExtra("position",-1);
-        company = ZoekBedrijven.filteredCompany;
+        company = filteredCompany;
         TextView tv = (TextView) findViewById(R.id.tv_bedrijfsnaam);
         TextView tvdesc = (TextView) findViewById(R.id.tv_bedrijfsinfo);
         tv.setText(company.getName());
         tvdesc.setText(company.getDescription());
 
+        Button reviewButton = (Button) findViewById(R.id.reviewBtn);
+        reviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(),PlaatsReview.class);
+                startActivity(intent);
+            }
+        });
+
+
         Button button = (Button)findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 Intent intent = new Intent(getBaseContext(),Map.class);
                 intent.putExtra("latitude", company.getLatitude());
@@ -39,6 +51,5 @@ public class ResultsInfoBedrijven extends Activity {
 
             }
         });
-
     }
 }
