@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import com.google.android.gms.ads.*;
 
 public class Menu extends Activity{
 
@@ -23,12 +22,12 @@ public class Menu extends Activity{
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
         
          // Look up the AdView as a resource and load a request.
-        AdView adView = (AdView)this.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-                //.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice("DC5E69B2C6B90CD8B81EDA2BB2729EFF")
-                .build();
-        adView.loadAd(adRequest);
+       // AdView adView = (AdView)this.findViewById(R.id.adView);
+       // AdRequest adRequest = new AdRequest.Builder()
+            //    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+            //    .addTestDevice("DC5E69B2C6B90CD8B81EDA2BB2729EFF")
+            //    .build();
+      //  adView.loadAd(adRequest);
     }
 
     @Override

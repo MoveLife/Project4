@@ -1,0 +1,30 @@
+﻿Merge remote-tracking branch 'origin/master' into list_to_listview
+
+Conflicts:
+	app/src/main/java/com/resist/movelife/Company.java
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch list_to_listview
+# All conflicts fixed but you are still merging.
+#   (use "git commit" to conclude merge)
+#
+# Changes to be committed:
+#
+#	modified:   app/src/main/AndroidManifest.xml
+#	modified:   app/src/main/java/com/resist/movelife/AccountSettings.java
+#	modified:   app/src/main/java/com/resist/movelife/Categories.java
+#	modified:   app/src/main/java/com/resist/movelife/Company.java
+#	modified:   app/src/main/java/com/resist/movelife/DatabaseUpdater.java
+#	modified:   app/src/main/java/com/resist/movelife/LocalDatabaseConnector.java
+#	modified:   app/src/main/java/com/resist/movelife/Menu.java
+#	modified:   app/src/main/java/com/resist/movelife/Status.java
+#	modified:   app/src/main/res/layout/menu.xml
+#
+
