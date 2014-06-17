@@ -28,10 +28,21 @@ public class ResultsInfoBedrijven extends Activity {
         tv.setText(company.getName());
         tvdesc.setText(company.getDescription());
 
+        Button reviewButton = (Button) findViewById(R.id.reviewBtn);
+        reviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(),PlaatsReview.class);
+                startActivity(intent);
+            }
+        });
+
+
         Button button = (Button)findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 Intent intent = new Intent(getBaseContext(),Map.class);
                 intent.putExtra("latitude", company.getLatitude());

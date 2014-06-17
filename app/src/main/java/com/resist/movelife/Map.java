@@ -10,6 +10,8 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.Window;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -19,7 +21,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,17 +34,14 @@ public class Map extends Activity implements LocationListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.map);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
-
-
-
 
 
         setUpMapIfNeeded();
         getMarkers();
         setGoToLocation();
-        // Onderstaande regel uitzetten voor testen in emulator.
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
 
@@ -84,8 +82,16 @@ public class Map extends Activity implements LocationListener {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+
+        return true;
+    }
+
+    @Override
     public void onLocationChanged(Location location) {
-       // List<Company> lijst = new ArrayList<Company>();
+        // List<Company> lijst = new ArrayList<Company>();
         if (!change) {
             return;
         }
@@ -117,56 +123,130 @@ public class Map extends Activity implements LocationListener {
 
     }
 
-
     public void getMarkers() {
         if (!change) {
             return;
         }
-            //Cursor cursor = LocalDatabaseConnector.get("companies", "latitude");
-            final List<Company> array = Company.getCompanies();
-            final java.util.Map<Marker,Company> markerMap = new HashMap<Marker,Company>();
-         //   int i = 0;
-            for (Company store : array) {
-                LatLng l = new LatLng(store.getLatitude(), store.getLongitude());
 
-                MarkerOptions marker = new MarkerOptions()
-                        .position(l)
-                        .title(store.getName())
-                        .snippet("" + store.getRating())
-                        .icon(BitmapDescriptorFactory
-                                .defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-                Marker m = mMap.addMarker(marker);
-                markerMap.put(m,store);
-           //     ++i;
-                Log.d("markerlog", "" + array);
+        final List<Company> array = Company.getCompanies();
+        final java.util.Map<Marker, Company> markerMap = new HashMap<Marker, Company>();
+        for (Company store : array) {
+            LatLng l = new LatLng(store.getLatitude(), store.getLongitude());
+
+            MarkerOptions marker = new MarkerOptions()
+                    .position(l)
+                    .title(store.getName())
+                    .snippet("" + store.getRating())
+                    .icon(BitmapDescriptorFactory
+                            .defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+            Marker m = mMap.addMarker(marker);
+            markerMap.put(m, store);
+
+            Log.d("markerlog", "" + array);
+        }
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+
+                Company store = markerMap.get(marker);
+                ResultsInfoBedrijven.filteredCompany = store;
+                Intent i = new Intent(Map.this, ResultsInfoBedrijven.class);
+                startActivity(i);
+
             }
+        });
 
+    }
 
-            mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-                @Override
-                public void onInfoWindowClick(Marker marker) {
+        int id = item.getItemId();
+        if (id == R.id.action_search) {
 
-                  //  try {
-                        Company store = markerMap.get(marker);
-                        ResultsInfoBedrijven.filteredCompany = store;
-                        Intent i = new Intent(Map.this,ResultsInfoBedrijven.class);
-                        startActivity(i);
-                        // set details
-
-                        //double storeLat = store.getLatitude();
-                        // double storelng = store.getLongitude();
-
-                  //  } catch (ArrayIndexOutOfBoundsException e) {
-                  //      Log.e("ArrayIndexOutOfBoundsException", " Occured");
-                  //  }
-
-                }
-            });
+            getBakeryMarkers();
 
         }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    public void getBakeryMarkers(){
+
+        mMap.clear();
+        final List<Company> array = Company.getCompaniesOfType(1);
+        final java.util.Map<Marker, Company> markerMap = new HashMap<Marker, Company>();
+
+        for (Company store : array) {
+            LatLng l = new LatLng(store.getLatitude(), store.getLongitude());
+
+            MarkerOptions bakeryMarker = new MarkerOptions()
+                    .position(l)
+                    .title(store.getName())
+                    .snippet("" + store.getRating())
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_bakery));
+            Marker m = mMap.addMarker(bakeryMarker);
+            markerMap.put(m, store);
+        }
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+
+                Company store = markerMap.get(marker);
+                ResultsInfoBedrijven.filteredCompany = store;
+                Intent i = new Intent(Map.this, ResultsInfoBedrijven.class);
+                startActivity(i);
+            }
+        });
+
+    }
+
+    public void getBankMarkers(){}
+    public void getBarMarkers(){}
+    public void getBookshopMarkers(){}
+    public void getCafeMarkers(){}
+    public void getCinemaMarkers(){}
+    public void getClubMarkers(){}
+    public void getLoungeMarkers(){}
+    public void getMuseumMarkers(){}
+    public void getRestaurantMarkers(){}
+    public void getSupermarketMarkers(){}
+
+
+
+
+
+
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
