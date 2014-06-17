@@ -45,6 +45,10 @@ public class LocalDatabaseConnector {
 	public static int update(String table,ContentValues values) {
 		return database.update(table,values,null,null);
 	}
+
+    public static int delete(String table,String whereClause,String[] whereArgs) {
+        return database.delete(table,whereClause,whereArgs);
+    }
 	
 	public static boolean isEmpty(String table) {
 		Cursor c = database.rawQuery("SELECT 1 FROM "+table,null);
@@ -94,21 +98,6 @@ public class LocalDatabaseConnector {
 			onCreate(db);
 			
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	}
 }
