@@ -8,11 +8,8 @@
     <string name="empty_list">Geen data</string>
     <string name="bedrijfsnaam">Bedrijfsnaam1</string>
     <string name="description">Description</string>
-
-
     <string name="APP_ID">1494630767419558</string>
     <string name="search_label">Search</string>
     <string name="search_hint">Zoek Bedrijven</string>
-
 
 </resources>
