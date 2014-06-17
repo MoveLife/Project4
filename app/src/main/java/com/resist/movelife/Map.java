@@ -36,7 +36,6 @@ public class Map extends Activity implements LocationListener {
     private boolean change = true;
     Context context = this;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -182,7 +181,7 @@ public class Map extends Activity implements LocationListener {
             Marker m = mMap.addMarker(marker);
             markerMap.put(m, store);
 
-            Log.d("markerlog", "" + array);
+           // Log.d("markerlog", "" + array);
         }
 
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {

@@ -78,7 +78,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="android-support-v4" level="project" />
     <orderEntry type="library" exported="" name="play-services-4.4.52" level="project" />
-    <orderEntry type="library" exported="" name="Parse-1.5.1" level="project" />
     <orderEntry type="library" exported="" name="bolts" level="project" />
     <orderEntry type="module" module-name="facebook" exported="" />
   </component>
