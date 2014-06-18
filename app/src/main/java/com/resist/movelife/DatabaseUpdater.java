@@ -333,4 +333,31 @@ public class DatabaseUpdater extends Thread {
 		NetworkInfo ni = cm.getActiveNetworkInfo();
 		return ni != null && ni.isConnected() && ni.isAvailable();
 	}
+
+    public static void addReview(int bid,Double rating,String review) {
+        JSONObject json = ServerConnection.addReview(bid,rating,review);
+        if(json != null) {
+            ContentValues cv = new ContentValues();
+            ContentValues cv2 = new ContentValues();
+            ContentValues cv3 = new ContentValues();
+            try {
+                cv.put("uid",json.getInt("uid"));
+                cv.put("bid",json.getInt("bid"));
+                cv2.put("rating",json.getDouble("company_rating"));
+                cv3.put("companies",json.getDouble("time"));
+                cv3.put("reviews",json.getDouble("time"));
+            } catch(JSONException e) {
+                return;
+            }
+            try {
+                cv.put("review",json.getString("review"));
+            } catch(JSONException e) {}
+            try {
+                cv.put("rating",json.getDouble("rating"));
+            } catch(JSONException e) {}
+            LocalDatabaseConnector.insert("reviews",cv);
+            LocalDatabaseConnector.update("companies",cv2,"bid = ?",new String[] {cv.getAsString("bid")});
+            LocalDatabaseConnector.update("updatetime",cv3);
+        }
+    }
 }
