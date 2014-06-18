@@ -9,7 +9,7 @@
         android:id="@+id/tv_VeranderEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Verander E-mailadres"
+        android:text="@string/changeemail_header"
         android:textSize="30sp"
         android:gravity="center_horizontal"/>
 
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_VeranderEmail"
         android:layout_marginTop="20dp"
-        android:text="Huidige E-mail"
+        android:text="@string/changeemail_currentemail"
         android:textSize="20sp"
         android:gravity="center_horizontal"/>
 
@@ -42,7 +42,7 @@
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
         android:inputType="textEmailAddress"
-        android:hint="Nieuw E-mailadres"/>
+        android:hint="@string/changeemail_newemail"/>
 
     <EditText
         android:id="@+id/et_EmailVerify"
@@ -53,14 +53,14 @@
         android:layout_marginLeft="50dp"
         android:layout_below="@+id/et_Email"
         android:inputType="textEmailAddress"
-        android:hint="Herhaal E-mailadres"/>
+        android:hint="@string/changeemail_newemailverify"/>
 
     <Button
         android:id="@+id/btn_ChangeEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Verander E-mailadres"
+        android:text="@string/changeemail_button"
         android:layout_below="@+id/et_EmailVerify"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

@@ -8,7 +8,7 @@
         android:id="@+id/tv_AccountSettingsHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mijn Account"
+        android:text="@string/accountsettings_header"
         android:textSize="40sp"
         android:gravity="center_horizontal"/>
 
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/iv_loginPicture"
         android:layout_marginTop="20dp"
-        android:text="Huidige E-mail:"
+        android:text="@string/accountsettings_currentemail"
         android:textSize="20sp"
         android:gravity="center_horizontal"/>
 
@@ -46,9 +46,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_CurrentEmail"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:text="Verander E-mailadres"
+        android:text="@string/accountsettings_changeemail"
         android:onClick="act_changeEmail"/>
 
         <Button
@@ -58,6 +58,6 @@
             android:layout_below="@id/btn_ChangeEmail"
             android:layout_marginTop="5dp"
             android:layout_centerHorizontal="true"
-            android:text="Verander paswoord"
+            android:text="@string/accountsettings_changepassword"
             android:onClick="act_changePassword"/>
 </RelativeLayout>
