@@ -193,7 +193,7 @@ public class ServerConnection {
             return null;
         }
         JSONObject json = null;
-        Map<String,String> params = new TreeMap<String, String>();
+        Map<String,String> params = new TreeMap<String,String>();
         params.put("mode","add_review");
         params.put("bid",""+bid);
         if(rating != null) {
@@ -213,5 +213,15 @@ public class ServerConnection {
             } catch(JSONException e) {}
         }
         return json;
+    }
+
+    public static void updateLocation(double longitude,double latitude) {
+        Map<String,String> params = new TreeMap<String,String>();
+        params.put("longitude",""+longitude);
+        params.put("latitude",""+latitude);
+        params.put("mode","update_location");
+        try {
+            post(params);
+        } catch(IOException e) {}
     }
 }

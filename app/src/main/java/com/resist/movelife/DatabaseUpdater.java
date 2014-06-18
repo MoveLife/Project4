@@ -5,6 +5,8 @@ import android.accounts.AccountManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
@@ -24,6 +26,8 @@ public class DatabaseUpdater extends Thread {
 	public static final long ONE_HOUR = 60*ONE_MINUTE;
 	private boolean running = true;
 	private long sleep = ONE_SECOND;
+    private long update_sleep = 0;
+    private long gps_sleep = 0;
 	private Context context;
 	private ConnectivityManager cm;
 	
@@ -47,7 +51,16 @@ public class DatabaseUpdater extends Thread {
 					if(!ServerConnection.isLoggedIn()) {
 						sleep = ONE_MINUTE;
 					} else {
-						update();
+                        if(gps_sleep <= 0) {
+                            updateLocation();
+                        } else {
+                            gps_sleep -= sleep;
+                        }
+                        if(update_sleep <= 0) {
+                            update();
+                        } else {
+                            update_sleep -= sleep;
+                        }
 					}
 				}
 			}
@@ -58,6 +71,17 @@ public class DatabaseUpdater extends Thread {
 			}
 		}
 	}
+
+    private void updateLocation() {
+        gps_sleep += ONE_MINUTE*5;
+        LocationManager lm = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
+        Location l = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        if(l != null) {
+            ServerConnection.updateLocation(l.getLongitude(), l.getLatitude());
+        } else {
+            gps_sleep += ONE_HOUR;
+        }
+    }
 
     private ContentValues getCompanyCV(JSONObject company) {
         final String[] ints = {"bid","uid","cid","tid","buystate"};
@@ -145,19 +169,17 @@ public class DatabaseUpdater extends Thread {
         if(companies != null && companies.length() > 0) {
             insertCompanies(companies);
             rebuildCompanies = true;
-            sleep += ONE_HOUR;
         }
         if(companies_delete != null && companies_delete.length() > 0) {
             deleteCompanies(companies_delete);
             rebuildCompanies = true;
-            sleep += ONE_HOUR;
         }
         if(companies_update != null && companies_update.length() > 0) {
             updateCompanies(companies_update);
             rebuildCompanies = true;
-            sleep += ONE_HOUR;
         }
         if(rebuildCompanies) {
+            update_sleep += ONE_HOUR;
             Company.createCompanyList();
         }
     }
