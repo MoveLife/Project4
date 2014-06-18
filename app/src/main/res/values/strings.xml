@@ -7,6 +7,16 @@
     <string name="empty_list">Geen data</string>
     <string name="bedrijfsnaam">Bedrijfsnaam1</string>
     <string name="description">Description</string>
+
+    <string-array name="rivers">
+        <item >Home</item>
+        <item >Categorieën</item>
+        <item >Top Lijst</item>
+        <item >Nog iets</item>
+    </string-array>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
     <string name="APP_ID">1494630767419558</string>
     <string name="search_label">Search</string>
     <string name="search_hint">Zoek Bedrijven</string>

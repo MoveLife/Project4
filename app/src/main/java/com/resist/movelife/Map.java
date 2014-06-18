@@ -11,12 +11,17 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -38,6 +43,19 @@ public class Map extends Activity implements LocationListener {
     private boolean movedCamera = false;
     private Marker myPos = null;
 
+
+    // Within which the entire activity is enclosed
+    DrawerLayout mDrawerLayout;
+
+    // ListView represents Navigation Drawer
+    ListView mDrawerList;
+
+    // ActionBarDrawerToggle indicates the presence of Navigation Drawer in the action bar
+    ActionBarDrawerToggle mDrawerToggle;
+
+    // Title of the action bar
+    String mTitle="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,215 +65,289 @@ public class Map extends Activity implements LocationListener {
         setUpMapIfNeeded();
         getMarkers();
         setGoToLocation();
+        mTitle = (String) getTitle();
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
 
+
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
 
-            public void onMapLongClick(final LatLng latlng) {
-                LayoutInflater li = LayoutInflater.from(context);
-                final View v = li.inflate(R.layout.event_alert, null);
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setView(v);
-                builder.setCancelable(false);
+                                           public void onMapLongClick(final LatLng latlng) {
+                                               LayoutInflater li = LayoutInflater.from(context);
+                                               final View v = li.inflate(R.layout.event_alert, null);
+                                               AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                               builder.setView(v);
+                                               builder.setCancelable(false);
 
-                builder.setPositiveButton("Maak evenement", new DialogInterface.OnClickListener() {
+                                               builder.setPositiveButton("Maak evenement", new DialogInterface.OnClickListener() {
 
-                    public void onClick(DialogInterface dialog, int which) {
-                        EditText title = (EditText) v.findViewById(R.id.ettitle);
-                        EditText snippet = (EditText) v.findViewById(R.id.etsnippet);
-                        mMap.addMarker(new MarkerOptions()
-                                        .title(title.getText().toString())
-                                        .snippet(snippet.getText().toString())
-                                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                                        .position(latlng)
-                        );
+                                                   public void onClick(DialogInterface dialog, int which) {
+                                                       EditText title = (EditText) v.findViewById(R.id.ettitle);
+                                                       EditText snippet = (EditText) v.findViewById(R.id.etsnippet);
+                                                       mMap.addMarker(new MarkerOptions()
+                                                                       .title(title.getText().toString())
+                                                                       .snippet(snippet.getText().toString())
+                                                                       .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                                                                       .position(latlng)
+                                                       );
+                                                   }
+                                               });
+
+                                               builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+                                                   public void onClick(DialogInterface dialog, int which) {
+                                                       dialog.cancel();
+                                                   }
+                                               });
+
+                                               AlertDialog alert = builder.create();
+                                               alert.show();
+                                           }
+                                       });
+
+        // Getting reference to the DrawerLayout
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.drawer_list);
+
+        // Getting reference to the ActionBarDrawerToggle
+        mDrawerToggle = new ActionBarDrawerToggle( this,
+                mDrawerLayout,
+                R.drawable.ic_drawer,
+                R.string.drawer_open,
+                R.string.drawer_close){
+
+            /** Called when drawer is closed */
+            public void onDrawerClosed(View view) {
+                getActionBar().setTitle(mTitle);
+                invalidateOptionsMenu();
+            }
+
+            /** Called when a drawer is opened */
+            public void onDrawerOpened(View drawerView) {
+                getActionBar().setTitle("Kies");
+                invalidateOptionsMenu();
+            }
+        };
+
+        // Setting DrawerToggle on DrawerLayout
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        // Creating an ArrayAdapter to add items to the listview mDrawerList
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                getBaseContext(),
+                R.layout.drawer_list_item ,
+                getResources().getStringArray(R.array.rivers)
+        );
+
+        // Setting the adapter on mDrawerList
+        mDrawerList.setAdapter(adapter);
+
+                 // Enabling Home button
+                getActionBar().setHomeButtonEnabled(true);
+
+                // Enabling Up navigation
+                getActionBar().setDisplayHomeAsUpEnabled(true);
+
+                // Setting item click listener for the listview mDrawerList
+                mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent,
+                                            View view,
+                                            int position,
+                                            long id) {
+
+                        // Getting an array of rivers
+                        String[] rivers = getResources().getStringArray(R.array.rivers);
+
+                       //Currently selected river
+                        mTitle = rivers[position];
+
+
+
+
+
+                        // Closing the drawer
+                        mDrawerLayout.closeDrawer(mDrawerList);
                     }
                 });
 
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+
+
+            }
+                @Override
+                protected void onPostCreate(Bundle savedInstanceState) {
+                    super.onPostCreate(savedInstanceState);
+                    mDrawerToggle.syncState();
+                }
+
+            private void setUpMapIfNeeded() {
+                // Do a null check to confirm that we have not already instantiated the map.
+                if (mMap == null) {
+                    mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
+                            .getMap();
+                    // Check if we were successful in obtaining the map.
+                    if (mMap != null) {
+                        // The Map is verified. It is now safe to manipulate the map.
+
                     }
-                });
-
-                AlertDialog alert = builder.create();
-                alert.show();
-
-            }
-        });
-
-
-    }
-
-    private void setUpMapIfNeeded() {
-        // Do a null check to confirm that we have not already instantiated the map.
-        if (mMap == null) {
-            mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
-                    .getMap();
-            // Check if we were successful in obtaining the map.
-            if (mMap != null) {
-                // The Map is verified. It is now safe to manipulate the map.
-
-            }
-        }
-    }
-
-    public void setGoToLocation() {
-
-        Bundle b = getIntent().getExtras();
-
-        if (b != null && b.containsKey("latitude") && b.containsKey("longitude")) {
-            double latitude = b.getDouble("latitude");
-            double longitude = b.getDouble("longitude");
-            change = false;
-            MarkerOptions mp = new MarkerOptions();
-            mp.position(new LatLng(latitude, longitude));
-            mp.title("my position");
-            mMap.addMarker(mp);
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                    new LatLng(latitude, longitude), 16));
-
-            Log.d("Checkingla", "" + latitude);
-            Log.d("Checkinglo", "" + longitude);
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(android.view.Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-
-        return true;
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-        // List<Company> lijst = new ArrayList<Company>();
-        if (!change) {
-            return;
-        }
-        if(myPos != null) {
-            myPos.remove();
-        }
-        // mMap.clear();
-
-        MarkerOptions mp = new MarkerOptions();
-        mp.position(new LatLng(location.getLatitude(), location.getLongitude()));
-        mp.title("Mijn positie");
-        myPos = mMap.addMarker(mp);
-        if (!movedCamera) {
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                    new LatLng(location.getLatitude(), location.getLongitude()), 16));
-            movedCamera = true;
-        }
-        //getMarkers();
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-        // TODO Auto-generated method stub
-
-    }
-
-    public void getMarkers() {
-        if (!change) {
-            return;
-        }
-
-        final List<Company> array = Company.getCompanies();
-        final java.util.Map<Marker, Company> markerMap = new HashMap<Marker, Company>();
-        for (Company store : array) {
-            LatLng l = new LatLng(store.getLatitude(), store.getLongitude());
-
-            MarkerOptions marker = new MarkerOptions()
-                    .position(l)
-                    .title(store.getName())
-                    .snippet("" + store.getRating())
-                    .icon(BitmapDescriptorFactory
-                            .defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-            Marker m = mMap.addMarker(marker);
-            markerMap.put(m, store);
-
-            //Log.d("markerlog", "" + array);
-        }
-
-       onInfoClick(markerMap);
-
-    }
-
-    private void onInfoClick(final java.util.Map<Marker, Company> markerMap){
-
-        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-
-            @Override
-            public void onInfoWindowClick(Marker marker) {
-
-                Company store = markerMap.get(marker);
-                if (store != null) {
-                    ResultsInfoBedrijven.filteredCompany = store;
-                    Intent i = new Intent(Map.this, ResultsInfoBedrijven.class);
-                    startActivity(i);
                 }
             }
-        });
 
-    }
+            public void setGoToLocation() {
+
+                Bundle b = getIntent().getExtras();
+
+                if (b != null && b.containsKey("latitude") && b.containsKey("longitude")) {
+                    double latitude = b.getDouble("latitude");
+                    double longitude = b.getDouble("longitude");
+                    change = false;
+                    MarkerOptions mp = new MarkerOptions();
+                    mp.position(new LatLng(latitude, longitude));
+                    mp.title("my position");
+                    mMap.addMarker(mp);
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                            new LatLng(latitude, longitude), 16));
+
+                    Log.d("Checkingla", "" + latitude);
+                    Log.d("Checkinglo", "" + longitude);
+                }
+            }
+
+            @Override
+            public boolean onCreateOptionsMenu(android.view.Menu menu) {
+                // Inflate the menu; this adds items to the action bar if it is present.
+                getMenuInflater().inflate(R.menu.main, menu);
+
+                return true;
+            }
 
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
 
-        int id = item.getItemId();
-        if (id == R.id.action_search) {
+            @Override
+            public void onLocationChanged(Location location) {
 
-            getBakeryMarkers();
+                if (!change) {
+                    return;
+                }
+                if (myPos != null) {
+                    myPos.remove();
+                }
+                MarkerOptions mp = new MarkerOptions();
+                mp.position(new LatLng(location.getLatitude(), location.getLongitude()));
+                mp.title("Mijn positie");
+                myPos = mMap.addMarker(mp);
+                if (!movedCamera) {
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                            new LatLng(location.getLatitude(), location.getLongitude()), 16));
+                    movedCamera = true;
+                }
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+                // TODO Auto-generated method stub
+
+            }
+
+            public void getMarkers() {
+                if (!change) {
+                    return;
+                }
+
+                final List<Company> array = Company.getCompanies();
+                final java.util.Map<Marker, Company> markerMap = new HashMap<Marker, Company>();
+                for (Company store : array) {
+                    LatLng l = new LatLng(store.getLatitude(), store.getLongitude());
+
+                    MarkerOptions marker = new MarkerOptions()
+                            .position(l)
+                            .title(store.getName())
+                            .snippet("" + store.getRating())
+                            .icon(BitmapDescriptorFactory
+                                    .defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                    Marker m = mMap.addMarker(marker);
+                    markerMap.put(m, store);
+
+
+                }
+
+                onInfoClick(markerMap);
+
+            }
+
+            private void onInfoClick(final java.util.Map<Marker, Company> markerMap) {
+
+                mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+
+                    @Override
+                    public void onInfoWindowClick(Marker marker) {
+
+                        Company store = markerMap.get(marker);
+                        if (store != null) {
+                            ResultsInfoBedrijven.filteredCompany = store;
+                            Intent i = new Intent(Map.this, ResultsInfoBedrijven.class);
+                            startActivity(i);
+                        }
+                    }
+                });
+
+            }
+
+
+            @Override
+            public boolean onOptionsItemSelected(MenuItem item) {
+                int id = item.getItemId();
+                if (id == R.id.action_search) {
+
+                    getBakeryMarkers();
+
+                }
+                return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
+            }
+
+
+
+            public void getBakeryMarkers() {
+
+                getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAKERY), R.drawable.ic_map_bakery);
+
+
+            }
+
+
+            private void getTypeMarker(final List<Company> array, int resource) {
+                mMap.clear();
+                final java.util.Map<Marker, Company> markerMap = new HashMap<Marker, Company>();
+
+                for (Company store : array) {
+                    LatLng l = new LatLng(store.getLatitude(), store.getLongitude());
+
+                    MarkerOptions marker = new MarkerOptions()
+                            .position(l)
+                            .title(store.getName())
+                            .snippet("" + store.getRating())
+                            .icon(BitmapDescriptorFactory.fromResource(resource));
+                    Marker m = mMap.addMarker(marker);
+                    markerMap.put(m, store);
+                }
+
+                onInfoClick(markerMap);
+            }
+
 
         }
-        return super.onOptionsItemSelected(item);
-    }
 
-
-    public void getBakeryMarkers() {
-
-        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAKERY), R.drawable.ic_map_bakery);
-
-
-
-    }
-
-
-    private void getTypeMarker(final List<Company> array, int resource) {
-        mMap.clear();
-        final java.util.Map<Marker, Company> markerMap = new HashMap<Marker, Company>();
-
-        for (Company store : array) {
-            LatLng l = new LatLng(store.getLatitude(), store.getLongitude());
-
-            MarkerOptions marker = new MarkerOptions()
-                    .position(l)
-                    .title(store.getName())
-                    .snippet("" + store.getRating())
-                    .icon(BitmapDescriptorFactory.fromResource(resource));
-            Marker m = mMap.addMarker(marker);
-            markerMap.put(m, store);
-        }
-
-        onInfoClick(markerMap);
-    }
-
-
-}
