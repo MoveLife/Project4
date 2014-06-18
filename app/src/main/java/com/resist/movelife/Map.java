@@ -234,7 +234,9 @@ public class Map extends Activity implements LocationListener {
         getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAKERY), R.drawable.ic_map_bakery);
 
 
+
     }
+
 
     private void getTypeMarker(final List<Company> array, int resource) {
         mMap.clear();
@@ -257,29 +259,3 @@ public class Map extends Activity implements LocationListener {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

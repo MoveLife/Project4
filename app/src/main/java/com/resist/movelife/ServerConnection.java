@@ -28,6 +28,7 @@ import java.util.TreeMap;
 
 
 public class ServerConnection {
+
     private static final String apiKey = "7m6LYrI6XORcxA2DJqmjusSgeHNL6ZpcvcaFuGQUBUqydulMrqEcTCK5jIyJaFLAXxokWfOkCXApS697HJjFP6EcLFUfqHI5tDyH2b0aspZEW2v9QEOIU8HWHLpnmqWuMeDb5SwA7NCfJZ1ooYFLNz7XwQgLORWqjEgLrjdcJ3HQ2SK9wGjSn57k8BqqhaszKzyLPWwqE7sXfseDlzHN1GdhyLQo4N4eXfihvVRqN6qvePN6ww3TUCXyWTSPGZY0";
     private static final String registerKey = "uH7An8sTT0FDYmsJsZ2mT2aR7EQUjXhHPeXTmcZrHbxoTbZwSBKSix1w7iK83oSwIfq8xFDhSZptKyOnTbn49BmqwBgpImXTFhWNWEd8EDtOmiloxAQuwNIWrnrEUSRv";
     private static final String path = "http://145.24.222.140/api/";
@@ -188,6 +189,8 @@ public class ServerConnection {
         return json;
     }
 
+
+
     public static JSONObject addReview(int bid,Double rating,String review) {
         if(rating == null && review == null) {
             return null;
@@ -214,4 +217,8 @@ public class ServerConnection {
         }
         return json;
     }
+
 }
+
+
+

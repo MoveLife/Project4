@@ -43,7 +43,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Kaart"
+                    android:text="@string/menu_map"
                     android:textSize="20sp"/>
             </LinearLayout>
 
@@ -70,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Status"
+                    android:text="@string/menu_status"
                     android:textSize="20sp"/>
             </LinearLayout>
 
@@ -97,7 +97,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Categorieën"
+                    android:text="@string/menu_categories"
                     android:textSize="20sp"/>
             </LinearLayout>
         </LinearLayout>
@@ -132,7 +132,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Vrienden"
+                    android:text="@string/menu_friends"
                     android:textSize="20sp"/>
             </LinearLayout>
 
@@ -159,7 +159,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Evenementen"
+                    android:text="@string/menu_events"
                     android:textSize="20sp"/>
             </LinearLayout>
 
@@ -187,7 +187,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Inloggen"
+                    android:text="@string/menu_login"
                     android:textSize="20sp"/>
             </LinearLayout>
         </LinearLayout>

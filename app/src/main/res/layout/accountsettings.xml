@@ -1,54 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/tv_AccountSettingsHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="My Account"
+        android:text="@string/accountsettings_header"
         android:textSize="40sp"
         android:gravity="center_horizontal"/>
 
     <ImageView
+        android:id="@+id/iv_loginPicture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tv_AccountSettingsHeader"
         android:src="@drawable/ic_login_person"
         android:gravity="center_horizontal"
         android:layout_marginTop="20dp"/>
 
-    <EditText
-        android:id="@+id/Login_Email"
+    <TextView
+        android:id="@+id/tv_CurrentEmailHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/iv_loginPicture"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginLeft="50dp"
-        android:inputType="textEmailAddress"
-        android:hint="E-mail"/>
+        android:text="@string/accountsettings_currentemail"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"/>
 
-    <EditText
-        android:id="@+id/Login_Password"
+    <TextView
+        android:id="@+id/tv_CurrentEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginLeft="50dp"
-        android:inputType="textPassword"
-        android:hint="Paswoord"/>
+        android:layout_below="@id/tv_CurrentEmailHeader"
+        android:layout_marginTop="5dp"
+        android:text="*huidige e-mail*"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"/>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/relativeLayout_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+    <Button
+        android:id="@+id/btn_ChangeEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_CurrentEmail"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/accountsettings_changeemail"
+        android:onClick="act_changeEmail"/>
 
         <Button
-            android:id="@+id/Login_btn_Login"
+            android:id="@+id/btn_ChangePassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/btn_ChangeEmail"
             android:layout_marginTop="5dp"
             android:layout_centerHorizontal="true"
-            android:text="Login" />
-    </RelativeLayout>
-</LinearLayout>
+            android:text="@string/accountsettings_changepassword"
+            android:onClick="act_changePassword"/>
+</RelativeLayout>

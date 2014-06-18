@@ -16,13 +16,9 @@ import com.facebook.widget.LoginButton;
 import com.facebook.widget.LoginButton.UserInfoChangedCallback;
 import com.facebook.widget.ProfilePictureView;
 
-
-
 public class Login extends FragmentActivity {
 
     private LoginButton loginBtn;
-    private Button Login_btn_Login;
-    private Button Login_btn_createAccount;
     private TextView userName;
     private UiLifecycleHelper uiHelper;
     private ProfilePictureView profilePicture;
@@ -36,32 +32,24 @@ public class Login extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
-
         uiHelper = new UiLifecycleHelper(this, statusCallback);
         uiHelper.onCreate(savedInstanceState);
+
         userName = (TextView) findViewById(R.id.user_name);
         loginBtn = (LoginButton) findViewById(R.id.fb_login_button);
-        loginEmail = (EditText)findViewById(R.id.Login_Email);
-        loginPassword = (EditText)findViewById(R.id.Login_Password);
-        Login_btn_Login = (Button)findViewById(R.id.Login_btn_Login);
         accountText = (TextView)findViewById(R.id.accountText);
-        Login_btn_createAccount = (Button)findViewById(R.id.Login_btn_createAccount);
         profilePictureView = (ProfilePictureView) findViewById(R.id.profilePicture);
 
         loginBtn.setUserInfoChangedCallback(new UserInfoChangedCallback() {
             @Override
             public void onUserInfoFetched(GraphUser user) {
                 if (user != null) {
-                    userName.setText("Hello, " + user.getName());
+                    userName.setText("@string/login_greeting" + user.getName());
                     profilePictureView.setProfileId(user.getId());
-                    loginEmail.setVisibility(View.GONE);
-                    loginPassword.setVisibility(View.GONE);
-                    Login_btn_Login.setVisibility(View.GONE);
                     accountText.setVisibility(View.GONE);
-                    Login_btn_createAccount.setVisibility(View.GONE);
                     profilePictureView.setVisibility(View.VISIBLE);
                 } else {
-                    userName.setText("You are not logged in");
+                    userName.setText("@string/login_notloggedin");
                     profilePictureView.setVisibility(View.GONE);
                 }
             }
