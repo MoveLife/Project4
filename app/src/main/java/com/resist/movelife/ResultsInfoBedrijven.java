@@ -25,6 +25,7 @@ public class ResultsInfoBedrijven extends Activity {
         company = filteredCompany;
         TextView tv = (TextView) findViewById(R.id.tv_bedrijfsnaam);
         TextView tvdesc = (TextView) findViewById(R.id.tv_bedrijfsinfo);
+
         tv.setText(company.getName());
         tvdesc.setText(company.getDescription());
 
