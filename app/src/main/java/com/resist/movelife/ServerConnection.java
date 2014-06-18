@@ -187,4 +187,29 @@ public class ServerConnection {
 		}
 		return json;
 	}
+
+    public static JSONObject addReview(Double rating,String review) {
+        if(rating == null && review == null) {
+            return null;
+        }
+        JSONObject json = null;
+        Map<String,String> params = new TreeMap<String, String>();
+        if(rating != null) {
+            params.put("rating", rating.toString());
+        }
+        if(review != null && review.length() > 0) {
+            params.put("review",review);
+        }
+        try {
+            post(params);
+        } catch(IOException e) {
+            return json;
+        }
+        if(returnValue != null) {
+            try {
+                json = new JSONObject(returnValue);
+            } catch(JSONException e) {}
+        }
+        return json;
+    }
 }
