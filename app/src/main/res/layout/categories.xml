@@ -46,7 +46,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Bakkerijen"
+                        android:text="@string/category_bakery"
                         android:textSize="20sp"/>
                 </LinearLayout>
 
@@ -73,7 +73,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Bars"
+                        android:text="@string/category_bar"
                         android:textSize="20sp"/>
                 </LinearLayout>
 
@@ -100,7 +100,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Cafés"
+                        android:text="@string/category_cafe"
                         android:textSize="20sp"/>
                 </LinearLayout>
                 <LinearLayout
@@ -127,7 +127,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Clubs"
+                        android:text="@string/category_club"
                         android:textSize="20sp"/>
                 </LinearLayout>
                 <LinearLayout
@@ -154,7 +154,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Museum"
+                        android:text="@string/category_museum"
                         android:textSize="20sp"/>
                 </LinearLayout>
                 <LinearLayout
@@ -181,7 +181,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Restaurant"
+                        android:text="@string/category_restaurant"
                         android:textSize="20sp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -215,7 +215,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Banks"
+                        android:text="@string/category_bank"
                         android:textSize="20sp"/>
                 </LinearLayout>
 
@@ -242,7 +242,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Bookshops"
+                        android:text="@string/category_bookshop"
                         android:textSize="20sp"/>
                 </LinearLayout>
 
@@ -269,7 +269,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Cinemas"
+                        android:text="@string/category_cinema"
                         android:textSize="20sp"/>
                 </LinearLayout>
                 <LinearLayout
@@ -295,7 +295,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Lounges"
+                        android:text="@string/category_lounge"
                         android:textSize="20sp"/>
                 </LinearLayout>
                 <LinearLayout
@@ -321,7 +321,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Rentals"
+                        android:text="@string/category_rental"
                         android:textSize="20sp"/>
                 </LinearLayout>
                 <LinearLayout
@@ -347,7 +347,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Supermarket"
+                        android:text="@string/category_supermarkt"
                         android:textSize="20sp"/>
                 </LinearLayout>
             </LinearLayout>

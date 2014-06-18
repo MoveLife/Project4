@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">MoveLife</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -8,11 +7,64 @@
     <string name="empty_list">Geen data</string>
     <string name="bedrijfsnaam">Bedrijfsnaam1</string>
     <string name="description">Description</string>
-
-
     <string name="APP_ID">1494630767419558</string>
     <string name="search_label">Search</string>
     <string name="search_hint">Zoek Bedrijven</string>
 
+    <string name="login_header">Inloggen</string>
+    <string name="login_greeting">Hallo,</string>
+    <string name="login_notloggedin">U bent nog niet ingelogd</string>
+    <string name="login_accounttext">Wilt u inloggen met een ander account?</string>
 
+    <string name="menu_map">Kaart</string>
+    <string name="menu_status">Status</string>
+    <string name="menu_friends">Vrienden</string>
+    <string name="menu_events">Evenementen</string>
+    <string name="menu_categories">Categorieën</string>
+    <string name="menu_login">Inloggen</string>
+
+    <string name="accountsettings_header">Mijn account</string>
+    <string name="accountsettings_currentemail">Huidige E-mail:</string>
+    <string name="accountsettings_changeemail">Verander E-mailadres</string>
+    <string name="accountsettings_changepassword">Verander paswoord</string>
+
+    <string name="bedrijflist_searchbar">Zoek bedrijven</string>
+
+    <string name="companyinfo_mapbutton">Bekijk op kaart</string>
+    <string name="companyinfo_info">Informatie</string>
+    <string name="companyinfo_review">Reviews</string>
+    <string name="companyinfo_submitreview">Plaats review</string>
+
+    <string name="category_bakery">Bakkerijen</string>
+    <string name="category_bank">Banken</string>
+    <string name="category_bar">Bars</string>
+    <string name="category_bookshop">Boekenwinkels</string>
+    <string name="category_cafe">Café\'s</string>
+    <string name="category_cinema">Bioscopen</string>
+    <string name="category_club">Clubs</string>
+    <string name="category_lounge">Lounges</string>
+    <string name="category_museum">Museums</string>
+    <string name="category_rental">Huurauto</string>
+    <string name="category_restaurant">Restaurants</string>
+    <string name="category_supermarkt">Supermarkten</string>
+
+    <string name="changeemail_header">Verander E-mailadres</string>
+    <string name="changeemail_currentemail">Huidige E-mail</string>
+    <string name="changeemail_newemail">Nieuw E-mailadres</string>
+    <string name="changeemail_newemailverify">Herhaal E-mailadres</string>
+    <string name="changeemail_button">Verander E-mailadres</string>
+
+    <string name="changepassword_header">Verander wachtwoord</string>
+    <string name="changepassword_oldpassword">Oude wachtwoord</string>
+    <string name="changepassword_newpassword">Nieuw wachtwoord</string>
+    <string name="changepassword_newpasswordverify">Herhaal wachtwoord</string>
+    <string name="changepassword_button">Verander wachtwoord</string>
+
+    <string name="eventalert_title">Titel:</string>
+    <string name="eventalert_titelhint">Voer titel van evenement in</string>
+    <string name="eventalert_description">Beschrijving</string>
+    <string name="eventalert_descriptionhint">Voer beschrijving van evenement in</string>
+
+    <string name="review_header">Plaats uw review</string>
+    <string name="review_button">Plaats review</string>
 </resources>
