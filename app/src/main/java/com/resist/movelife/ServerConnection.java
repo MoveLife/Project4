@@ -194,6 +194,7 @@ public class ServerConnection {
         }
         JSONObject json = null;
         Map<String,String> params = new TreeMap<String, String>();
+        params.put("mode","add_review");
         if(rating != null) {
             params.put("rating", rating.toString());
         }
