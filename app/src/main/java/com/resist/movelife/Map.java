@@ -32,10 +32,11 @@ import java.util.List;
 
 @SuppressLint("NewApi")
 public class Map extends Activity implements LocationListener {
+    Context context = this;
     private GoogleMap mMap;
     private boolean change = true;
-    Context context = this;
-
+    private boolean movedCamera = false;
+    private Marker myPos = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,16 +72,21 @@ public class Map extends Activity implements LocationListener {
                         );
                     }
                 });
+
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
+
                 AlertDialog alert = builder.create();
                 alert.show();
+
             }
         });
+
+
     }
 
     private void setUpMapIfNeeded() {
@@ -91,11 +97,13 @@ public class Map extends Activity implements LocationListener {
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 // The Map is verified. It is now safe to manipulate the map.
+
             }
         }
     }
 
     public void setGoToLocation() {
+
         Bundle b = getIntent().getExtras();
 
         if (b != null && b.containsKey("latitude") && b.containsKey("longitude")) {
@@ -128,29 +136,39 @@ public class Map extends Activity implements LocationListener {
         if (!change) {
             return;
         }
-        mMap.clear();
+        if(myPos != null) {
+            myPos.remove();
+        }
+        // mMap.clear();
+
         MarkerOptions mp = new MarkerOptions();
         mp.position(new LatLng(location.getLatitude(), location.getLongitude()));
         mp.title("Mijn positie");
-        mMap.addMarker(mp);
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                new LatLng(location.getLatitude(), location.getLongitude()), 16));
-        getMarkers();
+        myPos = mMap.addMarker(mp);
+        if (!movedCamera) {
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                    new LatLng(location.getLatitude(), location.getLongitude()), 16));
+            movedCamera = true;
+        }
+        //getMarkers();
     }
 
     @Override
     public void onProviderDisabled(String provider) {
         // TODO Auto-generated method stub
+
     }
 
     @Override
     public void onProviderEnabled(String provider) {
         // TODO Auto-generated method stub
+
     }
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
         // TODO Auto-generated method stub
+
     }
 
     public void getMarkers() {
@@ -172,116 +190,70 @@ public class Map extends Activity implements LocationListener {
             Marker m = mMap.addMarker(marker);
             markerMap.put(m, store);
 
-            Log.d("markerlog", "" + array);
+            //Log.d("markerlog", "" + array);
         }
+
+       onInfoClick(markerMap);
+
+    }
+
+    private void onInfoClick(final java.util.Map<Marker, Company> markerMap){
 
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
 
             @Override
             public void onInfoWindowClick(Marker marker) {
+
                 Company store = markerMap.get(marker);
-                ResultsInfoBedrijven.filteredCompany = store;
-                Intent i = new Intent(Map.this, ResultsInfoBedrijven.class);
-                startActivity(i);
+                if (store != null) {
+                    ResultsInfoBedrijven.filteredCompany = store;
+                    Intent i = new Intent(Map.this, ResultsInfoBedrijven.class);
+                    startActivity(i);
+                }
             }
         });
 
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
         if (id == R.id.action_search) {
+
             getBakeryMarkers();
+
         }
         return super.onOptionsItemSelected(item);
     }
 
 
-    public void getBakeryMarkers(){
+    public void getBakeryMarkers() {
+
+        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAKERY), R.drawable.ic_map_bakery);
+
+
+    }
+
+    private void getTypeMarker(final List<Company> array, int resource) {
         mMap.clear();
-        final List<Company> array = Company.getCompaniesOfType(1);
         final java.util.Map<Marker, Company> markerMap = new HashMap<Marker, Company>();
 
         for (Company store : array) {
             LatLng l = new LatLng(store.getLatitude(), store.getLongitude());
 
-            MarkerOptions bakeryMarker = new MarkerOptions()
+            MarkerOptions marker = new MarkerOptions()
                     .position(l)
                     .title(store.getName())
                     .snippet("" + store.getRating())
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_bakery));
-            Marker m = mMap.addMarker(bakeryMarker);
+                    .icon(BitmapDescriptorFactory.fromResource(resource));
+            Marker m = mMap.addMarker(marker);
             markerMap.put(m, store);
         }
 
-        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-
-            @Override
-            public void onInfoWindowClick(Marker marker) {
-                Company store = markerMap.get(marker);
-                ResultsInfoBedrijven.filteredCompany = store;
-                Intent i = new Intent(Map.this, ResultsInfoBedrijven.class);
-                startActivity(i);
-            }
-        });
-
+        onInfoClick(markerMap);
     }
 
-    public void getBankMarkers(){
-
-    }
-    public void getBarMarkers(){
-    }
-    public void getBookshopMarkers(){
-
-    }
-    public void getCafeMarkers(){
-
-    }
-    public void getCinemaMarkers(){
-
-    }
-    public void getClubMarkers(){
-
-    }
-    public void getLoungeMarkers(){
-
-    }
-    public void getMuseumMarkers(){
-
-    }
-    public void getRestaurantMarkers(){
-
-    }
-    public void getSupermarketMarkers(){
-
-    }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
