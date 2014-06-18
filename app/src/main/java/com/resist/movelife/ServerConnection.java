@@ -188,13 +188,14 @@ public class ServerConnection {
 		return json;
 	}
 
-    public static JSONObject addReview(Double rating,String review) {
+    public static JSONObject addReview(int bid,Double rating,String review) {
         if(rating == null && review == null) {
             return null;
         }
         JSONObject json = null;
         Map<String,String> params = new TreeMap<String, String>();
         params.put("mode","add_review");
+        params.put("bid",""+bid);
         if(rating != null) {
             params.put("rating", rating.toString());
         }
