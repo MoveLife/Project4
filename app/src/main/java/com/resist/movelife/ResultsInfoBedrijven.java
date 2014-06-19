@@ -54,13 +54,13 @@ public class ResultsInfoBedrijven extends Activity {
                 Log.d("location", "" + loc);
                 String latMy = String.valueOf(loc.getLatitude());
                 String lngMy = String.valueOf(loc.getLongitude());
-              //  String endLat = String.valueOf(company.getLatitude());
-               // String endLong = String.valueOf(company.getLongitude());
+                String endLat = String.valueOf(company.getLatitude());
+                String endLong = String.valueOf(company.getLongitude());
 
                 Intent navigation = new Intent(
                         Intent.ACTION_VIEW,
                         Uri.parse("http://maps.google.com/maps?saddr=" + latMy + ","
-                                + lngMy + "&daddr=" + "18.7703500,19.4534500")
+                                + lngMy + "&daddr=" + endLat + "," + endLong)
                 );
                 startActivity(navigation);
 
