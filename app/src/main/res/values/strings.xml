@@ -7,6 +7,27 @@
     <string name="empty_list">Geen data</string>
     <string name="bedrijfsnaam">Bedrijfsnaam1</string>
     <string name="description">Description</string>
+
+    <string-array name="categorieën">
+        <item >Bakkers</item>
+        <item >Banken</item>
+        <item >Bars</item>
+        <item >Boeken Winkels</item>
+        <item >Cafés</item>
+        <item >Bioscopen</item>
+        <item >Clubs</item>
+        <item >Lounges</item>
+        <item >Musea</item>
+        <item >Supermarkten</item>
+        <item >Restaurants</item>
+
+
+    </string-array>
+
+
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
     <string name="APP_ID">1494630767419558</string>
     <string name="search_label">Search</string>
     <string name="search_hint">Zoek Bedrijven</string>
@@ -34,6 +55,7 @@
     <string name="companyinfo_info">Informatie</string>
     <string name="companyinfo_review">Reviews</string>
     <string name="companyinfo_submitreview">Plaats review</string>
+    <string name="companyinfo_navigation">Routebeschrijving</string>
 
     <string name="category_bakery">Bakkerijen</string>
     <string name="category_bank">Banken</string>
