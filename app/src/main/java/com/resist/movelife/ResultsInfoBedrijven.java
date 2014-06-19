@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 /**
@@ -16,6 +17,8 @@ public class ResultsInfoBedrijven extends Activity {
     private Company company;
     public static Company filteredCompany = null;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +28,14 @@ public class ResultsInfoBedrijven extends Activity {
         company = filteredCompany;
         TextView tv = (TextView) findViewById(R.id.tv_bedrijfsnaam);
         TextView tvdesc = (TextView) findViewById(R.id.tv_bedrijfsinfo);
-
+        RatingBar ratingBar =  (RatingBar)findViewById(R.id.rb_rating);
+        if (ratingBar != null) {
+            ratingBar.setEnabled(false);
+            ratingBar.setMax(5);
+            ratingBar.setStepSize(0.01f);
+            ratingBar.getRating();
+            ratingBar.invalidate();
+        }
         tv.setText(company.getName());
         tvdesc.setText(company.getDescription());
 

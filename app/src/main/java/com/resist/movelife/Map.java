@@ -60,6 +60,7 @@ public class Map extends Activity implements LocationListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+
         setContentView(R.layout.map);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
         setUpMapIfNeeded();
@@ -136,17 +137,18 @@ public class Map extends Activity implements LocationListener {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getBaseContext(),
                 R.layout.drawer_list_item ,
-                getResources().getStringArray(R.array.rivers)
+                getResources().getStringArray(R.array.categorieën)
         );
+
+        // Enabling Home button
+        getActionBar().setHomeButtonEnabled(true);
+
+        // Enabling Up navigation
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Setting the adapter on mDrawerList
         mDrawerList.setAdapter(adapter);
 
-                 // Enabling Home button
-                getActionBar().setHomeButtonEnabled(true);
-
-                // Enabling Up navigation
-                getActionBar().setDisplayHomeAsUpEnabled(true);
 
                 // Setting item click listener for the listview mDrawerList
                 mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -156,16 +158,63 @@ public class Map extends Activity implements LocationListener {
                                             int position,
                                             long id) {
 
-                        // Getting an array of rivers
-                        String[] rivers = getResources().getStringArray(R.array.rivers);
+                        // Getting an array of categorieën
+                        String[] categorieën = getResources().getStringArray(R.array.categorieën);
 
-                       //Currently selected river
-                        mTitle = rivers[position];
-
-
+                       //Currently selected categorie
+                        mTitle = categorieën[position];
 
 
+                        if (mTitle.equals("Bakers")){
 
+                            getTypeMarkers();
+
+                        }
+                        if (mTitle.equals("Banks")){
+
+                            getTypeMarkers();
+
+                        } if (mTitle.equals("Bars")){
+
+                            getTypeMarkers();
+
+                        } if (mTitle.equals("Book shops")){
+
+                            getTypeMarkers();
+
+                        } if (mTitle.equals("Cafés")){
+
+                            getTypeMarkers();
+
+                        } if (mTitle.equals("Cinema")){
+
+                            getTypeMarkers();
+
+                        } if (mTitle.equals("Clubs")){
+
+                            getTypeMarkers();
+
+                        } if (mTitle.equals("Lounges")){
+
+                            getTypeMarkers();
+
+                        } if (mTitle.equals("Museum")){
+
+                            getTypeMarkers();
+
+                        } if (mTitle.equals("Supermarket")){
+
+                            getTypeMarkers();
+
+                        } if (mTitle.equals("Rentals")){
+
+                            getTypeMarkers();
+
+                        }if (mTitle.equals("Restaurant")){
+
+                            getTypeMarkers();
+
+                        }
                         // Closing the drawer
                         mDrawerLayout.closeDrawer(mDrawerList);
                     }
@@ -218,6 +267,7 @@ public class Map extends Activity implements LocationListener {
             public boolean onCreateOptionsMenu(android.view.Menu menu) {
                 // Inflate the menu; this adds items to the action bar if it is present.
                 getMenuInflater().inflate(R.menu.main, menu);
+                mMap.setMyLocationEnabled(true);
 
                 return true;
             }
@@ -313,7 +363,8 @@ public class Map extends Activity implements LocationListener {
                 int id = item.getItemId();
                 if (id == R.id.action_search) {
 
-                    getBakeryMarkers();
+                    Intent intent = new Intent(this, ZoekBedrijven.class);
+                    startActivity(intent);
 
                 }
                 return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
@@ -321,9 +372,19 @@ public class Map extends Activity implements LocationListener {
 
 
 
-            public void getBakeryMarkers() {
+            public void getTypeMarkers() {
 
                 getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAKERY), R.drawable.ic_map_bakery);
+                getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BANK), R.drawable.ic_bank);
+                getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAR), R.drawable.ic_map_bakery);
+                getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BOOKSHOP), R.drawable.ic_bank);
+                getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CAFE), R.drawable.ic_map_bakery);
+                getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CINEMA), R.drawable.ic_bank);
+                getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CLUB), R.drawable.ic_map_bakery);
+                getTypeMarker(Company.getCompaniesOfType(Company.TYPE_LOUNGE), R.drawable.ic_bank);
+                getTypeMarker(Company.getCompaniesOfType(Company.TYPE_MUSEUM), R.drawable.ic_map_bakery);
+                getTypeMarker(Company.getCompaniesOfType(Company.TYPE_RESTAURANT), R.drawable.ic_bank);
+                getTypeMarker(Company.getCompaniesOfType(Company.TYPE_SUPERMARKET), R.drawable.ic_map_bakery);
 
 
             }
