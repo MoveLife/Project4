@@ -75,7 +75,7 @@
                 android:text="@string/companyinfo_mapbutton"
                 android:id="@+id/button"
                 android:layout_below="@+id/rb_rating"
-                android:layout_centerHorizontal="true" />
+                android:layout_toRightOf="@+id/tv_reviewtxt" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -89,6 +89,14 @@
                 android:text="@string/companyinfo_submitreview"
                 android:id="@+id/reviewBtn"
                 android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/companyinfo_navigation"
+                android:id="@+id/navbtn"
+                android:layout_below="@+id/rb_rating"
+                android:layout_alignParentEnd="true" />
         </RelativeLayout>
     </ScrollView>
 </LinearLayout>

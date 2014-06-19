@@ -56,6 +56,7 @@
     <string name="companyinfo_info">Informatie</string>
     <string name="companyinfo_review">Reviews</string>
     <string name="companyinfo_submitreview">Plaats review</string>
+    <string name="companyinfo_navigation">Routebeschrijving</string>
 
     <string name="category_bakery">Bakkerijen</string>
     <string name="category_bank">Banken</string>
