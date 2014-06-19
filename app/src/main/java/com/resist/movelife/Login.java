@@ -49,7 +49,7 @@ public class Login extends FragmentActivity {
                     accountText.setVisibility(View.GONE);
                     profilePictureView.setVisibility(View.VISIBLE);
                 } else {
-                    userName.setText("@string/login_notloggedin");
+                    userName.setText("U bent nog niet ingelogd");
                     profilePictureView.setVisibility(View.GONE);
                 }
             }
