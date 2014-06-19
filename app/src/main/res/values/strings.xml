@@ -9,18 +9,17 @@
     <string name="description">Description</string>
 
     <string-array name="categorieën">
-        <item >Bakers</item>
-        <item >Banks</item>
+        <item >Bakkers</item>
+        <item >Banken</item>
         <item >Bars</item>
-        <item >Book Shops</item>
+        <item >Boeken Winkels</item>
         <item >Cafés</item>
-        <item >Cinema</item>
+        <item >Bioscopen</item>
         <item >Clubs</item>
         <item >Lounges</item>
-        <item >Museum</item>
-        <item >Supermarket</item>
-        <item >Rentals</item>
-        <item >Restaurant</item>
+        <item >Musea</item>
+        <item >Supermarkten</item>
+        <item >Restaurants</item>
 
 
     </string-array>

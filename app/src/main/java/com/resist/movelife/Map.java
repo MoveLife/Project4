@@ -159,12 +159,13 @@ public class Map extends Activity implements LocationListener {
                 //Currently selected categorie
                 mTitle = categorieën[position];
 
-                if (mTitle.equals("Bakers")) {
+
+                if (mTitle.equals("Bakkers")) {
 
                     getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAKERY), R.drawable.ic_map_bakery);
 
                 }
-                if (mTitle.equals("Banks")) {
+                if (mTitle.equals("Banken")) {
 
                     getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BANK), R.drawable.ic_bank);
 
@@ -174,7 +175,7 @@ public class Map extends Activity implements LocationListener {
                     getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAR), R.drawable.ic_map_bakery);
 
                 }
-                if (mTitle.equals("Book shops")) {
+                if (mTitle.equals("Boeken Winkels")) {
 
                     getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BOOKSHOP), R.drawable.ic_bank);
 
@@ -184,7 +185,7 @@ public class Map extends Activity implements LocationListener {
                     getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CAFE), R.drawable.ic_map_bakery);
 
                 }
-                if (mTitle.equals("Cinema")) {
+                if (mTitle.equals("Bioscopen")) {
 
                     getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CINEMA), R.drawable.ic_bank);
 
@@ -199,22 +200,18 @@ public class Map extends Activity implements LocationListener {
                     getTypeMarker(Company.getCompaniesOfType(Company.TYPE_LOUNGE), R.drawable.ic_bank);
 
                 }
-                if (mTitle.equals("Museum")) {
+                if (mTitle.equals("Musea")) {
 
                     getTypeMarker(Company.getCompaniesOfType(Company.TYPE_MUSEUM), R.drawable.ic_map_bakery);
 
                 }
-                if (mTitle.equals("Supermarket")) {
+                if (mTitle.equals("Supermarkten")) {
 
                     getTypeMarker(Company.getCompaniesOfType(Company.TYPE_SUPERMARKET), R.drawable.ic_map_bakery);
 
                 }
-                if (mTitle.equals("Rentals")) {
 
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_RESTAURANT), R.drawable.ic_map_bakery);
-
-                }
-                if (mTitle.equals("Restaurant")) {
+                if (mTitle.equals("Restaurants")) {
 
                     getTypeMarker(Company.getCompaniesOfType(Company.TYPE_RESTAURANT), R.drawable.ic_bank);
 
@@ -371,7 +368,6 @@ public class Map extends Activity implements LocationListener {
         }
         return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
-
 
 
     private void getTypeMarker(final List<Company> array, int resource) {
