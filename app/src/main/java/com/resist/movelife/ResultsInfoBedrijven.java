@@ -31,13 +31,14 @@ public class ResultsInfoBedrijven extends Activity {
         TextView tv = (TextView) findViewById(R.id.tv_bedrijfsnaam);
         TextView tvdesc = (TextView) findViewById(R.id.tv_bedrijfsinfo);
         RatingBar ratingBar = (RatingBar) findViewById(R.id.rb_rating);
-
+        double rating = company.getRating();
+        float frating = (float) rating;
 
         if (ratingBar != null) {
             ratingBar.setEnabled(false);
             ratingBar.setMax(5);
             ratingBar.setStepSize(0.01f);
-            ratingBar.getRating();
+            ratingBar.setRating(frating);
             ratingBar.invalidate();
         }
         tv.setText(company.getName());

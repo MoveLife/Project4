@@ -12,8 +12,8 @@
         <item >Bakkers</item>
         <item >Banken</item>
         <item >Bars</item>
-        <item >Boeken Winkels</item>
-        <item >Cafés</item>
+        <item >Boekwinkels</item>
+        <item >Café\'s</item>
         <item >Bioscopen</item>
         <item >Clubs</item>
         <item >Lounges</item>
@@ -56,6 +56,8 @@
     <string name="companyinfo_review">Reviews</string>
     <string name="companyinfo_submitreview">Plaats review</string>
     <string name="companyinfo_navigation">Routebeschrijving</string>
+    <string name="companyinfo_geenreviews">Er zijn nog geen reviews voor dit bedrijf.</string>
+    <string name="comanyinfo_bedrijfsinformatie">Dit bedrijf heeft nog geen bedrijfsinformatie.</string>
 
     <string name="category_bakery">Bakkerijen</string>
     <string name="category_bank">Banken</string>
@@ -89,4 +91,10 @@
 
     <string name="review_header">Plaats uw review</string>
     <string name="review_button">Plaats review</string>
+
+    <string name="map_mijnpositie">Mijn positie</string>
+    <string name="map_maakevenement">Maak evenement</string>
+    <string name="map_cancelevenement">Cancel</string>
+
+
 </resources>

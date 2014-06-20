@@ -33,31 +33,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/rb_rating"
-                android:layout_marginTop="36dp"
                 android:layout_below="@+id/iv_bedrijfsfoto"
-                android:layout_alignParentStart="true" />
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ib_favo"
-                android:layout_alignTop="@+id/rb_rating"
-                android:layout_toRightOf="@+id/rb_rating"
-                android:layout_marginLeft="40dp"
-                android:layout_alignBottom="@+id/rb_rating"
-                android:src="@android:drawable/btn_star_big_off"
-                />
+                android:layout_centerHorizontal="true" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/companyinfo_info"
                 android:id="@+id/textView6"
-                android:layout_below="@+id/button"
+                android:layout_below="@+id/navbtn"
                 android:layout_alignEnd="@+id/rb_rating" />
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:text="Bedrijfs Informatie"
+                android:text="@string/comanyinfo_bedrijfsinformatie"
                 android:id="@+id/tv_bedrijfsinfo"
                 android:layout_below="@+id/textView6"
                 android:layout_alignParentStart="true" />
@@ -75,28 +65,35 @@
                 android:text="@string/companyinfo_mapbutton"
                 android:id="@+id/button"
                 android:layout_below="@+id/rb_rating"
-                android:layout_toRightOf="@+id/tv_reviewtxt" />
+                android:layout_alignStart="@+id/reviewBtn"
+                android:layout_alignParentEnd="true" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="reviews"
+                android:text="@string/companyinfo_geenreviews"
                 android:id="@+id/tv_reviewtxt"
                 android:layout_below="@+id/tv_reviewkop"/>
-            <Button
-                android:layout_below="@+id/tv_reviewtxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/companyinfo_submitreview"
-                android:id="@+id/reviewBtn"
-                android:layout_centerHorizontal="true" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/companyinfo_navigation"
                 android:id="@+id/navbtn"
-                android:layout_below="@+id/rb_rating"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/button"
+                android:layout_alignLeft="@+id/reviewBtn" />
+
+            <Button
+                android:layout_below="@+id/tv_reviewtxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/companyinfo_submitreview"
+                android:id="@+id/reviewBtn"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true" />
         </RelativeLayout>
     </ScrollView>
+
+
 </LinearLayout>
