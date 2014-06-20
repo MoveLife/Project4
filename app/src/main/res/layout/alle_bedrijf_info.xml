@@ -3,12 +3,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="1">
+    android:weightSum="1"
+    style="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+    android:background="#55504518"
+    >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Naam"
+        android:text="@string/companyinfo_naam"
         android:id="@+id/tv_bedrijfsnaam"
         android:layout_gravity="center_horizontal"
         android:textSize="25sp"
@@ -19,7 +22,8 @@
         android:layout_height="wrap_content">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#55504518">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -64,9 +68,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/companyinfo_mapbutton"
                 android:id="@+id/button"
+
+                android:drawableLeft="@android:drawable/ic_dialog_map"
+
+
+                style="@style/com_facebook_loginview_default_style"
                 android:layout_below="@+id/rb_rating"
-                android:layout_alignStart="@+id/reviewBtn"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentStart="true"
+                android:background="#ffff8624"
+                android:layout_toLeftOf="@+id/navbtn" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -79,9 +89,11 @@
                 android:layout_height="wrap_content"
                 android:text="@string/companyinfo_navigation"
                 android:id="@+id/navbtn"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/button"
-                android:layout_alignLeft="@+id/reviewBtn" />
+                style="@style/com_facebook_loginview_default_style"
+                android:drawableLeft="@android:drawable/ic_menu_directions"
+                android:background="#ffff8624"
+                android:layout_below="@+id/rb_rating"
+                android:layout_alignParentEnd="true" />
 
             <Button
                 android:layout_below="@+id/tv_reviewtxt"
@@ -90,8 +102,12 @@
                 android:text="@string/companyinfo_submitreview"
                 android:id="@+id/reviewBtn"
                 android:layout_gravity="center_horizontal"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                style="@style/com_facebook_loginview_default_style"
+                android:layout_alignStart="@+id/tv_reviewkop"
+                android:drawableLeft="@android:drawable/ic_input_add"
+                android:background="#ffff8624" />
+
         </RelativeLayout>
     </ScrollView>
 

@@ -58,6 +58,7 @@
     <string name="companyinfo_navigation">Routebeschrijving</string>
     <string name="companyinfo_geenreviews">Er zijn nog geen reviews voor dit bedrijf.</string>
     <string name="comanyinfo_bedrijfsinformatie">Dit bedrijf heeft nog geen bedrijfsinformatie.</string>
+    <string name="companyinfo_naam">Naam</string>
 
     <string name="category_bakery">Bakkerijen</string>
     <string name="category_bank">Banken</string>
@@ -95,6 +96,7 @@
     <string name="map_mijnpositie">Mijn positie</string>
     <string name="map_maakevenement">Maak evenement</string>
     <string name="map_cancelevenement">Cancel</string>
+
 
 
 </resources>
