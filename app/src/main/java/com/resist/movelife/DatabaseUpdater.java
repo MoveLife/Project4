@@ -17,6 +17,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 
@@ -72,12 +74,55 @@ public class DatabaseUpdater extends Thread {
 		}
 	}
 
+    private void updateFriendLocations(JSONArray locations) {
+        Cursor c = LocalDatabaseConnector.get("friendlocations","uid");
+        List<Integer> uids = new ArrayList<Integer>();
+        if(c.moveToFirst()) {
+            while(!c.isAfterLast()) {
+                uids.add(c.getInt(0));
+                c.moveToNext();
+            }
+        }
+        int time = 0;
+        for(int n=0;n < locations.length();n++) {
+            JSONObject location = null;
+            try {
+                location = locations.getJSONObject(n);
+            } catch(JSONException e) {}
+            if(location != null) {
+                ContentValues cv = new ContentValues();
+                try {
+                    cv.put("uid",location.getInt("uid"));
+                    cv.put("changed",location.getInt("changed"));
+                    cv.put("latitude",location.getInt("latitude"));
+                    cv.put("longitude",location.getInt("longitude"));
+                } catch(JSONException e) {
+                    continue;
+                }
+                time = Math.max(time,cv.getAsInteger("changed"));
+                if(uids.contains(cv.getAsInteger("uid"))) {
+                    LocalDatabaseConnector.update("friendlocations",cv,"uid = ?",new String[] {cv.getAsString("uid")});
+                } else {
+                    LocalDatabaseConnector.insert("friendlocations",cv);
+                }
+            }
+        }
+        if(time > 0) {
+            ContentValues cv = new ContentValues();
+            cv.put("users",time);
+            LocalDatabaseConnector.update("updatetime",cv,"users < ?",new String[] {""+time});
+        }
+    }
+
     private void updateLocation() {
         gps_sleep += ONE_MINUTE*5;
         LocationManager lm = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
         Location l = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         if(l != null) {
-            ServerConnection.updateLocation(l.getLongitude(), l.getLatitude());
+            JSONArray json = ServerConnection.updateLocation(l.getLongitude(), l.getLatitude());
+            if(json != null) {
+                updateFriendLocations(json);
+            }
         } else {
             gps_sleep += ONE_HOUR;
         }
@@ -157,6 +202,7 @@ public class DatabaseUpdater extends Thread {
         JSONArray companies = null;
         JSONArray companies_delete = null;
         JSONArray companies_update = null;
+        JSONArray friend_locations = null;
         try {
             companies = json.getJSONArray("companies");
         } catch (JSONException e) {}
@@ -165,6 +211,9 @@ public class DatabaseUpdater extends Thread {
         } catch (JSONException e) {}
         try {
             companies_update = json.getJSONArray("updated_companies");
+        } catch (JSONException e) {}
+        try {
+            friend_locations = json.getJSONArray("friend_locations");
         } catch (JSONException e) {}
         if(companies != null && companies.length() > 0) {
             insertCompanies(companies);
@@ -177,6 +226,9 @@ public class DatabaseUpdater extends Thread {
         if(companies_update != null && companies_update.length() > 0) {
             updateCompanies(companies_update);
             rebuildCompanies = true;
+        }
+        if(friend_locations != null) {
+            updateFriendLocations(friend_locations);
         }
         if(rebuildCompanies) {
             update_sleep += ONE_HOUR;

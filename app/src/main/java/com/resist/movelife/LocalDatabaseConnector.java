@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class LocalDatabaseConnector {
 	private static final String DATABASE_NAME = "MoveLife";
-	private static final int DATABASE_VERSION = 2;
+	private static final int DATABASE_VERSION = 3;
 	private static Context context;
 	private static DBHelper helper;
 	private static SQLiteDatabase database;
@@ -81,6 +81,7 @@ public class LocalDatabaseConnector {
 			db.execSQL("CREATE TABLE eventsjoined (uid INTEGER NOT NULL, eid INTEGER NOT NULL, PRIMARY KEY(uid,eid));");
 			db.execSQL("CREATE TABLE cities (cid INTEGER NOT NULL, country VARCHAR(3), name VARCHAR(255), PRIMARY KEY(cid));");
 			db.execSQL("CREATE TABLE updatetime (cities INTEGER NOT NULL, companies INTEGER NOT NULL, companytype INTEGER NOT NULL, events INTEGER NOT NULL, eventsjoined INTEGER NOT NULL, favourites INTEGER NOT NULL, reviews INTEGER NOT NULL, users INTEGER NOT NULL);");
+            db.execSQL("CREATE TABLE friendlocations (uid INTEGER NOT NULL, latitude FLOAT NOT NULL, longitude FLOAT NOT NULL, changed INTEGER NOT NULL);");
 		}
 
 		@Override
@@ -94,7 +95,8 @@ public class LocalDatabaseConnector {
 			db.execSQL("DROP TABLE IF EXISTS events;");
 			db.execSQL("DROP TABLE IF EXISTS eventsjoined;");
 			db.execSQL("DROP TABLE IF EXISTS cities;");
-			db.execSQL("DROP TABLE IF EXISTS updatetime;");
+            db.execSQL("DROP TABLE IF EXISTS updatetime;");
+            db.execSQL("DROP TABLE IF EXISTS friendlocations;");
 			onCreate(db);
 			
 		}
