@@ -57,9 +57,17 @@ public class LocalDatabaseConnector {
 		return b;
 	}
 
-	public static Cursor get(String table,String[] columns) {
-		return database.query(table,columns,null,null,null,null,null);
-	}
+    public static Cursor get(String table,String[] columns,String selection,String[] selectionArgs) {
+        return database.query(table,columns,selection,selectionArgs,null,null,null);
+    }
+
+    public static Cursor get(String table,String column,String selection,String[] selectionArgs) {
+        return get(table,new String[]{column},selection,selectionArgs);
+    }
+
+    public static Cursor get(String table,String[] columns) {
+        return get(table,columns,null,null);
+    }
 	
 	public static Cursor get(String table,String column) {
 		return get(table,new String[]{column});
