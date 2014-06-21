@@ -108,8 +108,35 @@
                 android:drawableLeft="@android:drawable/ic_input_add"
                 android:background="#ffff8624" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/companyinfo_event"
+                android:id="@+id/tv_events"
+                android:layout_below="@+id/reviewBtn"
+                android:layout_alignEnd="@+id/tv_reviewtxt" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/companyinfo_eventText"
+                android:id="@+id/tv_eventText"
+                android:layout_below="@+id/tv_events"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/btn_eventStart" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/companyinfo_eventButton"
+                android:id="@+id/btn_eventStart"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/tv_events"
+                android:textSize="12sp"
+                />
+
         </RelativeLayout>
     </ScrollView>
-
-
 </LinearLayout>

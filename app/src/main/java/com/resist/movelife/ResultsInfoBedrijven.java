@@ -31,6 +31,8 @@ public class ResultsInfoBedrijven extends Activity {
         TextView tv = (TextView) findViewById(R.id.tv_bedrijfsnaam);
         TextView tvdesc = (TextView) findViewById(R.id.tv_bedrijfsinfo);
         RatingBar ratingBar = (RatingBar) findViewById(R.id.rb_rating);
+        TextView eventText = (TextView) findViewById(R.id.tv_eventText);
+
         double rating = company.getRating();
         float frating = (float) rating;
 
@@ -43,6 +45,8 @@ public class ResultsInfoBedrijven extends Activity {
         }
         tv.setText(company.getName());
         tvdesc.setText(company.getDescription());
+        //eventText.setText();
+
 
         Button navigatieButton = (Button) findViewById(R.id.navbtn);
         navigatieButton.setOnClickListener(new View.OnClickListener() {
@@ -78,8 +82,8 @@ public class ResultsInfoBedrijven extends Activity {
         });
 
 
-        Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button bekijkOpKaart = (Button) findViewById(R.id.button);
+        bekijkOpKaart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -91,5 +95,26 @@ public class ResultsInfoBedrijven extends Activity {
 
             }
         });
+
+        Button eventButton = (Button) findViewById(R.id.btn_eventStart);
+       // if () {
+       //     eventButton.setVisibility(View.GONE);
+
+      //  } else {
+
+       //     eventButton.setVisibility(View.VISIBLE);
+            eventButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent = new Intent(getBaseContext(), Map.class);
+                    // intent.putExtra("latitude", company.getLatitude());
+                    //  intent.putExtra("longitude", company.getLongitude());
+                    startActivity(intent);
+
+                }
+            });
+       // }
+
     }
 }

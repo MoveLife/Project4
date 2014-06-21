@@ -19,4 +19,12 @@
         android:text="@string/bedrijfsnaam"
         android:textSize="16sp" />
 
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBarLijst"
+        style="@style/BedrijfRatingSmall"
+        android:layout_below="@+id/Bedrijfsnaam"
+        android:layout_alignStart="@+id/Bedrijfsnaam" />
+
 </RelativeLayout> 

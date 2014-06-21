@@ -77,7 +77,6 @@ public class ZoekBedrijven extends ListActivity implements
                             long id) {
 
         Object obj = adapter.getItem(position);
-        //Log.d("id", name);
         Intent intent = new Intent(this, ResultsInfoBedrijven.class);
         ResultsInfoBedrijven.filteredCompany = (Company)obj;
         startActivity(intent);

@@ -5,4 +5,18 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!-- Honeycomb and above -->
+    <style name="BedrijfRatingSmall" parent="@android:style/Widget.Holo.RatingBar.Small">
+     <!-- Mochten we een eigen versie van ratingbar willen.
+    <item name="android:progressDrawable">@drawable/rating_bar_used</item>
+    -->
+    <item name="android:minHeight">15dip</item>
+    <item name="android:maxHeight">15dip</item>
+    </style>
+
+
+
+
+
+
 </resources>
