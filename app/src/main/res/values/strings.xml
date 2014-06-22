@@ -34,6 +34,8 @@
     <string name="login_notloggedin">U bent nog niet ingelogd</string>
     <string name="login_accounttext">Wilt u inloggen met een ander account?</string>
 
+    <string name="optionsmenu_myaccount">Mijn account</string>
+    <string name="optionsmenu_search">Zoeken</string>
     <string name="menu_map">Kaart</string>
     <string name="menu_status">Status</string>
     <string name="menu_friends">Vrienden</string>
