@@ -44,7 +44,7 @@ public class Login extends FragmentActivity {
             @Override
             public void onUserInfoFetched(GraphUser user) {
                 if (user != null) {
-                    userName.setText("@string/login_greeting" + user.getName());
+                    userName.setText("Hallo, " + user.getName());
                     profilePictureView.setProfileId(user.getId());
                     accountText.setVisibility(View.GONE);
                     profilePictureView.setVisibility(View.VISIBLE);

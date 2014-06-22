@@ -9,7 +9,6 @@ import android.widget.RatingBar;
 import android.widget.Toast;
 
 public class PlaatsReview extends Activity {
-  //  private PlaatsReview parent;
     RatingBar ratingBar;
     Button btn;
     EditText editText;
@@ -23,8 +22,6 @@ public class PlaatsReview extends Activity {
         btn=(Button)findViewById(R.id.btn_review);
         editText = (EditText) findViewById(R.id.et_review);
         final PlaatsReview parent = this;
-        final Button plaatsreviewbtn;
-        plaatsreviewbtn = (Button)findViewById(R.id.btn_review);
 
         // Set ChangeListener to Rating Bar
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -45,7 +42,7 @@ public class PlaatsReview extends Activity {
                             public void run() {
                                 Toast.makeText(parent.getBaseContext(), "Review geplaatst", Toast.LENGTH_LONG).show();
                                 parent.finish();
-                                plaatsreviewbtn.setVisibility(View.GONE);
+                                btn.setVisibility(View.GONE);
                             }
                         });
                     }

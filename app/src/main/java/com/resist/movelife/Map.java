@@ -67,7 +67,6 @@ public class Map extends Activity implements LocationListener {
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
 
-
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
 
             public void onMapLongClick(final LatLng latlng) {
@@ -122,7 +121,7 @@ public class Map extends Activity implements LocationListener {
 
             /** Called when a drawer is opened */
             public void onDrawerOpened(View drawerView) {
-                getActionBar().setTitle("Kies");
+                getActionBar().setTitle("Selecteer categorie");
                 invalidateOptionsMenu();
             }
         };
@@ -157,9 +156,9 @@ public class Map extends Activity implements LocationListener {
 
                 // Getting an array of categorieën
                 String[] categorieën = getResources().getStringArray(R.array.categorieën);
-
                 //Currently selected categorie
                 mTitle = categorieën[position];
+
 
 
                 switch(position) {
@@ -225,7 +224,6 @@ public class Map extends Activity implements LocationListener {
     }
 
     public void setGoToLocation() {
-
         Bundle b = getIntent().getExtras();
 
         if (b != null && b.containsKey("latitude") && b.containsKey("longitude")) {

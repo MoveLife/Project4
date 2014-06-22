@@ -23,6 +23,7 @@ public class ZoekBedrijven extends ListActivity implements
 
     ListView listView;
     private CustomBaseAdapterAlleBedrijven adapter = null;
+    EditText editTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,15 @@ public class ZoekBedrijven extends ListActivity implements
         listView.setOnItemClickListener(this);
         listView.setTextFilterEnabled(true);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
-        EditText editTxt = (EditText) findViewById(R.id.editTxt);
+
+        //if (){
+
+         //   editTxt.setVisibility(View.GONE);
+
+      //  } else {
+           editTxt = (EditText) findViewById(R.id.editTxt);
+    //    }
+
         editTxt.addTextChangedListener(new TextWatcher() {
 
             @Override
