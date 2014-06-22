@@ -25,13 +25,15 @@ public class ZoekBedrijven extends ListActivity implements
     private CustomBaseAdapterAlleBedrijven adapter = null;
     EditText editTxt;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.bedrijflist);
         LocalDatabaseConnector.init(this);
-
+        editTxt = (EditText) findViewById(R.id.editTxt);
         Log.d("companysize", "" + Company.getCompanies().size());
         List<Company> lijst = Company.getCompanies();
         adapter = new CustomBaseAdapterAlleBedrijven(this, lijst);
@@ -43,13 +45,13 @@ public class ZoekBedrijven extends ListActivity implements
         listView.setTextFilterEnabled(true);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
 
-        //if (){
+        if (Company.getCompanies().size() == 0){
 
-         //   editTxt.setVisibility(View.GONE);
+            editTxt.setVisibility(View.GONE);
 
-      //  } else {
+        } else {
            editTxt = (EditText) findViewById(R.id.editTxt);
-    //    }
+        }
 
         editTxt.addTextChangedListener(new TextWatcher() {
 

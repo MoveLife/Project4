@@ -4,6 +4,7 @@ package com.resist.movelife;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -19,6 +20,7 @@ public  class Friends extends ListActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.friends);
         listView = (ListView) findViewById(android.R.id.list);
         View empty = findViewById(android.R.id.empty);
