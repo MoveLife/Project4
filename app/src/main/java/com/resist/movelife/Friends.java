@@ -1,21 +1,50 @@
 package com.resist.movelife;
 
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import java.util.List;
 
 
+public  class Friends extends ListActivity implements
+        AdapterView.OnItemClickListener{
 
-public  class Friends extends Activity {
-
+    ListView listView;
+    private CustomBaseAdapterAlleVrienden adapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.friends);
+        listView = (ListView) findViewById(android.R.id.list);
+        View empty = findViewById(android.R.id.empty);
+        listView.setEmptyView(empty);
+        listView.setAdapter(adapter);
+
+        List<Company> lijst = Company.getCompanies();
+        adapter = new CustomBaseAdapterAlleVrienden(this, lijst);
+
+        listView.setOnItemClickListener(this);
+
+
+
+    }
+    @Override
+    public void onContentChanged() {
+        super.onContentChanged();
+
+
+
 
 
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+    }
 }

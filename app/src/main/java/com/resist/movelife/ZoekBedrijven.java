@@ -1,7 +1,6 @@
 package com.resist.movelife;
 
 import android.app.ListActivity;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -21,7 +20,7 @@ import java.util.List;
 public class ZoekBedrijven extends ListActivity implements
         AdapterView.OnItemClickListener {
 
-    ContentValues cv = new ContentValues();
+
     ListView listView;
     private CustomBaseAdapterAlleBedrijven adapter = null;
 
@@ -36,6 +35,8 @@ public class ZoekBedrijven extends ListActivity implements
         List<Company> lijst = Company.getCompanies();
         adapter = new CustomBaseAdapterAlleBedrijven(this, lijst);
         listView = (ListView) findViewById(android.R.id.list);
+        View empty = findViewById(android.R.id.empty);
+        listView.setEmptyView(empty);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
         listView.setTextFilterEnabled(true);

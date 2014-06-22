@@ -22,6 +22,7 @@ public class ResultsInfoBedrijven extends Activity {
     public static Company filteredCompany = null;
     private Company company;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +46,7 @@ public class ResultsInfoBedrijven extends Activity {
         }
         tv.setText(company.getName());
         tvdesc.setText(company.getDescription());
-        //eventText.setText();
-
+        //eventText.setText(CompanyEvents.getCompaniesEvents();
 
         Button navigatieButton = (Button) findViewById(R.id.navbtn);
         navigatieButton.setOnClickListener(new View.OnClickListener() {
