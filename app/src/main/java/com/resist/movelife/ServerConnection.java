@@ -270,4 +270,13 @@ public class ServerConnection {
             post(params);
         } catch(IOException e) {}
     }
+
+    public static void removeFriend(int uid) {
+        Map<String,String> params = new TreeMap<String,String>();
+        params.put("mode","remove_friend");
+        params.put("friend",""+uid);
+        try {
+            post(params);
+        } catch(IOException e) {}
+    }
 }
