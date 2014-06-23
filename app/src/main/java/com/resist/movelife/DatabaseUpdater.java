@@ -12,13 +12,15 @@ import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.util.Patterns;
+import android.util.SparseArray;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
-
 
 public class DatabaseUpdater extends Thread {
 	public static final long ONE_SECOND = 1000;
@@ -72,12 +74,139 @@ public class DatabaseUpdater extends Thread {
 		}
 	}
 
+    private void insertEventsJoined(JSONArray joined,int eid) {
+        for(int n=0;n < joined.length();n++) {
+            ContentValues cv = new ContentValues();
+            try {
+                cv.put("uid",joined.getInt(n));
+            } catch(JSONException e) {
+                continue;
+            }
+            cv.put("eid",eid);
+            LocalDatabaseConnector.insert("eventsjoined",cv);
+        }
+    }
+
+    private void updateEventsJoined(JSONArray joined,int eid) {
+        LocalDatabaseConnector.delete("eventsjoined","eid = ?",new String[] {""+eid});
+        if(joined.length() != 0) {
+            insertEventsJoined(joined,eid);
+        }
+    }
+
+    private ContentValues getEventCV(JSONObject event) {
+        final String[] ints = {"eid","uid"};
+        final String[] strings = {"name","description","startdate","enddate"};
+        ContentValues cv = new ContentValues();
+        for(String column : ints) {
+            try {
+                cv.put(column, event.getInt(column));
+            } catch (JSONException e) {}
+        }
+        for(String column : strings) {
+            try {
+                cv.put(column, event.getString(column));
+            } catch (JSONException e) {}
+        }
+        return cv;
+    }
+
+    private void insertEvents(JSONArray events) {
+        for(int n=0;n < events.length();n++) {
+            JSONObject event = null;
+            try {
+                event = events.getJSONObject(n);
+                insertEventsJoined(event.getJSONArray("joined"),event.getInt("eid"));
+            } catch (JSONException e) {}
+            if(event != null) {
+                LocalDatabaseConnector.insert("events",getEventCV(event));
+            }
+        }
+    }
+
+    private void deleteEvents(JSONArray events) {
+        String[] eids = new String[events.length()];
+        StringBuilder where = new StringBuilder();
+        where.append("eid IN(");
+        for(int n=0;n < events.length();n++) {
+            try {
+                eids[n] = events.getString(n);
+            } catch (JSONException e) {
+                continue;
+            }
+            if(n != 0) {
+                where.append(",");
+            }
+            where.append("?");
+        }
+        where.append(")");
+        LocalDatabaseConnector.delete("events", where.toString(), eids);
+        LocalDatabaseConnector.delete("eventsjoined",where.toString(),eids);
+    }
+
+    private void updateEvents(JSONArray events) {
+        for(int n=0;n < events.length();n++) {
+            JSONObject event = null;
+            try {
+                event = events.getJSONObject(n);
+                updateEventsJoined(event.getJSONArray("joined"),event.getInt("eid"));
+            } catch (JSONException e) {}
+            if(event != null) {
+                ContentValues cv = getEventCV(event);
+                LocalDatabaseConnector.update("events", cv, "eid = ?", new String[]{cv.getAsString("eid")});
+            }
+        }
+    }
+
+    private void updateFriendLocations(JSONArray locations) {
+        Cursor c = LocalDatabaseConnector.get("friendlocations","uid");
+        List<Integer> uids = new ArrayList<Integer>();
+        if(c.moveToFirst()) {
+            while(!c.isAfterLast()) {
+                uids.add(c.getInt(0));
+                c.moveToNext();
+            }
+        }
+        int time = 0;
+        for(int n=0;n < locations.length();n++) {
+            JSONObject location = null;
+            try {
+                location = locations.getJSONObject(n);
+            } catch(JSONException e) {}
+            if(location != null) {
+                ContentValues cv = new ContentValues();
+                try {
+                    cv.put("uid",location.getInt("uid"));
+                    cv.put("changed",location.getInt("changed"));
+                    cv.put("latitude",location.getInt("latitude"));
+                    cv.put("longitude",location.getInt("longitude"));
+                } catch(JSONException e) {
+                    continue;
+                }
+                time = Math.max(time,cv.getAsInteger("changed"));
+                if(uids.contains(cv.getAsInteger("uid"))) {
+                    LocalDatabaseConnector.update("friendlocations",cv,"uid = ?",new String[] {cv.getAsString("uid")});
+                } else {
+                    LocalDatabaseConnector.insert("friendlocations",cv);
+                }
+            }
+        }
+        if(time > 0) {
+            ContentValues cv = new ContentValues();
+            cv.put("users",time);
+            LocalDatabaseConnector.update("updatetime",cv,"users < ?",new String[] {""+time});
+        }
+    }
+
     private void updateLocation() {
         gps_sleep += ONE_MINUTE*5;
         LocationManager lm = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
         Location l = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         if(l != null) {
-            ServerConnection.updateLocation(l.getLongitude(), l.getLatitude());
+            JSONArray json = ServerConnection.updateLocation(l.getLongitude(), l.getLatitude());
+            if(json != null) {
+                updateFriendLocations(json);
+            }
         } else {
             gps_sleep += ONE_HOUR;
         }
@@ -129,7 +258,9 @@ public class DatabaseUpdater extends Thread {
         for(int n=0;n < companies.length();n++) {
             try {
               bids[n] = companies.getString(n);
-            } catch (JSONException e) {}
+            } catch (JSONException e) {
+                continue;
+            }
             if(n != 0) {
                 where.append(",");
             }
@@ -157,6 +288,10 @@ public class DatabaseUpdater extends Thread {
         JSONArray companies = null;
         JSONArray companies_delete = null;
         JSONArray companies_update = null;
+        JSONArray friend_locations = null;
+        JSONArray events = null;
+        JSONArray events_delete = null;
+        JSONArray events_update = null;
         try {
             companies = json.getJSONArray("companies");
         } catch (JSONException e) {}
@@ -165,6 +300,18 @@ public class DatabaseUpdater extends Thread {
         } catch (JSONException e) {}
         try {
             companies_update = json.getJSONArray("updated_companies");
+        } catch (JSONException e) {}
+        try {
+            friend_locations = json.getJSONArray("friend_locations");
+        } catch (JSONException e) {}
+        try {
+            events = json.getJSONArray("events");
+        } catch (JSONException e) {}
+        try {
+            events_delete = json.getJSONArray("deleted_events");
+        } catch (JSONException e) {}
+        try {
+            events_update = json.getJSONArray("updated_events");
         } catch (JSONException e) {}
         if(companies != null && companies.length() > 0) {
             insertCompanies(companies);
@@ -177,6 +324,18 @@ public class DatabaseUpdater extends Thread {
         if(companies_update != null && companies_update.length() > 0) {
             updateCompanies(companies_update);
             rebuildCompanies = true;
+        }
+        if(friend_locations != null && friend_locations.length() > 0) {
+            updateFriendLocations(friend_locations);
+        }
+        if(events != null && events.length() > 0) {
+            insertEvents(events);
+        }
+        if(events_delete != null && events_delete.length() > 0) {
+            deleteEvents(events_delete);
+        }
+        if(events_update != null && events_update.length() > 0) {
+            updateEvents(events_update);
         }
         if(rebuildCompanies) {
             update_sleep += ONE_HOUR;

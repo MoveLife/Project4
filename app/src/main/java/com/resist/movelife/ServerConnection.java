@@ -1,8 +1,10 @@
 package com.resist.movelife;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.text.TextUtils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -215,13 +217,32 @@ public class ServerConnection {
         return json;
     }
 
-    public static void updateLocation(double longitude,double latitude) {
+    private static JSONArray updateLocation(double longitude,double latitude,int time) {
         Map<String,String> params = new TreeMap<String,String>();
         params.put("longitude",""+longitude);
         params.put("latitude",""+latitude);
         params.put("mode","update_location");
+        if(time > 0) {
+            params.put("time",""+time);
+        }
         try {
             post(params);
         } catch(IOException e) {}
+        JSONArray json = null;
+        if(returnValue != null) {
+            try {
+                json = new JSONObject(returnValue).getJSONArray("friend_locations");
+            } catch(JSONException e) {}
+        }
+        return json;
+    }
+
+    public static JSONArray updateLocation(double longitude,double latitude) {
+        Cursor c = LocalDatabaseConnector.get("updatetime","users");
+        int time = 0;
+        if(c.moveToFirst()) {
+            time = c.getInt(0);
+        }
+        return updateLocation(longitude,latitude,time);
     }
 }

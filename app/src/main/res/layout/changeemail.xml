@@ -70,5 +70,6 @@
         style="@style/com_facebook_loginview_default_style"
         android:text="@string/changeemail_button"
         android:layout_below="@+id/et_EmailVerify"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="changeEmail"/>
 </RelativeLayout>

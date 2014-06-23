@@ -18,17 +18,14 @@ import com.facebook.widget.ProfilePictureView;
 
 public class Login extends FragmentActivity {
 
-    private LoginButton loginBtn;
     private TextView userName;
     private UiLifecycleHelper uiHelper;
-    private ProfilePictureView profilePicture;
-    private EditText loginEmail;
-    private EditText loginPassword;
     private TextView accountText;
     private ProfilePictureView profilePictureView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        LoginButton loginBtn;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
@@ -44,7 +41,7 @@ public class Login extends FragmentActivity {
             @Override
             public void onUserInfoFetched(GraphUser user) {
                 if (user != null) {
-                    userName.setText("@string/login_greeting" + user.getName());
+                    userName.setText("Hallo, " + user.getName());
                     profilePictureView.setProfileId(user.getId());
                     accountText.setVisibility(View.GONE);
                     profilePictureView.setVisibility(View.VISIBLE);

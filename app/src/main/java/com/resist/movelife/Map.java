@@ -65,7 +65,6 @@ public class Map extends Activity implements LocationListener {
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
 
-
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
 
             public void onMapLongClick(final LatLng latlng) {
@@ -120,7 +119,7 @@ public class Map extends Activity implements LocationListener {
 
             /** Called when a drawer is opened */
             public void onDrawerOpened(View drawerView) {
-                getActionBar().setTitle("Kies");
+                getActionBar().setTitle("Selecteer categorie");
                 invalidateOptionsMenu();
             }
         };
@@ -155,66 +154,42 @@ public class Map extends Activity implements LocationListener {
 
                 // Getting an array of categorieën
                 String[] categorieën = getResources().getStringArray(R.array.categorieën);
-
                 //Currently selected categorie
                 mTitle = categorieën[position];
 
-
                 if (mTitle.equals("Bakkers")) {
-
                     getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAKERY), R.drawable.ic_map_bakery);
-
                 }
                 if (mTitle.equals("Banken")) {
-
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BANK), R.drawable.ic_map_bank);
-
+                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BANK), R.drawable.ic_bank);
                 }
                 if (mTitle.equals("Bars")) {
-
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAR), R.drawable.ic_map_bar);
-
+                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAR), R.drawable.ic_map_bakery);
                 }
                 if (mTitle.equals("Boeken Winkels")) {
-
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BOOKSHOP), R.drawable.ic_map_bookshops);
-
+                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BOOKSHOP), R.drawable.ic_bank);
                 }
                 if (mTitle.equals("Cafés")) {
-
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CAFE), R.drawable.ic_map_cafe);
-
+                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CAFE), R.drawable.ic_map_bakery);
                 }
                 if (mTitle.equals("Bioscopen")) {
-
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CINEMA), R.drawable.ic_map_cinema);
-
+                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CINEMA), R.drawable.ic_bank);
                 }
                 if (mTitle.equals("Clubs")) {
-
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CLUB), R.drawable.ic_map_club);
-
+                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CLUB), R.drawable.ic_map_bakery);
                 }
                 if (mTitle.equals("Lounges")) {
-
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_LOUNGE), R.drawable.ic_map_lounge);
-
+                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_LOUNGE), R.drawable.ic_bank);
                 }
                 if (mTitle.equals("Musea")) {
-
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_MUSEUM), R.drawable.ic_map_museum);
-
+                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_MUSEUM), R.drawable.ic_map_bakery);
                 }
                 if (mTitle.equals("Supermarkten")) {
-
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_SUPERMARKET), R.drawable.ic_map_supermarket);
-
+                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_SUPERMARKET), R.drawable.ic_map_bakery);
                 }
 
                 if (mTitle.equals("Restaurants")) {
-
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_RESTAURANT), R.drawable.ic_map_restaurant);
-
+                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_RESTAURANT), R.drawable.ic_bank);
                 }
                 // Closing the drawer
                 mDrawerLayout.closeDrawer(mDrawerList);
@@ -244,7 +219,6 @@ public class Map extends Activity implements LocationListener {
     }
 
     public void setGoToLocation() {
-
         Bundle b = getIntent().getExtras();
 
         if (b != null && b.containsKey("latitude") && b.containsKey("longitude")) {
