@@ -18,10 +18,14 @@ public class ChangeEmail extends Activity{
         EditText Email = (EditText)findViewById(R.id.et_Email);
         EditText EmailVerify = (EditText)findViewById(R.id.et_EmailVerify);
 
-        if (Email.getText().toString().equals(EmailVerify.getText().toString())) {
-            //Doorgaan, oftewel t is goed.
+        String E = Email.getText().toString();
+        String EVerify = EmailVerify.getText().toString();
+
+        if (E.equals(EVerify)){
             Toast.makeText(getApplicationContext(), "Uw email is veranderd", Toast.LENGTH_SHORT).show();
-            //finish();
+            finish();
+        } else {
+            Toast.makeText(getApplicationContext(), "Uw email is niet gelijk", Toast.LENGTH_SHORT).show();
         }
     }
 }
