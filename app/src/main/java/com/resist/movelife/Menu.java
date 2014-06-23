@@ -109,4 +109,10 @@ public class Menu extends Activity{
     public static boolean isConnected() {
         return updater.isConnected();
     }
+    public static String getUserSetPassword() {
+        return updater.getUserSetPassword();
+    }
+    public static String getPassword() {
+        return updater.getPassword();
+    }
 }

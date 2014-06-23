@@ -7,6 +7,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class ChangePassword extends Activity{
+    private String getUserSetPassword = Menu.getUserSetPassword();
+    private String getPassword = Menu.getPassword();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
