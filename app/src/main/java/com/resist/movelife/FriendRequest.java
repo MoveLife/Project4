@@ -9,13 +9,17 @@ import com.resist.movelife.R;
 import java.util.List;
 
 public class FriendRequest extends Activity {
+    private static List<User> users;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.friendrequest);
     }
 
-    public static void setUIDs(List<Integer> uids) {
-
+    public static void setUsers(List<User> l) {
+        users = l;
+        if(!l.isEmpty()) {
+            //notifications
+        }
     }
 }

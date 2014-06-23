@@ -82,13 +82,13 @@ public class DatabaseUpdater extends Thread {
 
     private void getFriendRequests() {
         JSONArray json = ServerConnection.getFriendRequests();
-        List<Integer> uids = new ArrayList<Integer>();
+        List<User> uids = new ArrayList<User>();
         for(int n=0;n < json.length();n++) {
             try {
-                uids.add(json.getInt(n));
+                uids.add(new User(json.getJSONObject(n)));
             } catch(JSONException e) {}
         }
-        FriendRequest.setUIDs(uids);
+        FriendRequest.setUsers(uids);
     }
 
     private void insertEventsJoined(JSONArray joined,int eid) {
