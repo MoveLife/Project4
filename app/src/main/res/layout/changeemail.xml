@@ -3,9 +3,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/gray4">
 
     <TextView
+        android:background="@color/darkorange"
+        style="@style/com_facebook_loginview_default_style"
         android:id="@+id/tv_VeranderEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,6 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_CurrentEmail"
+        android:background="@color/gray3"
         android:layout_marginTop="30dp"
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
@@ -48,6 +52,7 @@
         android:id="@+id/et_EmailVerify"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/gray3"
         android:layout_marginTop="10dp"
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
@@ -56,10 +61,13 @@
         android:hint="@string/changeemail_newemailverify"/>
 
     <Button
+        android:textColor="@color/darkorange"
         android:id="@+id/btn_ChangeEmail"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:background="@color/gray2"
+        style="@style/com_facebook_loginview_default_style"
         android:text="@string/changeemail_button"
         android:layout_below="@+id/et_EmailVerify"
         android:layout_centerHorizontal="true" />

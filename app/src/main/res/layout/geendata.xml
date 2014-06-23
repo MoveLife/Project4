@@ -6,8 +6,10 @@
 
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/com_facebook_loginview_default_style"
+        android:background="@color/red"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
         android:text="@string/empty_list"
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal" />
