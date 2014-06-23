@@ -78,6 +78,7 @@
     <string name="eventalert_descriptionhint">Voer beschrijving van evenement in</string>
     <string name="review_header">Plaats uw review</string>
     <string name="review_button">Plaats review</string>
-    <string name="title_activity_friend_request">FriendRequest</string>
+    <string name="notification_friend_request_title">Nieuw Vriend Verzoek</string>
+    <string name="notification_friend_request_msg">Je hebt %d nieuwe vriend verzoeken.</string>
 
 </resources>

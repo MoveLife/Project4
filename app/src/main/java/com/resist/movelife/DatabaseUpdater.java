@@ -523,6 +523,7 @@ public class DatabaseUpdater extends Thread {
 		if(context == null) {
 			context = ctx.getApplicationContext();
 			cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            FriendRequest.init(context);
 		}
 		super.start();
 	}

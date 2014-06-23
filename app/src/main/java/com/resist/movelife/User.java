@@ -15,4 +15,12 @@ public class User {
     public User(JSONObject json) throws JSONException {
         this(json.getInt("uid"),json.getString("name"));
     }
+
+    public int getUid() {
+        return uid;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
