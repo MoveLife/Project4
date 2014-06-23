@@ -261,4 +261,13 @@ public class ServerConnection {
         }
         return json;
     }
+
+    public static void acceptFriendRequest(int uid) {
+        Map<String,String> params = new TreeMap<String,String>();
+        params.put("mode","accept_friend");
+        params.put("friend",""+uid);
+        try {
+            post(params);
+        } catch(IOException e) {}
+    }
 }

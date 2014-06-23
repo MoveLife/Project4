@@ -80,5 +80,6 @@
     <string name="review_button">Plaats review</string>
     <string name="notification_friend_request_title">Nieuw Vriend Verzoek</string>
     <string name="notification_friend_request_msg">Je hebt %d nieuwe vriend verzoeken.</string>
+    <string name="notification_friend_request_msg_one">Je hebt een nieuw vriend verzoek van %s.</string>
 
 </resources>
