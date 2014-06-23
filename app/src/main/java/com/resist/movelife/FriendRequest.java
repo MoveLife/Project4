@@ -31,9 +31,10 @@ public class FriendRequest extends Activity {
             createNew = false;
             //notifications
             String msg = String.format(context.getResources().getString(R.string.notification_friend_request_msg),users.size());
+            String title = context.getResources().getString(R.string.notification_friend_request_title);
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                     .setSmallIcon(R.drawable.icon)
-                    .setContentTitle("@string/notification_friend_request_title")
+                    .setContentTitle(title)
                     .setContentText(msg);
             TaskStackBuilder sb = TaskStackBuilder.create(context);
             sb.addParentStack(FriendRequest.class);

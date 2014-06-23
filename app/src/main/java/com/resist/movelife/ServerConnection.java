@@ -255,7 +255,7 @@ public class ServerConnection {
         JSONArray json = null;
         if(returnValue != null) {
             try {
-                json = new JSONObject(returnValue).getJSONArray("friend_locations");
+                json = new JSONObject(returnValue).getJSONArray("friend_requests");
             } catch (JSONException e) {
             }
         }

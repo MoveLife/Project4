@@ -81,7 +81,11 @@ public class DatabaseUpdater extends Thread {
 	}
 
     private void getFriendRequests() {
+        friend_sleep = ONE_MINUTE;
         JSONArray json = ServerConnection.getFriendRequests();
+        if(json == null) {
+            return;
+        }
         List<User> uids = new ArrayList<User>();
         for(int n=0;n < json.length();n++) {
             try {
