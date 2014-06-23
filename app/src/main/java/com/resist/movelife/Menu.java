@@ -11,24 +11,25 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 public class Menu extends Activity{
-
-    DatabaseUpdater updater;
+    private static DatabaseUpdater updater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.menu);
-        updater = new DatabaseUpdater();
+        if (updater == null) {
+            updater = new DatabaseUpdater();
 
-        updater.start(this);
+            updater.start(this);
+        }
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
         
        // Look up the AdView as a resource and load a request.
        AdView adView = (AdView)this.findViewById(R.id.adView);
        AdRequest adRequest = new AdRequest.Builder()
       //.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-        .addTestDevice("DC5E69B2C6B90CD8B81EDA2BB2729EFF")
+      //.addTestDevice("DC5E69B2C6B90CD8B81EDA2BB2729EFF")
         .build();
         adView.loadAd(adRequest);
     }
@@ -82,7 +83,6 @@ public class Menu extends Activity{
         return true;
     }
 
-
    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -103,6 +103,10 @@ public class Menu extends Activity{
         return super.onOptionsItemSelected(item);
     }
 
-
-
+    public static String currentEmail() {
+        return updater.getEmail();
+    }
+    public static boolean isConnected() {
+        return updater.isConnected();
+    }
 }
