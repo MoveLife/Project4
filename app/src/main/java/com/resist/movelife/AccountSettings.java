@@ -4,14 +4,20 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 
 public class AccountSettings extends Activity{
+    String currentEmail = Menu.currentEmail();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.accountsettings);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
+
+        TextView CurrentEmail = (TextView)findViewById(R.id.tv_CurrentEmail);
+        CurrentEmail.setText(currentEmail);
     }
 
     public void act_changeEmail (View view) {

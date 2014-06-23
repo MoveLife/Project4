@@ -63,7 +63,7 @@
     <string name="category_restaurant">Restaurants</string>
     <string name="category_supermarkt">Supermarkten</string>
     <string name="changeemail_header">Verander E-mailadres</string>
-    <string name="changeemail_currentemail">Huidige E-mail</string>
+    <string name="changeemail_currentemail">Huidige E-mail:</string>
     <string name="changeemail_newemail">Nieuw E-mailadres</string>
     <string name="changeemail_newemailverify">Herhaal E-mailadres</string>
     <string name="changeemail_button">Verander E-mailadres</string>
