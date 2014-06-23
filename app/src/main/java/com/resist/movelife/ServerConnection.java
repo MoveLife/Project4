@@ -245,4 +245,20 @@ public class ServerConnection {
         }
         return updateLocation(longitude,latitude,time);
     }
+
+    public static JSONArray getFriendRequests() {
+        Map<String,String> params = new TreeMap<String,String>();
+        params.put("mode","get_pending_friends");
+        try {
+            post(params);
+        } catch(IOException e) {}
+        JSONArray json = null;
+        if(returnValue != null) {
+            try {
+                json = new JSONObject(returnValue).getJSONArray("friend_locations");
+            } catch (JSONException e) {
+            }
+        }
+        return json;
+    }
 }
