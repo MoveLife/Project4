@@ -38,19 +38,23 @@ public class ResultsInfoBedrijven extends Activity {
         TextView tvdesc = (TextView) findViewById(R.id.tv_bedrijfsinfo);
         RatingBar ratingBar = (RatingBar) findViewById(R.id.rb_rating);
 
-
+        Log.d("eventlist",""+ events.size());
         for (Event event: events){
 
             event.getName();
-            event.getDescription();
-            event.getStartdate();
-            event.getEnddate();
             TextView eventText = (TextView) findViewById(R.id.tv_eventText);
             eventText.setText(event.getName());
+            event.getDescription();
 
 
 
-            Log.d("eventlist",""+ event.getName());
+            event.getStartdate();
+            event.getEnddate();
+
+
+
+
+
 
         }
 
