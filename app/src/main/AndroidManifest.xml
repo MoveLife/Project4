@@ -1,168 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.resist.movelife" >
 
     <permission
         android:name="com.resist.movelife.permission.MAPS_RECEIVE"
-        android:protectionLevel="signature" />
-
-    <uses-permission android:name="com.resist.movelife.permission.MAPS_RECEIVE" />
+        android:protectionLevel="signature"/>
+    <uses-permission android:name="com.resist.movelife.permission.MAPS_RECEIVE"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-feature
         android:glEsVersion="0x00020000"
-        android:required="true" />
+        android:required="true"/>
+
 
     <application
         android:allowBackup="true"
-        android:hardwareAccelerated="true"
-        android:icon="@drawable/icon"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
-        <meta-data
-            android:name="com.google.android.gms.version"
+        android:theme="@style/AppTheme"
+        android:hardwareAccelerated="true">
+
+        <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBSxo_ohgsZApZRYcGDYpG9_1y1j0G126g" />
+            android:value="AIzaSyBSxo_ohgsZApZRYcGDYpG9_1y1j0G126g"/>
 
         <activity
-            android:name=".Splash"
-            android:label="@string/app_name" >
+            android:name="com.resist.movelife.Splash"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".Menu"
+            android:name="com.resist.movelife.Menu"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="com.resist.movelife.MENU" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".Login"
+            android:name="com.resist.movelife.Login"
             android:label="@string/app_name"
-            android:parentActivityName=".Menu" >
+            android:parentActivityName="com.resist.movelife.Menu">
             <intent-filter>
                 <action android:name="com.resist.movelife.Login" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Categories"
-            android:label="@string/app_name"
-            android:parentActivityName=".Menu" >
-            <intent-filter>
-                <action android:name="com.resist.movelife.Categories" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
         <activity
-            android:name=".Events"
+            android:name="com.resist.movelife.Events"
             android:label="@string/app_name"
-            android:parentActivityName=".Menu" >
+            android:parentActivityName="com.resist.movelife.Menu">
             <intent-filter>
                 <action android:name="com.resist.movelife.Events" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".Friends"
+            android:name="com.resist.movelife.Friends"
             android:label="@string/app_name"
-            android:parentActivityName=".Menu" >
+            android:parentActivityName="com.resist.movelife.Menu">
             <intent-filter>
                 <action android:name="com.resist.movelife.Friends" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".Map"
+            android:name="com.resist.movelife.Map"
             android:label="@string/app_name"
-            android:parentActivityName=".Menu" >
+            android:parentActivityName="com.resist.movelife.Menu"
+            >
             <intent-filter>
                 <action android:name="com.resist.movelife.Map" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Status"
-            android:label="@string/app_name"
-            android:parentActivityName=".Menu" >
-            <intent-filter>
-                <action android:name="com.resist.movelife.Status" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
         <activity
-            android:name=".AccountSettings"
+            android:name="com.resist.movelife.AccountSettings"
             android:label="@string/app_name"
-            android:parentActivityName=".Menu" >
+            android:parentActivityName="com.resist.movelife.Menu">
             <intent-filter>
                 <action android:name="com.resist.movelife.AccountSettings" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".ZoekBedrijven"
+            android:name="com.resist.movelife.ZoekBedrijven"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.ZoekBedrijven" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".ResultsInfoBedrijven"
+            android:name="com.resist.movelife.ResultsInfoBedrijven"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.ResultsInfoBedrijven" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".ChangeEmail"
+            android:name="com.resist.movelife.ChangeEmail"
             android:label="@string/app_name"
-            android:parentActivityName=".AccountSettings" >
+            android:parentActivityName="com.resist.movelife.AccountSettings">
             <intent-filter>
                 <action android:name="android.intent.action.ChangeEmail" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".ChangePassword"
+            android:name="com.resist.movelife.ChangePassword"
             android:label="@string/app_name"
-            android:parentActivityName=".AccountSettings" >
+            android:parentActivityName="com.resist.movelife.AccountSettings">
             <intent-filter>
                 <action android:name="android.intent.action.ChangePassword" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".PlaatsReview"
+				</intent-filter>
+		</activity>
+			<activity
+            android:name="com.resist.movelife.PlaatsReview"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.PlaatsReview" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -172,16 +148,10 @@
         </activity>
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
-
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            />
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/APP_ID" />
-
-        <activity
-            android:name=".FriendRequest"
-            android:label="Friend request" >
-        </activity>
     </application>
-
 </manifest>

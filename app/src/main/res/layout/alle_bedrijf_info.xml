@@ -5,34 +5,35 @@
     android:orientation="vertical"
     android:weightSum="1"
     style="@android:style/Theme.Holo.NoActionBar.Fullscreen"
-    android:background="#55504518"
-    >
-
+    android:background="@color/gray4">
     <TextView
-        android:layout_width="wrap_content"
+        style="@style/com_facebook_loginview_default_style"
+        android:background="@color/darkorange"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/companyinfo_naam"
         android:id="@+id/tv_bedrijfsnaam"
         android:layout_gravity="center_horizontal"
-        android:textSize="25sp"
-        />
+        android:textSize="30sp"/>
 
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#55504518">
+            android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
                 android:id="@+id/iv_bedrijfsfoto"
-                android:layout_marginTop="42dp"
-                android:src="@drawable/icon"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
+                android:src="@drawable/back1"
+                android:background="@color/gray3"
+                android:layout_alignParentTop="true" />
+
             <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -40,8 +41,15 @@
                 android:layout_below="@+id/iv_bedrijfsfoto"
                 android:layout_centerHorizontal="true" />
 
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/darkorange"
+                android:layout_below="@+id/navbtn"></LinearLayout>
 
             <TextView
+                android:paddingTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -50,13 +58,24 @@
                 android:layout_below="@+id/navbtn"
                 android:layout_alignEnd="@+id/rb_rating" />
             <TextView
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:text="@string/comanyinfo_bedrijfsinformatie"
                 android:id="@+id/tv_bedrijfsinfo"
                 android:layout_below="@+id/textView6"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:background="@color/gray3"/>
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/darkorange"
+                android:layout_below="@+id/tv_bedrijfsinfo">
+                </LinearLayout>
             <TextView
+                android:paddingTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -65,38 +84,48 @@
                 android:layout_below="@+id/tv_bedrijfsinfo"
                 android:layout_centerHorizontal="true" />
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
+                android:textColor="@color/darkorange"
                 android:layout_height="wrap_content"
                 android:text="@string/companyinfo_mapbutton"
                 android:id="@+id/button"
-
                 android:drawableLeft="@android:drawable/ic_dialog_map"
-
-
                 style="@style/com_facebook_loginview_default_style"
                 android:layout_below="@+id/rb_rating"
                 android:layout_alignParentStart="true"
-                android:background="#ffff8624"
+                android:background="@color/gray2"
                 android:layout_toLeftOf="@+id/navbtn" />
             <TextView
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/companyinfo_geenreviews"
                 android:id="@+id/tv_reviewtxt"
-                android:layout_below="@+id/tv_reviewkop"/>
+                android:layout_below="@+id/tv_reviewkop"
+                android:background="@color/gray3"/>
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/darkorange"
+                android:layout_below="@+id/reviewBtn">
+            </LinearLayout>
 
             <Button
-                android:layout_width="wrap_content"
+                android:textColor="@color/darkorange"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="@string/companyinfo_navigation"
                 android:id="@+id/navbtn"
                 style="@style/com_facebook_loginview_default_style"
                 android:drawableLeft="@android:drawable/ic_menu_directions"
-                android:background="#ffff8624"
+                android:background="@color/gray2"
                 android:layout_below="@+id/rb_rating"
                 android:layout_alignParentEnd="true" />
 
             <Button
+                android:textColor="@color/darkorange"
                 android:layout_below="@+id/tv_reviewtxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -107,9 +136,10 @@
                 style="@style/com_facebook_loginview_default_style"
                 android:layout_alignStart="@+id/tv_reviewkop"
                 android:drawableLeft="@android:drawable/ic_input_add"
-                android:background="#ffff8624" />
+                android:background="@color/gray2"/>
 
             <TextView
+                android:paddingTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -125,18 +155,20 @@
                 android:id="@+id/tv_eventText"
                 android:layout_below="@+id/tv_events"
                 android:layout_alignParentStart="true"
-                android:layout_toLeftOf="@+id/btn_eventStart" />
+                android:layout_toLeftOf="@+id/btn_eventStart"
+                android:background="@color/gray3"/>
 
             <Button
+                android:textColor="@color/darkorange"
+                style="@style/com_facebook_loginview_default_style"
+                android:background="@color/gray2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/companyinfo_eventButton"
                 android:id="@+id/btn_eventStart"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
-                android:layout_below="@+id/tv_events"
-                android:textSize="12sp"
-                />
+                android:textSize="12sp"/>
 
         </RelativeLayout>
     </ScrollView>

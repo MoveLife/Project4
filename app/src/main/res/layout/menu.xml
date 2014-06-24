@@ -6,27 +6,41 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:weightSum="5"
-    android:baselineAligned="false">
+    android:baselineAligned="false"
+    android:background="@drawable/back2">
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_margin="1dp">
+        android:id="@+id/Layout_Menu"
+        android:layout_width="match_parent"
+        android:layout_height="500dp">
+
+            <ViewFlipper
+                android:id="@+id/myflipper"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:gravity="center" >
+            </ViewFlipper>
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="400dp"
             android:layout_weight="2"
             android:orientation="vertical" >
 
             <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="10dp">
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/layout_Map"
                 android:layout_width="fill_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_weight="1.2"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:background="@color/gray3">
 
                 <ImageButton
                     android:id="@+id/btn_Map"
@@ -44,86 +58,31 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/menu_map"
+                    android:textColor="@color/darkorange"
                     android:textSize="20sp"/>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layout_Status"
                 android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="2dp"
-                android:layout_weight="1.2"
-                android:gravity="center"
-                android:orientation="vertical" >
-
-                <ImageButton
-                    android:id="@+id/btn_Status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_status"
-                    android:background="@android:color/transparent"
-                    android:onClick="act_Status"/>
-
-                <TextView
-                    android:id="@+id/text_Status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/menu_status"
-                    android:textSize="20sp"/>
+                android:layout_height="10dp">
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layout_Categories"
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical" >
-
-                <ImageButton
-                    android:id="@+id/btn_Categories"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_categories"
-                    android:background="@android:color/transparent"
-                    android:onClick="act_Categories"/>
-
-                <TextView
-                    android:id="@+id/text_Categories"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/menu_categories"
-                    android:textSize="20sp"/>
-            </LinearLayout>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="2"
-            android:orientation="vertical" >
 
             <LinearLayout
                 android:id="@+id/layout_Friends"
                 android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="2dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
                 android:layout_weight="1.2"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:background="@color/gray3">
 
                 <ImageButton
                     android:id="@+id/btn_Friends"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_friends"
+                    android:src="@drawable/ic_vrienden"
                     android:background="@android:color/transparent"
                     android:onClick="act_Friends"/>
 
@@ -132,25 +91,42 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:textColor="@color/darkorange"
                     android:text="@string/menu_friends"
                     android:textSize="20sp"/>
             </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="5dp"
+            android:layout_height="fill_parent">
+            </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="400dp"
+            android:layout_weight="2"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="10dp">
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout_Events"
                 android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="2dp"
-                android:layout_weight="1.2"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:background="@color/gray3">
 
                 <ImageButton
                     android:id="@+id/btn_Events"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_events"
+                    android:src="@drawable/ic_evenement"
                     android:background="@android:color/transparent"
                     android:onClick="act_Events"/>
 
@@ -159,26 +135,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:textColor="@color/darkorange"
                     android:text="@string/menu_events"
                     android:textSize="20sp"/>
             </LinearLayout>
 
             <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="10dp">
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/layout_Login"
                 android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="2dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
-
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:background="@color/gray3">
 
                 <ImageButton
                     android:id="@+id/btn_Login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_login"
+                    android:src="@drawable/ic_inloggen"
                     android:background="@android:color/transparent"
                     android:onClick="act_Login"/>
 
@@ -188,11 +170,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/menu_login"
+                    android:textColor="@color/darkorange"
                     android:textSize="20sp"/>
             </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
+
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"
             android:layout_width="fill_parent"
