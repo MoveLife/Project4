@@ -119,7 +119,7 @@ public class DatabaseUpdater extends Thread {
     }
 
     private ContentValues getEventCV(JSONObject event) {
-        final String[] ints = {"eid","uid"};
+        final String[] ints = {"eid","uid","bid"};
         final String[] strings = {"name","description","startdate","enddate"};
         ContentValues cv = new ContentValues();
         for(String column : ints) {
