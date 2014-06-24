@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Thomas on 14-6-2014.
  */
@@ -23,16 +26,33 @@ public class ResultsInfoBedrijven extends Activity {
     private Company company;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
         setContentView(R.layout.alle_bedrijf_info);
         company = filteredCompany;
+        List<Event> events = Event.getEventByCompany(company.getBid());
         TextView tv = (TextView) findViewById(R.id.tv_bedrijfsnaam);
         TextView tvdesc = (TextView) findViewById(R.id.tv_bedrijfsinfo);
         RatingBar ratingBar = (RatingBar) findViewById(R.id.rb_rating);
-        TextView eventText = (TextView) findViewById(R.id.tv_eventText);
+
+
+        for (Event event: events){
+
+            event.getName();
+            event.getDescription();
+            event.getStartdate();
+            event.getEnddate();
+            TextView eventText = (TextView) findViewById(R.id.tv_eventText);
+            eventText.setText(event.getName());
+
+
+
+            Log.d("eventlist",""+ event.getName());
+
+        }
 
         double rating = company.getRating();
         float frating = (float) rating;
@@ -46,7 +66,7 @@ public class ResultsInfoBedrijven extends Activity {
         }
         tv.setText(company.getName());
         tvdesc.setText(company.getDescription());
-        //eventText.setText(CompanyEvents.getCompaniesEvents();
+
 
         Button navigatieButton = (Button) findViewById(R.id.navbtn);
         navigatieButton.setOnClickListener(new View.OnClickListener() {
