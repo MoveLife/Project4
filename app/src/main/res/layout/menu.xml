@@ -14,12 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="500dp">
 
-            <ViewFlipper
-                android:id="@+id/myflipper"
-                android:layout_width="fill_parent"
-                android:layout_height="100dp"
-                android:gravity="center" >
-            </ViewFlipper>
+        <ViewFlipper
+            android:background="@color/gray4"
+            android:id="@+id/myflipper"
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            android:gravity="center" >
+        </ViewFlipper>
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -99,7 +100,7 @@
         <LinearLayout
             android:layout_width="5dp"
             android:layout_height="fill_parent">
-            </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -176,13 +177,13 @@
         </LinearLayout>
     </LinearLayout>
 
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/adView"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            ads:adUnitId="ca-app-pub-9004410477588289/1851467258"
-            ads:adSize="BANNER"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        ads:adUnitId="ca-app-pub-9004410477588289/1851467258"
+        ads:adSize="BANNER"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

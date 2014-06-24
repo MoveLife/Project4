@@ -50,6 +50,12 @@
     <string name="companyinfo_review">Reviews</string>
     <string name="companyinfo_submitreview">Plaats review</string>
     <string name="companyinfo_navigation">Routebeschrijving</string>
+    <string name="companyinfo_naam">Naam</string>
+    <string name="comanyinfo_bedrijfsinformatie">Dit bedrijf heeft nog geen bedrijfsinformatie.</string>
+    <string name="companyinfo_geenreviews">Er zijn nog geen reviews voor dit bedrijf.</string>
+    <string name="companyinfo_event">Evenementen</string>
+    <string name="companyinfo_eventText">Dit bedrijf heeft nog geen evenementen aangemaakt.</string>
+    <string name="companyinfo_eventButton">Bekijk evenement op kaart</string>
     <string name="category_bakery">Bakkerijen</string>
     <string name="category_bank">Banken</string>
     <string name="category_bar">Bars</string>

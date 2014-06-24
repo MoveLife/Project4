@@ -6,11 +6,17 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.MotionEvent;
+import android.widget.ImageView;
+import android.widget.ViewFlipper;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 public class Menu extends Activity{
+    private ViewFlipper myViewFlipper;
+    private float initialXPoint;
+    int[] image = { R.drawable.back,R.drawable.back1, R.drawable.back2,R.drawable.back3};
     private static DatabaseUpdater updater;
 
     @Override
@@ -24,7 +30,7 @@ public class Menu extends Activity{
             updater.start(this);
         }
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
-        
+
        // Look up the AdView as a resource and load a request.
        AdView adView = (AdView)this.findViewById(R.id.adView);
        AdRequest adRequest = new AdRequest.Builder()
@@ -32,6 +38,39 @@ public class Menu extends Activity{
       //.addTestDevice("DC5E69B2C6B90CD8B81EDA2BB2729EFF")
         .build();
         adView.loadAd(adRequest);
+
+        myViewFlipper = (ViewFlipper) findViewById(R.id.myflipper);
+
+        for (int i = 0; i < image.length; i++) {
+            ImageView imageView = new ImageView(Menu.this);
+            imageView.setImageResource(image[i]);
+            myViewFlipper.addView(imageView);
+        }
+    }
+
+    //Slideshow
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                initialXPoint = event.getX();
+                break;
+            case MotionEvent.ACTION_UP:
+                float finalx = event.getX();
+                if (initialXPoint > finalx) {
+                    if (myViewFlipper.getDisplayedChild() == image.length)
+                        break;
+                    myViewFlipper.showNext();
+                } else {
+                    if (myViewFlipper.getDisplayedChild() == 0)
+                        break;
+                    myViewFlipper.showPrevious();
+                }
+                myViewFlipper.setAutoStart(true);
+                myViewFlipper.setFlipInterval(8000);
+                myViewFlipper.startFlipping();
+        }
+        return false;
     }
 
     @Override
@@ -62,10 +101,7 @@ public class Menu extends Activity{
         Intent intent = new Intent(this, Status.class);
         startActivity(intent);
     }
-    public void act_Categories (View view) {
-        Intent intent = new Intent(this, Categories.class);
-        startActivity(intent);
-    }
+
     public void act_Friends (View view) {
         Intent intent = new Intent(this, Friends.class);
         startActivity(intent);

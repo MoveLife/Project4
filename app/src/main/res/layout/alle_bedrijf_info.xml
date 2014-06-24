@@ -58,8 +58,8 @@
                 android:layout_below="@+id/navbtn"
                 android:layout_alignEnd="@+id/rb_rating" />
             <TextView
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:text="@string/comanyinfo_bedrijfsinformatie"
@@ -96,8 +96,8 @@
                 android:background="@color/gray2"
                 android:layout_toLeftOf="@+id/navbtn" />
             <TextView
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/companyinfo_geenreviews"
