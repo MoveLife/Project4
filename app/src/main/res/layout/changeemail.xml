@@ -63,8 +63,10 @@
     <Button
         android:textColor="@color/darkorange"
         android:id="@+id/btn_ChangeEmail"
-        android:layout_width="300dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
         android:layout_marginTop="30dp"
         android:background="@color/gray2"
         style="@style/com_facebook_loginview_default_style"
