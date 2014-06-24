@@ -12,11 +12,13 @@ public class LocalDatabaseConnector {
     private static Context context;
     private static DBHelper helper;
     private static SQLiteDatabase database;
+    private static boolean changed = false;
 
     public static void init(Context ctx) {
         context = ctx.getApplicationContext();
         helper = new DBHelper();
         database = helper.getWritableDatabase();
+        resetChanged();
     }
 
     public static void close() {
@@ -24,27 +26,46 @@ public class LocalDatabaseConnector {
         context = null;
     }
 
+    public static boolean hasChanged() {
+        return changed;
+    }
+
+    public static void resetChanged() {
+        changed = false;
+    }
+
+    public static void restart() {
+        Context c = context;
+        close();
+        init(c);
+    }
+
     public static boolean initialised() {
         return context != null;
     }
 
     public static long insert(String table,String nullColumnHack,ContentValues values) {
+        changed = true;
         return database.insert(table,nullColumnHack,values);
     }
 
     public static long insert(String table,ContentValues values) {
+        changed = true;
         return database.insert(table,null,values);
     }
 
     public static int update(String table,ContentValues values,String whereClause,String[] whereArgs) {
+        changed = true;
         return database.update(table,values,whereClause,whereArgs);
     }
 
     public static int update(String table,ContentValues values) {
+        changed = true;
         return database.update(table,values,null,null);
     }
 
     public static int delete(String table,String whereClause,String[] whereArgs) {
+        changed = true;
         return database.delete(table,whereClause,whereArgs);
     }
 

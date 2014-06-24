@@ -3,7 +3,6 @@ package com.resist.movelife;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.text.TextUtils;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -165,6 +164,9 @@ public class ServerConnection {
 				uid = Integer.parseInt(returnValue);
 			} catch(NumberFormatException e) {
 			}
+            if(uid != 0) {
+                loggedIn = true;
+            }
 		}
 		return uid;
 	}
