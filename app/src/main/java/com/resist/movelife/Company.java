@@ -34,8 +34,6 @@ public class Company {
 	private String description;
 	private Integer buystate;
 
-
-
 	private void setAll(Integer cid,String postcode,String address,Double rating,Integer type,String telephone,String description,Integer buystate) {
 		this.cid = cid;
 		this.postcode = postcode;
@@ -214,4 +212,11 @@ public class Company {
 		}
 		return false;
 	}
+
+    public boolean hasEvent() {
+        Cursor c = LocalDatabaseConnector.get("events","eid","bid = ?",new String[]{""+bid});
+        boolean b = !c.moveToFirst();
+        c.close();
+        return b;
+    }
 }
