@@ -15,7 +15,7 @@ public class AccountSettings extends Activity{
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
 
         TextView CurrentEmail = (TextView)findViewById(R.id.tv_CurrentEmail);
-        CurrentEmail.setText(Menu.currentEmail());
+        CurrentEmail.setText(Menu.getUpdater().getEmail());
     }
 
     public void act_changeEmail (View view) {
