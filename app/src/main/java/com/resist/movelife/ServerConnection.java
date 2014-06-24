@@ -294,4 +294,20 @@ public class ServerConnection {
         }
         return false;
     }
+
+    public static boolean changePassword(String newPassword,String oldPassword) {
+        Map<String,String> params = new TreeMap<String,String>();
+        params.put("mode","change_password");
+        params.put("new_password",newPassword);
+        params.put("old_password",oldPassword);
+        try {
+            post(params);
+        } catch(IOException e) {
+            return false;
+        }
+        if(returnValue != null && returnValue.equals("")) {
+            return true;
+        }
+        return false;
+    }
 }
