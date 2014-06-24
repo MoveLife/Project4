@@ -2,6 +2,7 @@
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/MyActionBar</item>
         <item name="android:actionOverflowButtonStyle">@style/OverFlow</item>
+
     </style>
 
     <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
@@ -13,7 +14,7 @@
     </style>
 
     <!-- Honeycomb and above -->
-    <style name="BedrijfRatingSmall" parent="@android:style/Widget.Holo.RatingBar.Small">
+    <style name="BedrijfRatingSmall" parent="@android:style/Widget.Holo.Light.RatingBar.Small">
         <!-- Mochten we een eigen versie van ratingbar willen.
        <item name="android:progressDrawable">@drawable/rating_bar_used</item>
        -->

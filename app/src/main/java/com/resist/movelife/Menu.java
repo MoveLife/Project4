@@ -19,23 +19,21 @@ public class Menu extends Activity{
     private ViewFlipper myViewFlipper;
     private float initialXPoint;
     int[] image = { R.drawable.back,R.drawable.back1, R.drawable.back2,R.drawable.back3};
-    DatabaseUpdater updater;
+    private static DatabaseUpdater updater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.menu);
-        updater = new DatabaseUpdater();
 
-        updater.start(this);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
-        
+        init();
        // Look up the AdView as a resource and load a request.
        AdView adView = (AdView)this.findViewById(R.id.adView);
        AdRequest adRequest = new AdRequest.Builder()
       //.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-        .addTestDevice("DC5E69B2C6B90CD8B81EDA2BB2729EFF")
+      // .addTestDevice("DC5E69B2C6B90CD8B81EDA2BB2729EFF")
         .build();
         adView.loadAd(adRequest);
 
@@ -137,6 +135,21 @@ public class Menu extends Activity{
         return super.onOptionsItemSelected(item);
     }
 
+    protected void onResume() {
+        super.onResume();
+        init();
+    }
 
+    private void init() {
+        if (updater == null) {
+            updater = new DatabaseUpdater();
+
+            updater.start(this);
+        }
+
+    }
+    public static DatabaseUpdater getUpdater() {
+        return updater;
+    }
 
 }

@@ -3,6 +3,14 @@
     android:layout_height="wrap_content"
     android:background="@color/gray4">
 
+
+    <RatingBar
+        style="@style/BedrijfRatingSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBarLijst"
+        android:layout_below="@+id/Bedrijfsnaam"
+        android:layout_centerHorizontal="true" />
     <TextView
         android:background="@color/gray4"
         android:textColor="@color/darkorange"
@@ -14,5 +22,6 @@
         android:text="@string/bedrijfsnaam"
         android:textSize="16sp"
         android:gravity="center_horizontal"/>
+
 
 </RelativeLayout> 

@@ -54,7 +54,7 @@ public class CustomBaseAdapterAlleVrienden extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.friends_info, null);
             holder = new ViewHolder();
             assert convertView != null;
-            holder.txtTitle = (TextView) convertView.findViewById(R.id.tv_friends);
+         //   holder.txtTitle = (TextView) convertView.findViewById(R.id.tv_friends);
             convertView.setTag(holder);
         }
         else {
