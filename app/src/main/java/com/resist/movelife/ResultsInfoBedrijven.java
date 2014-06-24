@@ -9,12 +9,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -37,32 +37,38 @@ public class ResultsInfoBedrijven extends Activity {
         List<Event> events = Event.getEventByCompany(company.getBid());
         TextView tv = (TextView) findViewById(R.id.tv_bedrijfsnaam);
         TextView tvdesc = (TextView) findViewById(R.id.tv_bedrijfsinfo);
+        TextView tvevent = (TextView) findViewById(R.id.tv_eventText);
+
+        if (events.size() >= 1){
+
+            tvevent.setVisibility(View.GONE);
+
+        }
+
         RatingBar ratingBar = (RatingBar) findViewById(R.id.rb_rating);
 
 
         Log.d("eventlist",""+ events.size());
         for (Event event: events){
-            View linearLayout =  findViewById(R.id.info);
+            SimpleDateFormat df = new SimpleDateFormat("c d MMMM yyyy HH:mm");
+            LinearLayout linearLayout = (LinearLayout) findViewById(R.id.info);
             TextView eventText = new TextView(this);
+            TextView eventdesc = new TextView(this);
+            TextView eventstart = new TextView(this);
+            TextView eventeind = new TextView(this);
+
             event.getName();
-            eventText.setText(event.getName());
-            eventText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            ((LinearLayout) linearLayout).addView(eventText);
-
-
-
-
-
             event.getDescription();
 
+            eventText.setText(event.getName());
+            eventdesc.setText(event.getDescription());
+            eventstart.setText(df.format(event.getStartdate()));
+            eventeind.setText( df.format(event.getEnddate()));
 
-            event.getStartdate();
-
-
-            event.getEnddate();
-
-
-
+            linearLayout.addView(eventText,0);
+            linearLayout.addView(eventdesc,1);
+            linearLayout.addView(eventstart,2);
+            linearLayout.addView(eventeind,3);
 
         }
 
@@ -128,25 +134,8 @@ public class ResultsInfoBedrijven extends Activity {
             }
         });
 
-        Button eventButton = (Button) findViewById(R.id.btn_eventStart);
-       // if () {
-       //     eventButton.setVisibility(View.GONE);
 
-      //  } else {
 
-       //     eventButton.setVisibility(View.VISIBLE);
-            eventButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    Intent intent = new Intent(getBaseContext(), Map.class);
-                    // intent.putExtra("latitude", company.getLatitude());
-                    //  intent.putExtra("longitude", company.getLongitude());
-                    startActivity(intent);
-
-                }
-            });
-       // }
 
     }
 }

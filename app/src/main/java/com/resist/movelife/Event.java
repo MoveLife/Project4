@@ -1,9 +1,7 @@
 package com.resist.movelife;
 
 import android.database.Cursor;
-import android.util.SparseArray;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -47,7 +45,7 @@ public class Event {
                 c.getInt(c.getColumnIndex("bid")),
                 c.getInt(c.getColumnIndex("uid")),
                 c.getString(c.getColumnIndex("name")),
-                c.getString(c.getColumnIndex("descrption")),
+                c.getString(c.getColumnIndex("description")),
                 c.getString(c.getColumnIndex("startdate")),
                 c.getString(c.getColumnIndex("enddate"))
         );
