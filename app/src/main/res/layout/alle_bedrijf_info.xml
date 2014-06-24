@@ -151,10 +151,6 @@
                 android:layout_below="@+id/reviewBtn"
                 android:layout_alignEnd="@+id/tv_reviewtxt" />
 
-
-
-
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -162,15 +158,16 @@
                 android:id="@+id/tv_eventText"
                 android:layout_below="@+id/tv_events"
                 android:layout_alignParentStart="true"
-                android:layout_toLeftOf="@+id/btn_eventStart"
                 android:layout_alignParentBottom="true"
                 android:background="@color/gray3"/>
             <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:id="@+id/info"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:layout_below="@+id/tv_events"
+                >
+
             </LinearLayout>
 
 
@@ -180,18 +177,7 @@
 
 
 
-            <Button
-                android:id="@+id/btn_eventStart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/darkorange"
-                style="@style/com_facebook_loginview_default_style"
-                android:background="@color/gray2"
-                android:text="@string/companyinfo_eventButton"
-                android:layout_below="@+id/tv_events"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:textSize="12sp"/>
+
         </RelativeLayout>
     </ScrollView>
 </LinearLayout>
