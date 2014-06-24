@@ -304,12 +304,8 @@ public class Map extends Activity implements LocationListener {
                             .defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
             Marker m = mMap.addMarker(marker);
             markerMap.put(m, store);
-
-
         }
-
         onInfoClick(markerMap);
-
     }
 
     private void onInfoClick(final java.util.Map<Marker, Company> markerMap) {
@@ -338,7 +334,6 @@ public class Map extends Activity implements LocationListener {
 
             Intent intent = new Intent(this, ZoekBedrijven.class);
             startActivity(intent);
-
         }
         return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
@@ -359,10 +354,7 @@ public class Map extends Activity implements LocationListener {
             Marker m = mMap.addMarker(marker);
             markerMap.put(m, store);
         }
-
         onInfoClick(markerMap);
     }
-
-
 }
 
