@@ -1,131 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
     <TextView
         style="@style/com_facebook_loginview_default_style"
         android:background="@color/darkorange"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Evenementen"
+        android:text="@string/event_title"
         android:textSize="30sp"
         android:gravity="center_horizontal"/>
 
     <TextView
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:text="Vrienden"
-        android:gravity="center_horizontal"
-        android:textSize="30sp"
-        android:layout_height="50dp"/>
-    <TableRow
-        android:id="@+id/tableRow1"
-        android:layout_width="match_parent"
-        android:gravity="center_horizontal"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="20dip" >
+        android:text="@string/event_geenevenementen"
+        android:id="@android:id/empty"
+        android:layout_gravity="center_horizontal" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:text="Soort"
-            android:textSize="25sp"/>
-
-        <TextView
-            android:id="@+id/textView3"
-            android:text="Locatie"
-            android:paddingLeft="20dp"
-            android:textSize="25sp"
-            android:layout_column="3" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:paddingLeft="20dp"
-            android:text="Plaats"
-            android:textSize="25sp"
-            android:layout_column="7" />
-    </TableRow>
-
-    <TableRow
-        android:id="@+id/tableRow2"
+    <ListView
         android:layout_width="match_parent"
-        android:gravity="center_horizontal"
         android:layout_height="wrap_content"
-        android:padding="20dip" >
+        android:id="@android:id/list" />
 
-        <TextView
-            android:id="@+id/textView5"
-            android:text="Afspreken"
-            android:textSize="20sp"/>
 
-        <TextView
-            android:id="@+id/textView6"
-            android:text="Club Vie"
-            android:paddingLeft="20dp"
-            android:textSize="20sp"
-            android:layout_column="3" />
 
-        <TextView
-            android:id="@+id/textView7"
-            android:paddingLeft="20dp"
-            android:text="Rotterdam"
-            android:textSize="20sp"
-            android:layout_column="7" />
 
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-    </TableRow>
-    <Button
-        android:textColor="@color/darkorange"
-        style="@style/com_facebook_loginview_default_style"
-        android:background="@color/gray2"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-       android:text="Bekijk op kaart"
-        android:id="@+id/button"/>
-</TableLayout>
+</LinearLayout>

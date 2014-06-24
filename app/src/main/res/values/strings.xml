@@ -109,5 +109,8 @@
     <string name="notification_friend_request_title">Nieuw Vriend Verzoek</string>
     <string name="notification_friend_request_msg">Je hebt %d nieuwe vriend verzoeken.</string>
     <string name="notification_friend_request_msg_one">Je hebt een nieuw vriend verzoek van %s.</string>
+    <string name="event_geenevenementen">Er zijn nog geen evenementen!</string>
+    <string name="friends_titel">Vrienden</string>
+    <string name="event_title">Evenementen</string>
 
 </resources>

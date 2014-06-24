@@ -31,7 +31,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBSxo_ohgsZApZRYcGDYpG9_1y1j0G126g"/>
+            android:value="AIzaSyDaqxBPsB8LAGmqac1Yr4XEqYPNVFZUAAo"/>
 
         <activity
             android:name="com.resist.movelife.Splash"

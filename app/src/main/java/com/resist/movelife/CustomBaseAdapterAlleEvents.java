@@ -19,6 +19,7 @@ public class CustomBaseAdapterAlleEvents extends BaseAdapter {
     Context context;
     List<Event> events = new ArrayList<Event>();
 
+
     public CustomBaseAdapterAlleEvents(Context context, List<Event> items) {
         this.context = context;
         this.events = items;
@@ -32,17 +33,17 @@ public class CustomBaseAdapterAlleEvents extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return events.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return events.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
@@ -54,7 +55,7 @@ public class CustomBaseAdapterAlleEvents extends BaseAdapter {
                 context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
 
-            convertView = mInflater.inflate(R.layout.friends_info, null);
+            convertView = mInflater.inflate(R.layout.events_info, null);
             holder = new ViewHolder();
             assert convertView != null;
             holder.eventTitle = (TextView) convertView.findViewById(R.id.tv_eventnaam);
@@ -66,7 +67,7 @@ public class CustomBaseAdapterAlleEvents extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-         //holder.eventTitle.setText();
+       //  holder.eventTitle.setText();
 
         return convertView ;
 
