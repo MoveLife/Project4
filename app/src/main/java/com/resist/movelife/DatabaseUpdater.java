@@ -30,6 +30,7 @@ public class DatabaseUpdater extends Thread {
 	private long sleep = ONE_SECOND;
     private long update_sleep = 0;
     private long gps_sleep = 0;
+    private long friend_sleep = 0;
 	private Context context;
 	private ConnectivityManager cm;
 	
@@ -63,6 +64,13 @@ public class DatabaseUpdater extends Thread {
                         } else {
                             update_sleep -= sleep;
                         }
+                        if(friend_sleep <= 0) {
+                            if(!FriendRequest.getCreateNew()) {
+                                getFriendRequests();
+                            }
+                        } else {
+                            friend_sleep -= sleep;
+                        }
 					}
 				}
 			}
@@ -73,6 +81,21 @@ public class DatabaseUpdater extends Thread {
 			}
 		}
 	}
+
+    private void getFriendRequests() {
+        friend_sleep = ONE_MINUTE;
+        JSONArray json = ServerConnection.getFriendRequests();
+        if(json == null) {
+            return;
+        }
+        List<User> uids = new ArrayList<User>();
+        for(int n=0;n < json.length();n++) {
+            try {
+                uids.add(new User(json.getJSONObject(n)));
+            } catch(JSONException e) {}
+        }
+        FriendRequest.setUsers(uids);
+    }
 
     private void insertEventsJoined(JSONArray joined,int eid) {
         for(int n=0;n < joined.length();n++) {
@@ -384,7 +407,7 @@ public class DatabaseUpdater extends Thread {
 		c.close();
 	}
 
-	private String getEmail() {
+	public String getEmail() {
 		String em = getUserSetEmail();
 		if(em != null) {
 			return em;
@@ -437,7 +460,7 @@ public class DatabaseUpdater extends Thread {
 		}
 	}
 	
-	private String getUserSetPassword() {
+	public String getUserSetPassword() {
 		Cursor c = LocalDatabaseConnector.get("user","password");
 		int i = c.getColumnIndex("password");
 		if(!c.moveToFirst() || i == -1 || c.isNull(i)) {
@@ -506,6 +529,7 @@ public class DatabaseUpdater extends Thread {
 		if(context == null) {
 			context = ctx.getApplicationContext();
 			cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            FriendRequest.init(context);
 		}
 		super.start();
 	}

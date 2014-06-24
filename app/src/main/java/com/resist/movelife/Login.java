@@ -17,7 +17,6 @@ import com.facebook.widget.LoginButton.UserInfoChangedCallback;
 import com.facebook.widget.ProfilePictureView;
 
 public class Login extends FragmentActivity {
-
     private TextView userName;
     private UiLifecycleHelper uiHelper;
     private TextView accountText;
