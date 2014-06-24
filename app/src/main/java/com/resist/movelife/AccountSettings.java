@@ -8,8 +8,6 @@ import android.widget.TextView;
 
 
 public class AccountSettings extends Activity{
-    String currentEmail = Menu.currentEmail();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,7 +15,7 @@ public class AccountSettings extends Activity{
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
 
         TextView CurrentEmail = (TextView)findViewById(R.id.tv_CurrentEmail);
-        CurrentEmail.setText(currentEmail);
+        CurrentEmail.setText(Menu.currentEmail());
     }
 
     public void act_changeEmail (View view) {

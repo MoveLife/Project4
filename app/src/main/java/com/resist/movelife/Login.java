@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -21,10 +22,11 @@ public class Login extends FragmentActivity {
     private UiLifecycleHelper uiHelper;
     private TextView accountText;
     private ProfilePictureView profilePictureView;
+    private String userId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        LoginButton loginBtn;
+        final LoginButton loginBtn;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
@@ -36,6 +38,11 @@ public class Login extends FragmentActivity {
         accountText = (TextView)findViewById(R.id.accountText);
         profilePictureView = (ProfilePictureView) findViewById(R.id.profilePicture);
 
+        if(!Menu.isConnected()) {
+            accountText.setText("U heeft geen internet");
+            loginBtn.setVisibility(View.GONE);
+        }
+
         loginBtn.setUserInfoChangedCallback(new UserInfoChangedCallback() {
             @Override
             public void onUserInfoFetched(GraphUser user) {
@@ -44,6 +51,7 @@ public class Login extends FragmentActivity {
                     profilePictureView.setProfileId(user.getId());
                     accountText.setVisibility(View.GONE);
                     profilePictureView.setVisibility(View.VISIBLE);
+                    userId = user.getId();
                 } else {
                     userName.setText("U bent nog niet ingelogd");
                     profilePictureView.setVisibility(View.GONE);

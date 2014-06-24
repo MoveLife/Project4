@@ -255,10 +255,74 @@ public class ServerConnection {
         JSONArray json = null;
         if(returnValue != null) {
             try {
-                json = new JSONObject(returnValue).getJSONArray("friend_locations");
+                json = new JSONObject(returnValue).getJSONArray("friend_requests");
             } catch (JSONException e) {
             }
         }
         return json;
+    }
+
+    public static void acceptFriendRequest(int uid) {
+        Map<String,String> params = new TreeMap<String,String>();
+        params.put("mode","accept_friend");
+        params.put("friend",""+uid);
+        try {
+            post(params);
+        } catch(IOException e) {}
+    }
+
+    public static void removeFriend(int uid) {
+        Map<String,String> params = new TreeMap<String,String>();
+        params.put("mode","remove_friend");
+        params.put("friend",""+uid);
+        try {
+            post(params);
+        } catch(IOException e) {}
+    }
+
+    public static boolean addFriend(String email) {
+        Map<String,String> params = new TreeMap<String,String>();
+        params.put("mode","add_friend");
+        params.put("friend",email);
+        try {
+            post(params);
+        } catch(IOException e) {
+            return false;
+        }
+        if(returnValue != null && returnValue.equals("")) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean changePassword(String newPassword,String oldPassword) {
+        Map<String,String> params = new TreeMap<String,String>();
+        params.put("mode","change_password");
+        params.put("new_password",newPassword);
+        params.put("old_password",oldPassword);
+        try {
+            post(params);
+        } catch(IOException e) {
+            return false;
+        }
+        if(returnValue != null && returnValue.equals("")) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean changeEmail(String email) {
+        Map<String,String> params = new TreeMap<String,String>();
+        params.put("mode","change_email");
+        params.put("email",email);
+        try {
+            post(params);
+        } catch(IOException e) {
+            return false;
+        }
+        if(returnValue != null && returnValue.equals("")) {
+            return true;
+        }
+        return false;
     }
 }

@@ -65,7 +65,9 @@ public class DatabaseUpdater extends Thread {
                             update_sleep -= sleep;
                         }
                         if(friend_sleep <= 0) {
-                            getFriendRequests();
+                            if(!FriendRequest.getCreateNew()) {
+                                getFriendRequests();
+                            }
                         } else {
                             friend_sleep -= sleep;
                         }
@@ -81,7 +83,11 @@ public class DatabaseUpdater extends Thread {
 	}
 
     private void getFriendRequests() {
+        friend_sleep = ONE_MINUTE;
         JSONArray json = ServerConnection.getFriendRequests();
+        if(json == null) {
+            return;
+        }
         List<User> uids = new ArrayList<User>();
         for(int n=0;n < json.length();n++) {
             try {
@@ -416,7 +422,7 @@ public class DatabaseUpdater extends Thread {
 		return getPassword()+"@movelife.tk";
 	}
 	
-	private String getPassword() {
+	public String getPassword() {
 		String pwd = getUserSetPassword();
 		if(pwd != null) {
 			return pwd;
@@ -425,13 +431,17 @@ public class DatabaseUpdater extends Thread {
 		return tm.getDeviceId();
 	}
 	
-	public void setUserEmail(String email) {
+	public boolean setUserEmail(String email) {
 		if(!hasAccount()) {
-			return;
+			return false;
 		}
-		ContentValues values = new ContentValues();
-		values.put("email",email);
-		LocalDatabaseConnector.update("user",values);
+        if(ServerConnection.changeEmail(email)) {
+            ContentValues values = new ContentValues();
+            values.put("email", email);
+            LocalDatabaseConnector.update("user", values);
+            return true;
+        }
+        return false;
 	}
 	
 	private void setUserPassword(String password) {
@@ -440,18 +450,21 @@ public class DatabaseUpdater extends Thread {
 		LocalDatabaseConnector.update("user",values);
 	}
 	
-	public void setUserPassword(String newPassword,String oldPassword) {
+	public boolean setUserPassword(String newPassword,String oldPassword) {
 		if(!hasAccount()) {
-			return;
+			return false;
 		}
 		String pwd = getUserSetPassword();
-		if(pwd == null) {
-			setUserPassword(newPassword);
-		} else if(pwd.equals(oldPassword)) {
-			ContentValues values = new ContentValues();
-			values.put("password",newPassword);
-			LocalDatabaseConnector.update("user",values);
+		if(pwd == null || pwd.equals(oldPassword)) {
+            if(pwd == null) {
+                pwd = getPassword();
+            }
+            if(ServerConnection.changePassword(newPassword,pwd)) {
+                setUserPassword(newPassword);
+                return true;
+            }
 		}
+        return false;
 	}
 	
 	public String getUserSetPassword() {

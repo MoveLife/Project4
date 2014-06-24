@@ -22,8 +22,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RatingBar;
-import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -76,7 +74,7 @@ public class Map extends Activity implements LocationListener {
                 builder.setView(v);
                 builder.setCancelable(false);
 
-                builder.setPositiveButton(getString(R.string.map_maakevenement), new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Maak evenement", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int which) {
                         EditText title = (EditText) v.findViewById(R.id.ettitle);
@@ -90,7 +88,7 @@ public class Map extends Activity implements LocationListener {
                     }
                 });
 
-                builder.setNegativeButton(getString(R.string.map_cancelevenement), new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -159,42 +157,39 @@ public class Map extends Activity implements LocationListener {
                 //Currently selected categorie
                 mTitle = categorieën[position];
 
+                if (mTitle.equals("Bakkers")) {
+                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAKERY), R.drawable.ic_map_bakery);
+                }
+                if (mTitle.equals("Banken")) {
+                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BANK), R.drawable.ic_bank);
+                }
+                if (mTitle.equals("Bars")) {
+                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAR), R.drawable.ic_map_bakery);
+                }
+                if (mTitle.equals("Boeken Winkels")) {
+                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BOOKSHOP), R.drawable.ic_bank);
+                }
+                if (mTitle.equals("Cafés")) {
+                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CAFE), R.drawable.ic_map_bakery);
+                }
+                if (mTitle.equals("Bioscopen")) {
+                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CINEMA), R.drawable.ic_bank);
+                }
+                if (mTitle.equals("Clubs")) {
+                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CLUB), R.drawable.ic_map_bakery);
+                }
+                if (mTitle.equals("Lounges")) {
+                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_LOUNGE), R.drawable.ic_bank);
+                }
+                if (mTitle.equals("Musea")) {
+                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_MUSEUM), R.drawable.ic_map_bakery);
+                }
+                if (mTitle.equals("Supermarkten")) {
+                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_SUPERMARKET), R.drawable.ic_map_bakery);
+                }
 
-
-                switch(position) {
-                    case 0:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAKERY), R.drawable.ic_map_bakery);
-                        break;
-                    case 1:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BANK), R.drawable.ic_bank);
-                        break;
-                    case 2:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAR), R.drawable.ic_map_bakery);
-                        break;
-                    case 3:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BOOKSHOP), R.drawable.ic_bank);
-                        break;
-                    case 4:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CAFE), R.drawable.ic_map_bakery);
-                        break;
-                    case 5:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CINEMA), R.drawable.ic_bank);
-                        break;
-                    case 6:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CLUB), R.drawable.ic_map_bakery);
-                        break;
-                    case 7:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_LOUNGE), R.drawable.ic_bank);
-                        break;
-                    case 8:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_MUSEUM), R.drawable.ic_map_bakery);
-                        break;
-                    case 9:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_SUPERMARKET), R.drawable.ic_map_bakery);
-                        break;
-                    default:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_RESTAURANT), R.drawable.ic_bank);
-                        break;
+                if (mTitle.equals("Restaurants")) {
+                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_RESTAURANT), R.drawable.ic_bank);
                 }
                 // Closing the drawer
                 mDrawerLayout.closeDrawer(mDrawerList);
@@ -232,7 +227,7 @@ public class Map extends Activity implements LocationListener {
             change = false;
             MarkerOptions mp = new MarkerOptions();
             mp.position(new LatLng(latitude, longitude));
-            //mp.title("my position");
+            mp.title("my position");
             mMap.addMarker(mp);
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                     new LatLng(latitude, longitude), 16));
@@ -263,7 +258,7 @@ public class Map extends Activity implements LocationListener {
         }
         MarkerOptions mp = new MarkerOptions();
         mp.position(new LatLng(location.getLatitude(), location.getLongitude()));
-        mp.title(getString(R.string.map_mijnpositie));
+        mp.title("Mijn positie");
         myPos = mMap.addMarker(mp);
         if (!movedCamera) {
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
@@ -301,53 +296,16 @@ public class Map extends Activity implements LocationListener {
         for (Company store : array) {
             LatLng l = new LatLng(store.getLatitude(), store.getLongitude());
 
-            mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-
-                // Use default InfoWindow frame
-
-                @Override
-                public View getInfoWindow(Marker arg0) {
-                    return null;
-                }
-
-
-                @Override
-                public View getInfoContents(Marker arg0) {
-
-                    Company opslag = markerMap.get(arg0);
-
-                    View v = getLayoutInflater().inflate(R.layout.info_window_layout, null);
-                    TextView tvLat = (TextView) v.findViewById(R.id.tv_infowindow_bedrijfsnaam);
-                    RatingBar ratingBar = (RatingBar) v.findViewById(R.id.ratingBarInfoWindow);
-                    tvLat.setText(opslag.getName());
-                    double rating = opslag.getRating();
-                    float frating = (float) rating;
-
-                    if (ratingBar != null) {
-                        ratingBar.setEnabled(false);
-                        ratingBar.setMax(5);
-                        ratingBar.setStepSize(0.01f);
-                        ratingBar.setRating(frating);
-                        ratingBar.invalidate();
-                    }
-
-                    return v;
-
-                }
-            });
-
-
             MarkerOptions marker = new MarkerOptions()
                     .position(l)
+                    .title(store.getName())
+                    .snippet("" + store.getRating())
                     .icon(BitmapDescriptorFactory
                             .defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-
-                    Marker m = mMap.addMarker(marker);
+            Marker m = mMap.addMarker(marker);
             markerMap.put(m, store);
         }
-
         onInfoClick(markerMap);
-
     }
 
     private void onInfoClick(final java.util.Map<Marker, Company> markerMap) {
@@ -398,7 +356,5 @@ public class Map extends Activity implements LocationListener {
         }
         onInfoClick(markerMap);
     }
-
-
 }
 
