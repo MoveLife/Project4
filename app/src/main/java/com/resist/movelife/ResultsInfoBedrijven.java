@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Thomas on 14-6-2014.
  */
@@ -22,26 +25,52 @@ public class ResultsInfoBedrijven extends Activity {
     public static Company filteredCompany = null;
     private Company company;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
         setContentView(R.layout.alle_bedrijf_info);
         company = filteredCompany;
+        List<Event> events = Event.getEventByCompany(company.getBid());
         TextView tv = (TextView) findViewById(R.id.tv_bedrijfsnaam);
         TextView tvdesc = (TextView) findViewById(R.id.tv_bedrijfsinfo);
         RatingBar ratingBar = (RatingBar) findViewById(R.id.rb_rating);
 
+        Log.d("eventlist",""+ events.size());
+        for (Event event: events){
+
+            event.getName();
+            TextView eventText = (TextView) findViewById(R.id.tv_eventText);
+            eventText.setText(event.getName());
+            event.getDescription();
+
+
+
+            event.getStartdate();
+            event.getEnddate();
+
+
+
+
+
+
+        }
+
+        double rating = company.getRating();
+        float frating = (float) rating;
 
         if (ratingBar != null) {
             ratingBar.setEnabled(false);
             ratingBar.setMax(5);
             ratingBar.setStepSize(0.01f);
-            ratingBar.getRating();
+            ratingBar.setRating(frating);
             ratingBar.invalidate();
         }
         tv.setText(company.getName());
         tvdesc.setText(company.getDescription());
+
 
         Button navigatieButton = (Button) findViewById(R.id.navbtn);
         navigatieButton.setOnClickListener(new View.OnClickListener() {
@@ -77,8 +106,8 @@ public class ResultsInfoBedrijven extends Activity {
         });
 
 
-        Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button bekijkOpKaart = (Button) findViewById(R.id.button);
+        bekijkOpKaart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -90,5 +119,26 @@ public class ResultsInfoBedrijven extends Activity {
 
             }
         });
+
+        Button eventButton = (Button) findViewById(R.id.btn_eventStart);
+       // if () {
+       //     eventButton.setVisibility(View.GONE);
+
+      //  } else {
+
+       //     eventButton.setVisibility(View.VISIBLE);
+            eventButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent = new Intent(getBaseContext(), Map.class);
+                    // intent.putExtra("latitude", company.getLatitude());
+                    //  intent.putExtra("longitude", company.getLongitude());
+                    startActivity(intent);
+
+                }
+            });
+       // }
+
     }
 }

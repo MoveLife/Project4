@@ -4,8 +4,6 @@ package com.resist.movelife;
 import android.app.Activity;
 import android.os.Bundle;
 
-
-
 public class Events extends Activity {
 
 

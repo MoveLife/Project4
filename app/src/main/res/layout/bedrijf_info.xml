@@ -1,22 +1,27 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/gray4">
 
-    <ImageView
-        android:id="@+id/imageView1"
+
+    <RatingBar
+        style="@style/BedrijfRatingSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/icon" />
+        android:id="@+id/ratingBarLijst"
+        android:layout_below="@+id/Bedrijfsnaam"
+        android:layout_centerHorizontal="true" />
     <TextView
+        android:background="@color/gray4"
+        android:textColor="@color/darkorange"
         android:id="@+id/Bedrijfsnaam"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
         android:layout_marginLeft="23dp"
         android:layout_marginTop="10dp"
-        android:layout_toRightOf="@+id/imageView1"
         android:text="@string/bedrijfsnaam"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:gravity="center_horizontal"/>
+
 
 </RelativeLayout> 

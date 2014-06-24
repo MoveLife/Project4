@@ -1,7 +1,6 @@
 package com.resist.movelife;
 
 import android.app.ListActivity;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -21,9 +20,12 @@ import java.util.List;
 public class ZoekBedrijven extends ListActivity implements
         AdapterView.OnItemClickListener {
 
-    ContentValues cv = new ContentValues();
+
     ListView listView;
     private CustomBaseAdapterAlleBedrijven adapter = null;
+    EditText editTxt;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,16 +33,26 @@ public class ZoekBedrijven extends ListActivity implements
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.bedrijflist);
         LocalDatabaseConnector.init(this);
-
+        editTxt = (EditText) findViewById(R.id.editTxt);
         Log.d("companysize", "" + Company.getCompanies().size());
         List<Company> lijst = Company.getCompanies();
         adapter = new CustomBaseAdapterAlleBedrijven(this, lijst);
         listView = (ListView) findViewById(android.R.id.list);
+        View empty = findViewById(android.R.id.empty);
+        listView.setEmptyView(empty);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
         listView.setTextFilterEnabled(true);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
-        EditText editTxt = (EditText) findViewById(R.id.editTxt);
+
+        if (Company.getCompanies().size() == 0){
+
+            editTxt.setVisibility(View.GONE);
+
+        } else {
+           editTxt = (EditText) findViewById(R.id.editTxt);
+        }
+
         editTxt.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -77,7 +89,6 @@ public class ZoekBedrijven extends ListActivity implements
                             long id) {
 
         Object obj = adapter.getItem(position);
-        //Log.d("id", name);
         Intent intent = new Intent(this, ResultsInfoBedrijven.class);
         ResultsInfoBedrijven.filteredCompany = (Company)obj;
         startActivity(intent);

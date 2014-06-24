@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.List;
 public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filterable {
     Context context;
     List<Company> lijst = new ArrayList<Company>();
+
     private List<Company> lijstOrig;
     private Filter bedrijfFilter;
 
@@ -31,7 +33,8 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filte
     /*private view holder class*/
     private class ViewHolder {
         TextView txtTitle;
-        // TextView txtDesc;
+       RatingBar ratingBar;
+
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -40,10 +43,12 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filte
         LayoutInflater mInflater = (LayoutInflater)
                 context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
+
             convertView = mInflater.inflate(R.layout.bedrijf_info, null);
             holder = new ViewHolder();
             assert convertView != null;
-            // holder.txtDesc = (TextView) convertView.findViewById(R.id.Bedrijfdesc);
+            holder.ratingBar = (RatingBar) convertView.findViewById(R.id.ratingBarLijst);
+
             holder.txtTitle = (TextView) convertView.findViewById(R.id.Bedrijfsnaam);
             convertView.setTag(holder);
         }
@@ -52,7 +57,16 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filte
         }
 
         Company company = (Company) getItem(position);
-        //holder.txtDesc.setText(company.get);
+        double rating = company.getRating();
+        float frating = (float) rating;
+
+       if (holder.ratingBar != null) {
+           holder.ratingBar.setEnabled(false);
+           holder.ratingBar.setMax(5);
+           holder.ratingBar.setStepSize(0.01f);
+           holder.ratingBar.setRating(frating);
+           holder.ratingBar.invalidate();
+       }
         holder.txtTitle.setText(company.getName());
 
         return convertView;
@@ -95,6 +109,8 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filte
                 // We perform filtering operation
                 List<Company> nLijst = new ArrayList<Company>();
 
+
+
                 for (Company p : Company.getCompanies()) {
                     if (p.getName().toUpperCase().startsWith(constraint.toString().toUpperCase()))
                         nLijst.add(p);
@@ -104,6 +120,7 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filte
                 lijst = nLijst;
             }
             return results;
+
         }
 
         @Override
@@ -114,6 +131,7 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filte
                 notifyDataSetInvalidated();
             else {
                 lijst = (List<Company>) results.values;
+
                 notifyDataSetChanged();
             }
         }

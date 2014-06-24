@@ -4,15 +4,21 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
+import android.widget.ViewFlipper;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 public class Menu extends Activity{
-    private static DatabaseUpdater updater;
 
+    private static DatabaseUpdater updater;
+    private ViewFlipper myViewFlipper;
+    private float initialXPoint;
+    int[] image = { R.drawable.slide_1,R.drawable.slide_2, R.drawable.slide_3,R.drawable.slide_4,R.drawable.slide_5,R.drawable.slide_6,R.drawable.slide_7,R.drawable.slide_8,};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +33,38 @@ public class Menu extends Activity{
       //.addTestDevice("DC5E69B2C6B90CD8B81EDA2BB2729EFF")
         .build();
         adView.loadAd(adRequest);
+        myViewFlipper = (ViewFlipper) findViewById(R.id.myflipper);
+
+        for (int i = 0; i < image.length; i++) {
+            ImageView imageView = new ImageView(Menu.this);
+            imageView.setImageResource(image[i]);
+            myViewFlipper.addView(imageView);
+        }
+    }
+
+    //Slideshow
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                initialXPoint = event.getX();
+                break;
+            case MotionEvent.ACTION_UP:
+                float finalx = event.getX();
+                if (initialXPoint > finalx) {
+                    if (myViewFlipper.getDisplayedChild() == image.length)
+                        break;
+                    myViewFlipper.showNext();
+                } else {
+                    if (myViewFlipper.getDisplayedChild() == 0)
+                        break;
+                    myViewFlipper.showPrevious();
+                }
+                myViewFlipper.setAutoStart(true);
+                myViewFlipper.setFlipInterval(8000);
+                myViewFlipper.startFlipping();
+        }
+        return false;
     }
 
     @Override
