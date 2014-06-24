@@ -9,11 +9,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,20 +39,27 @@ public class ResultsInfoBedrijven extends Activity {
         TextView tvdesc = (TextView) findViewById(R.id.tv_bedrijfsinfo);
         RatingBar ratingBar = (RatingBar) findViewById(R.id.rb_rating);
 
+
         Log.d("eventlist",""+ events.size());
         for (Event event: events){
-
+            View linearLayout =  findViewById(R.id.info);
+            TextView eventText = new TextView(this);
             event.getName();
-            TextView eventText = (TextView) findViewById(R.id.tv_eventText);
             eventText.setText(event.getName());
+            eventText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            ((LinearLayout) linearLayout).addView(eventText);
+
+
+
+
+
             event.getDescription();
 
 
-
             event.getStartdate();
+
+
             event.getEnddate();
-
-
 
 
 

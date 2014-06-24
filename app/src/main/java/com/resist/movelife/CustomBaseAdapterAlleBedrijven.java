@@ -109,8 +109,6 @@ public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filte
                 // We perform filtering operation
                 List<Company> nLijst = new ArrayList<Company>();
 
-
-
                 for (Company p : Company.getCompanies()) {
                     if (p.getName().toUpperCase().startsWith(constraint.toString().toUpperCase()))
                         nLijst.add(p);

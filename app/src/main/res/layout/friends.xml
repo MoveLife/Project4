@@ -4,6 +4,14 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        style="@style/com_facebook_loginview_default_style"
+        android:background="@color/darkorange"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/friends_titel"
+        android:textSize="30sp"
+        android:gravity="center_horizontal"/>
 
     <TextView
         android:layout_width="wrap_content"
