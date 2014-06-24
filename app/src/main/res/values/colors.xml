@@ -15,9 +15,6 @@
     <item name="gray3" type="color">#f2f2f2</item>
     <item name="gray4" type="color">#80f2f2f2</item>
 
-
-
-
     <integer-array name="androidcolors">
         <item>@color/blue</item>
         <item>@color/purple</item>

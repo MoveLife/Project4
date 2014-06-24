@@ -7,12 +7,19 @@
     android:orientation="horizontal"
     android:weightSum="5"
     android:baselineAligned="false"
-    android:background="@drawable/back3">
+    android:background="@drawable/back2">
 
     <LinearLayout
         android:id="@+id/Layout_Menu"
-        android:layout_width="fill_parent"
-        android:layout_height="400dp">
+        android:layout_width="match_parent"
+        android:layout_height="500dp">
+
+            <ViewFlipper
+                android:id="@+id/myflipper"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:gravity="center" >
+            </ViewFlipper>
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -57,88 +64,6 @@
 
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="5dp">
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layout_Status"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:layout_weight="1.2"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:background="@color/gray3">
-
-                <ImageButton
-                    android:id="@+id/btn_Status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_status"
-                    android:background="@android:color/transparent"
-                    android:onClick="act_Status"/>
-
-                <TextView
-                    android:id="@+id/text_Status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/menu_status"
-                    android:textColor="@color/darkorange"
-                    android:textSize="20sp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="5dp">
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/layout_Categories"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:background="@color/gray3">
-
-                <ImageButton
-                    android:id="@+id/btn_Categories"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_categories"
-                    android:background="@android:color/transparent"
-                    android:onClick="act_Categories"/>
-
-                <TextView
-                    android:id="@+id/text_Categories"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/menu_categories"
-                    android:textColor="@color/darkorange"
-                    android:textSize="20sp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="10dp">
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="5dp"
-            android:layout_height="fill_parent">
-            </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="400dp"
-            android:layout_weight="2"
-            android:orientation="vertical" >
-
-            <LinearLayout
-                android:layout_width="fill_parent"
                 android:layout_height="10dp">
             </LinearLayout>
 
@@ -146,7 +71,7 @@
                 android:id="@+id/layout_Friends"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="2dp"
+                android:layout_margin="1dp"
                 android:layout_weight="1.2"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -170,18 +95,28 @@
                     android:text="@string/menu_friends"
                     android:textSize="20sp"/>
             </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="5dp"
+            android:layout_height="fill_parent">
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="400dp"
+            android:layout_weight="2"
+            android:orientation="vertical" >
 
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="5dp">
+                android:layout_height="10dp">
             </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/layout_Events"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:layout_weight="1.2"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:background="@color/gray3">
@@ -204,15 +139,17 @@
                     android:text="@string/menu_events"
                     android:textSize="20sp"/>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="5dp">
+                android:layout_height="10dp">
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/layout_Login"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="2dp"
+                android:layout_margin="1dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -235,10 +172,6 @@
                     android:text="@string/menu_login"
                     android:textColor="@color/darkorange"
                     android:textSize="20sp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="10dp">
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

@@ -3,11 +3,11 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray2">
+    android:background="@color/gray3">
 
     <TextView
         style="@style/com_facebook_loginview_default_style"
-        android:background="@color/darkblue"
+        android:background="@color/darkorange"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/login_header"
