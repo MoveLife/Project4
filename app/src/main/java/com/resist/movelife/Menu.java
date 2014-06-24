@@ -16,8 +16,9 @@ import com.google.android.gms.ads.AdView;
 public class Menu extends Activity{
     private ViewFlipper myViewFlipper;
     private float initialXPoint;
-    int[] image = { R.drawable.back,R.drawable.back1, R.drawable.back2,R.drawable.back3};
+    int[] image = { R.drawable.slide_1,R.drawable.slide_2, R.drawable.slide_3,R.drawable.slide_4,R.drawable.slide_5,R.drawable.slide_6,R.drawable.slide_7,R.drawable.slide_8,};
     private static DatabaseUpdater updater;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
