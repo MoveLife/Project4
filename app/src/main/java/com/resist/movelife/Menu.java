@@ -4,19 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
-import android.widget.ImageView;
-import android.widget.ViewFlipper;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 public class Menu extends Activity{
-    private ViewFlipper myViewFlipper;
-    private float initialXPoint;
-    int[] image = { R.drawable.slide_1,R.drawable.slide_2, R.drawable.slide_3,R.drawable.slide_4,R.drawable.slide_5,R.drawable.slide_6,R.drawable.slide_7,R.drawable.slide_8,};
     private static DatabaseUpdater updater;
 
     @Override
@@ -24,51 +18,31 @@ public class Menu extends Activity{
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.menu);
-
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
         init();
        // Look up the AdView as a resource and load a request.
        AdView adView = (AdView)this.findViewById(R.id.adView);
        AdRequest adRequest = new AdRequest.Builder()
       //.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-      // .addTestDevice("DC5E69B2C6B90CD8B81EDA2BB2729EFF")
+      //.addTestDevice("DC5E69B2C6B90CD8B81EDA2BB2729EFF")
         .build();
         adView.loadAd(adRequest);
-
-        myViewFlipper = (ViewFlipper) findViewById(R.id.myflipper);
-
-        for (int i = 0; i < image.length; i++) {
-            ImageView imageView = new ImageView(Menu.this);
-            imageView.setImageResource(image[i]);
-            myViewFlipper.addView(imageView);
-        }
     }
 
-//Slideshow
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                initialXPoint = event.getX();
-                break;
-            case MotionEvent.ACTION_UP:
-                float finalx = event.getX();
-                if (initialXPoint > finalx) {
-                    if (myViewFlipper.getDisplayedChild() == image.length)
-                        break;
-                    myViewFlipper.showNext();
-                } else {
-                    if (myViewFlipper.getDisplayedChild() == 0)
-                        break;
-                    myViewFlipper.showPrevious();
-                }
-                myViewFlipper.setAutoStart(true);
-                myViewFlipper.setFlipInterval(8000);
-                myViewFlipper.startFlipping();
-        }
-        return false;
+    protected void onResume() {
+        super.onResume();
+        init();
     }
 
+    private void init() {
+        if (updater == null) {
+            updater = new DatabaseUpdater();
+
+            updater.start(this);
+        }
+
+    }
 
     @Override
     public void onStop() {
@@ -94,7 +68,14 @@ public class Menu extends Activity{
         Intent intent = new Intent(this, AccountSettings.class);
         startActivity(intent);
     }
-
+    public void act_Status (View view) {
+        Intent intent = new Intent(this, Status.class);
+        startActivity(intent);
+    }
+    public void act_Categories (View view) {
+        Intent intent = new Intent(this, Categories.class);
+        startActivity(intent);
+    }
     public void act_Friends (View view) {
         Intent intent = new Intent(this, Friends.class);
         startActivity(intent);
@@ -111,7 +92,6 @@ public class Menu extends Activity{
 
         return true;
     }
-
 
    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -133,21 +113,16 @@ public class Menu extends Activity{
         return super.onOptionsItemSelected(item);
     }
 
-    protected void onResume() {
-        super.onResume();
-        init();
+    public static String currentEmail() {
+        return updater.getEmail();
     }
-
-    private void init() {
-        if (updater == null) {
-            updater = new DatabaseUpdater();
-
-            updater.start(this);
-        }
-
+    public static boolean isConnected() {
+        return updater.isConnected();
     }
-    public static DatabaseUpdater getUpdater() {
-        return updater;
+    public static String getUserSetPassword() {
+        return updater.getUserSetPassword();
     }
-
+    public static String getPassword() {
+        return updater.getPassword();
+    }
 }
