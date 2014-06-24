@@ -78,6 +78,7 @@ public class DatabaseUpdater extends Thread {
 				sleep(sleep);
 			} catch (InterruptedException e) {
 				running = false;
+                e.printStackTrace();
 			}
 		}
 	}
@@ -367,7 +368,7 @@ public class DatabaseUpdater extends Thread {
     }
 	
 	private void update() {
-		sleep = ONE_HOUR;
+		update_sleep = ONE_HOUR;
         String[] keys = {"cities","companies","companytype","events","eventsjoined","favourites","reviews","users"};
         ContentValues cv = new ContentValues();
         for(String k : keys) {
@@ -388,7 +389,6 @@ public class DatabaseUpdater extends Thread {
 		JSONObject json = ServerConnection.update(cv);
         cv.remove("companies_exclude");
 		if(json != null) {
-            Log.d("MoveLife",json.toString());
 			try {
 				JSONObject updatetime = json.getJSONObject("updatetime");
 				for(String k : keys) {
@@ -570,6 +570,7 @@ public class DatabaseUpdater extends Thread {
             LocalDatabaseConnector.insert("reviews",cv);
             LocalDatabaseConnector.update("companies",cv2,"bid = ?",new String[] {cv.getAsString("bid")});
             LocalDatabaseConnector.update("updatetime",cv3);
+            Company.createCompanyList();
         }
     }
 }

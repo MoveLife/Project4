@@ -104,6 +104,9 @@ public class Company {
 	}
 	
 	public static void createCompanyList() {
+        if(LocalDatabaseConnector.hasChanged()) {
+            LocalDatabaseConnector.restart();
+        }
 		companies = new ArrayList<Company>();
 		Cursor c = LocalDatabaseConnector.get("companies",new String[]{"bid","uid","name","latitude","longitude","cid","postcode","address","rating","tid","telephone","description","buystate"});
 		if(c.moveToFirst()) {
