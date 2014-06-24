@@ -71,49 +71,41 @@
             android:text="Rotterdam"
             android:textSize="20sp"
             android:layout_column="7" />
-
     </TableRow>
 
     <TableRow
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-
     </TableRow>
 
     <TableRow
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-
     </TableRow>
 
     <TableRow
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-
     </TableRow>
 
     <TableRow
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-
     </TableRow>
 
     <TableRow
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-
     </TableRow>
 
     <TableRow
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-
     </TableRow>
 
     <TableRow
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-
     </TableRow>
 
     <TableRow
@@ -124,8 +116,10 @@
         android:textColor="@color/darkorange"
         style="@style/com_facebook_loginview_default_style"
         android:background="@color/gray2"
-        android:layout_width="150dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
        android:text="Bekijk op kaart"
         android:id="@+id/button"/>
 </TableLayout>

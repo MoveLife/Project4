@@ -84,9 +84,11 @@
                 android:layout_below="@+id/tv_bedrijfsinfo"
                 android:layout_centerHorizontal="true" />
             <Button
-                android:layout_width="200dp"
-                android:textColor="@color/darkorange"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp"
+                android:textColor="@color/darkorange"
                 android:text="@string/companyinfo_mapbutton"
                 android:id="@+id/button"
                 android:drawableLeft="@android:drawable/ic_dialog_map"
