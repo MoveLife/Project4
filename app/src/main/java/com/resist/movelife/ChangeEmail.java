@@ -25,20 +25,24 @@ public class ChangeEmail extends Activity{
             TextView t = (TextView) findViewById(R.id.tv_CurrentEmail);
             Button b = (Button) findViewById(R.id.btn_ChangeEmail);
             b.setVisibility(View.GONE);
-            t.setText("Geen internetverbinding");
+            t.setText("U heeft geen internetverbinding");
         }
     }
 
-    private void changeEmail(View v) {
+    public void changeEmail(View v) {
         EditText email = (EditText)findViewById(R.id.et_Email);
         EditText emailVerify = (EditText)findViewById(R.id.et_EmailVerify);
 
         String e = email.getText().toString();
         String eVerify = emailVerify.getText().toString();
 
-        if (e.equals(eVerify)){
-            Toast.makeText(getApplicationContext(), "Uw email is veranderd", Toast.LENGTH_SHORT).show();
-            finish();
+        if (e != null && eVerify != null && e.equals(eVerify)){
+            if(android.util.Patterns.EMAIL_ADDRESS.matcher(e).matches()) {
+                Toast.makeText(getApplicationContext(), "Uw email is gewijzigt", Toast.LENGTH_SHORT).show();
+                finish();
+            } else {
+                Toast.makeText(getApplicationContext(), "Uw emailformaat is niet juist", Toast.LENGTH_SHORT).show();
+            }
         } else {
             Toast.makeText(getApplicationContext(), "Uw email is niet gelijk", Toast.LENGTH_SHORT).show();
         }

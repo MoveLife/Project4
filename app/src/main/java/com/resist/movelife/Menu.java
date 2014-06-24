@@ -18,13 +18,8 @@ public class Menu extends Activity{
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.menu);
-        if (updater == null) {
-            updater = new DatabaseUpdater();
-
-            updater.start(this);
-        }
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
-        
+        init();
        // Look up the AdView as a resource and load a request.
        AdView adView = (AdView)this.findViewById(R.id.adView);
        AdRequest adRequest = new AdRequest.Builder()
@@ -32,6 +27,21 @@ public class Menu extends Activity{
       //.addTestDevice("DC5E69B2C6B90CD8B81EDA2BB2729EFF")
         .build();
         adView.loadAd(adRequest);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        init();
+    }
+
+    private void init() {
+        if (updater == null) {
+            updater = new DatabaseUpdater();
+
+            updater.start(this);
+        }
+
     }
 
     @Override
