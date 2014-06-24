@@ -22,7 +22,7 @@ public class Login extends FragmentActivity {
     private UiLifecycleHelper uiHelper;
     private TextView accountText;
     private ProfilePictureView profilePictureView;
-    private String userId;
+    //private String userId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class Login extends FragmentActivity {
         accountText = (TextView)findViewById(R.id.accountText);
         profilePictureView = (ProfilePictureView) findViewById(R.id.profilePicture);
 
-        if(!Menu.isConnected()) {
+        if(!Menu.getUpdater().isConnected()) {
             accountText.setText("U heeft geen internet");
             loginBtn.setVisibility(View.GONE);
         }
@@ -51,7 +51,7 @@ public class Login extends FragmentActivity {
                     profilePictureView.setProfileId(user.getId());
                     accountText.setVisibility(View.GONE);
                     profilePictureView.setVisibility(View.VISIBLE);
-                    userId = user.getId();
+                    //userId = user.getId();
                 } else {
                     userName.setText("U bent nog niet ingelogd");
                     profilePictureView.setVisibility(View.GONE);

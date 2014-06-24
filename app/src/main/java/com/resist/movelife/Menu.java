@@ -113,16 +113,7 @@ public class Menu extends Activity{
         return super.onOptionsItemSelected(item);
     }
 
-    public static String currentEmail() {
-        return updater.getEmail();
-    }
-    public static boolean isConnected() {
-        return updater.isConnected();
-    }
-    public static String getUserSetPassword() {
-        return updater.getUserSetPassword();
-    }
-    public static String getPassword() {
-        return updater.getPassword();
+    public static DatabaseUpdater getUpdater() {
+        return updater;
     }
 }

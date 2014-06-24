@@ -9,8 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ChangePassword extends Activity{
-    private String getUserSetPassword = Menu.getUserSetPassword();
-    private String getPassword = Menu.getPassword();
+    private String getUserSetPassword = Menu.getUpdater().getUserSetPassword();
+    private String getPassword = Menu.getUpdater().getPassword();
 
 
     @Override
@@ -19,7 +19,7 @@ public class ChangePassword extends Activity{
         setContentView(R.layout.changepassword);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
 
-        if(!Menu.isConnected()) {
+        if(!Menu.getUpdater().isConnected()) {
             Button btn_ChangePassword = (Button) findViewById(R.id.btn_ChangePassword);
             TextView noInternet = (TextView)findViewById(R.id.tv_noInternet);
             noInternet.setVisibility(View.VISIBLE);
