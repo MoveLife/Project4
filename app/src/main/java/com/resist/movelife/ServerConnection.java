@@ -310,4 +310,19 @@ public class ServerConnection {
         }
         return false;
     }
+
+    public static boolean changeEmail(String email) {
+        Map<String,String> params = new TreeMap<String,String>();
+        params.put("mode","change_email");
+        params.put("email",email);
+        try {
+            post(params);
+        } catch(IOException e) {
+            return false;
+        }
+        if(returnValue != null && returnValue.equals("")) {
+            return true;
+        }
+        return false;
+    }
 }
