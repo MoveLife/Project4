@@ -279,4 +279,19 @@ public class ServerConnection {
             post(params);
         } catch(IOException e) {}
     }
+
+    public static boolean addFriend(String email) {
+        Map<String,String> params = new TreeMap<String,String>();
+        params.put("mode","add_friend");
+        params.put("friend",email);
+        try {
+            post(params);
+        } catch(IOException e) {
+            return false;
+        }
+        if(returnValue != null && returnValue.equals("")) {
+            return true;
+        }
+        return false;
+    }
 }
