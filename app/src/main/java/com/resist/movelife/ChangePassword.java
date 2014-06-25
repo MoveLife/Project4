@@ -16,9 +16,9 @@ public class ChangePassword extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.changepassword);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
+        btn_ChangePassword = (Button) findViewById(R.id.btn_ChangePassword);
 
         if(!Menu.getUpdater().isConnected()) {
-            btn_ChangePassword = (Button) findViewById(R.id.btn_ChangePassword);
             TextView noInternet = (TextView)findViewById(R.id.tv_noInternet);
             noInternet.setVisibility(View.VISIBLE);
             noInternet.setText("U heeft geen internet");
