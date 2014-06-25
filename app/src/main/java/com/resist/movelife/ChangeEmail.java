@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class ChangeEmail extends Activity{
     private String currentEmail = Menu.getUpdater().getEmail();
-    private Button  b;
+    private Button b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +39,6 @@ public class ChangeEmail extends Activity{
 
         if (e != null && eVerify != null && e.equals(eVerify)){
             if(android.util.Patterns.EMAIL_ADDRESS.matcher(e).matches()) {
-
-
                 b.setVisibility(View.GONE);
                 final ChangeEmail parent = this;
                 new Thread(new Runnable() {
