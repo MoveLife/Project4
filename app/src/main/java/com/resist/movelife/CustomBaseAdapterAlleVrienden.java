@@ -8,13 +8,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomBaseAdapterAlleVrienden extends BaseAdapter {
 
 
     Context context;
-   //List<Company> lijst = new ArrayList<Company>();
+   List<Friends> lijst = new ArrayList<Friends>();
 
     public CustomBaseAdapterAlleVrienden(Context context, List<Company> items) {
         this.context = context;

@@ -1,7 +1,6 @@
 package com.resist.movelife;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
@@ -9,10 +8,13 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -26,7 +28,7 @@ public class ResultsInfoBedrijven extends Activity {
 
     public static Company filteredCompany = null;
     private Company company;
-
+    private String currentEmail = Menu.getUpdater().getEmail();
 
 
 
@@ -35,6 +37,7 @@ public class ResultsInfoBedrijven extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.alle_bedrijf_info);
         company = filteredCompany;
         List<Event> events = Event.getEventByCompany(company.getBid());
@@ -55,9 +58,46 @@ public class ResultsInfoBedrijven extends Activity {
             reviewtxt.setVisibility(View.GONE);
 
         }
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.FILL_PARENT);
 
         RatingBar ratingBar = (RatingBar) findViewById(R.id.rb_rating);
+        Log.d("reviewlist", ""+ reviews.size());
+        for (Review review: reviews){
 
+            LinearLayout linearLayout = (LinearLayout) findViewById(R.id.reviewll);
+            TextView reviewUid = new TextView(this);
+            TextView reviewText = new TextView(this);
+
+
+            RatingBar reviewRating = new RatingBar(this ,null,android.R.attr.ratingBarStyleSmall);
+            reviewRating.setLayoutParams(lp);
+            reviewRating.setEnabled(false);
+            reviewRating.setMax(5);
+            reviewRating.setStepSize(0.01f);
+            reviewRating.invalidate();
+            reviewRating.setNumStars(5);
+
+
+            review.getReview();
+            review.getRating();
+
+            reviewUid.setText(currentEmail);
+            reviewUid.setLayoutParams(layoutParams);
+            reviewText.setText(review.getReview());
+            reviewRating.setRating(review.getRating());
+
+            linearLayout.addView(reviewUid,0);
+            linearLayout.addView(reviewRating,1);
+            linearLayout.addView(reviewText,2);
+
+
+        }
 
         Log.d("eventlist",""+ events.size());
         for (Event event: events){
@@ -82,33 +122,7 @@ public class ResultsInfoBedrijven extends Activity {
             linearLayout.addView(eventeind,3);
 
         }
-            Log.d("reviewlist", ""+ reviews.size());
-        for (Review review: reviews){
 
-            LinearLayout linearLayout = (LinearLayout) findViewById(R.id.reviewll);
-            TextView reviewUid = new TextView(this);
-            TextView reviewText = new TextView(this);
-            RatingBar reviewRating = new RatingBar(this ,null,android.R.attr.ratingBarStyleSmall);
-            reviewRating.setEnabled(false);
-            reviewRating.setMax(5);
-            reviewRating.setStepSize(0.01f);
-            reviewRating.invalidate();
-            reviewRating.setNumStars(5);
-
-            review.getUid();
-            review.getReview();
-            review.getRating();
-
-            reviewUid.setText(review.getUid()+"");
-            reviewText.setText(review.getReview());
-            reviewRating.setRating(review.getRating());
-
-            linearLayout.addView(reviewUid,0);
-            linearLayout.addView(reviewRating,1);
-            linearLayout.addView(reviewText,2);
-
-
-        }
 
         double rating = company.getRating();
         float frating = (float) rating;
@@ -174,8 +188,27 @@ public class ResultsInfoBedrijven extends Activity {
             }
         });
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.eventmenu, menu);
 
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
+        if (id == R.id.maak_event)
+        {
+            Intent intent = new Intent(this, PlaatsEvent.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
