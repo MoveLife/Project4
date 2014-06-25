@@ -41,7 +41,7 @@ public class User {
             this.name = c.getString(c.getColumnIndex("name"));
         } catch(Exception e) {}
         try {
-            setLastSeen(c.getString(c.getColumnIndex("changed")));
+            setLastSeen(c.getLong(c.getColumnIndex("changed")));
         } catch(Exception e) {}
     }
 
@@ -67,6 +67,10 @@ public class User {
 
     public void setLastSeen(Date date) {
         this.lastSeen = date;
+    }
+
+    public void setLastSeen(long date) {
+        setLastSeen(new Date(date*1000));
     }
 
     public void setLastSeen(String date) {
