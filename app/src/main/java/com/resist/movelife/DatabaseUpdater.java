@@ -191,6 +191,14 @@ public class DatabaseUpdater extends Thread {
                 c.moveToNext();
             }
         }
+        c = LocalDatabaseConnector.get("users","uid");
+        List<Integer> users = new ArrayList<Integer>();
+        if(c.moveToFirst()) {
+            while(!c.isAfterLast()) {
+                uids.add(c.getInt(0));
+                c.moveToNext();
+            }
+        }
         int time = 0;
         for(int n=0;n < locations.length();n++) {
             JSONObject location = null;
@@ -199,19 +207,31 @@ public class DatabaseUpdater extends Thread {
             } catch(JSONException e) {}
             if(location != null) {
                 ContentValues cv = new ContentValues();
+                ContentValues user = new ContentValues();
                 try {
                     cv.put("uid",location.getInt("uid"));
                     cv.put("changed",location.getInt("changed"));
                     cv.put("latitude",location.getInt("latitude"));
                     cv.put("longitude",location.getInt("longitude"));
+                    user.put("email",location.getString("email"));
                 } catch(JSONException e) {
                     continue;
                 }
+                try {
+                    user.put("name",location.getString("name"));
+                }catch(JSONException e) {}
                 time = Math.max(time,cv.getAsInteger("changed"));
-                if(uids.contains(cv.getAsInteger("uid"))) {
-                    LocalDatabaseConnector.update("friendlocations",cv,"uid = ?",new String[] {cv.getAsString("uid")});
+                int uid = cv.getAsInteger("uid");
+                if(uids.contains(uid)) {
+                    LocalDatabaseConnector.update("friendlocations",cv,"uid = ?",new String[] {uid+""});
                 } else {
                     LocalDatabaseConnector.insert("friendlocations",cv);
+                }
+                if(users.contains(uid)) {
+                    LocalDatabaseConnector.update("users",user,"uid = ?",new String[] {uid+""});
+                } else {
+                    user.put("uid",uid);
+                    LocalDatabaseConnector.insert("users",user);
                 }
             }
         }
