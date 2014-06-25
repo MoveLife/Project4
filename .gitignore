@@ -229,3 +229,4 @@ pip-log.txt
 *.bin
 .gradle/1.12/taskArtifacts/cache.properties.lock
 libraries/facebook/facebook.iml
+.gradle/1.12/taskArtifacts/cache.properties.lock

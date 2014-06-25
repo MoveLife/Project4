@@ -46,7 +46,7 @@ public class Friends extends ListActivity implements
 
     public static List<User> getFriends() {
         List<User> users = new ArrayList<User>();
-        Cursor c = LocalDatabaseConnector.rawQuery("SELECT users.email,users.name,friendlocations.latitude,friendlocations.longitude,friendlocations.changed FROM users,friendlocations WHERE users.uid = friendlocations.uid AND friendlocations.longitude IS NOT NULL AND friendlocations.latitude IS NOT NULL",null);
+        Cursor c = LocalDatabaseConnector.rawQuery("SELECT user.email,user.name,friendlocations.latitude,friendlocations.longitude,friendlocations.changed FROM user,friendlocations WHERE user.uid = friendlocations.uid AND friendlocations.longitude IS NOT NULL AND friendlocations.latitude IS NOT NULL",null);
         if(c.moveToFirst()) {
             while(c.isBeforeFirst()) {
                 try {
