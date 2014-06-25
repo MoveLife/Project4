@@ -1,6 +1,7 @@
 package com.resist.movelife;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
@@ -28,6 +29,8 @@ public class ResultsInfoBedrijven extends Activity {
 
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,13 +38,21 @@ public class ResultsInfoBedrijven extends Activity {
         setContentView(R.layout.alle_bedrijf_info);
         company = filteredCompany;
         List<Event> events = Event.getEventByCompany(company.getBid());
+        List<Review> reviews = Review.getReviewByCompanyID(company.getBid());
         TextView tv = (TextView) findViewById(R.id.tv_bedrijfsnaam);
         TextView tvdesc = (TextView) findViewById(R.id.tv_bedrijfsinfo);
         TextView tvevent = (TextView) findViewById(R.id.tv_eventText);
+        TextView reviewtxt = (TextView) findViewById(R.id.tv_reviewtxt);
 
         if (events.size() >= 1){
 
             tvevent.setVisibility(View.GONE);
+
+        }
+
+        if (reviews.size() >= 1){
+
+            reviewtxt.setVisibility(View.GONE);
 
         }
 
@@ -69,6 +80,33 @@ public class ResultsInfoBedrijven extends Activity {
             linearLayout.addView(eventdesc,1);
             linearLayout.addView(eventstart,2);
             linearLayout.addView(eventeind,3);
+
+        }
+            Log.d("reviewlist", ""+ reviews.size());
+        for (Review review: reviews){
+
+            LinearLayout linearLayout = (LinearLayout) findViewById(R.id.reviewll);
+            TextView reviewUid = new TextView(this);
+            TextView reviewText = new TextView(this);
+            RatingBar reviewRating = new RatingBar(this ,null,android.R.attr.ratingBarStyleSmall);
+            reviewRating.setEnabled(false);
+            reviewRating.setMax(5);
+            reviewRating.setStepSize(0.01f);
+            reviewRating.invalidate();
+            reviewRating.setNumStars(5);
+
+            review.getUid();
+            review.getReview();
+            review.getRating();
+
+            reviewUid.setText(review.getUid()+"");
+            reviewText.setText(review.getReview());
+            reviewRating.setRating(review.getRating());
+
+            linearLayout.addView(reviewUid,0);
+            linearLayout.addView(reviewRating,1);
+            linearLayout.addView(reviewText,2);
+
 
         }
 
@@ -111,11 +149,13 @@ public class ResultsInfoBedrijven extends Activity {
         });
 
         Button reviewButton = (Button) findViewById(R.id.reviewBtn);
+
+
         reviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+           public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(), PlaatsReview.class);
-                startActivity(intent);
+               startActivity(intent);
             }
         });
 

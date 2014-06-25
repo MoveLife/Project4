@@ -112,5 +112,7 @@
     <string name="event_geenevenementen">Er zijn nog geen evenementen!</string>
     <string name="friends_titel">Vrienden</string>
     <string name="event_title">Evenementen</string>
+    <string name="Event_start">Event_startdate</string>
+    <string name="Event_eind">Event_einddate</string>
 
 </resources>

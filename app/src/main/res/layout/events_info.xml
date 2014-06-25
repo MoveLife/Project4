@@ -32,5 +32,17 @@
         android:text="@string/event_vanbedrijf"
         android:id="@+id/tv_eventvanbedrijf" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Event_start"
+        android:id="@+id/tv_eventstart" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Event_eind"
+        android:id="@+id/tv_eventeind" />
+
 
 </LinearLayout>

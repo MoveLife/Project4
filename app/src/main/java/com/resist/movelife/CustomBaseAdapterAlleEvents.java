@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +32,8 @@ public class CustomBaseAdapterAlleEvents extends BaseAdapter {
         TextView eventTitle;
         TextView eventDesc;
         TextView eventBedrijf;
+        TextView eventStart;
+        TextView eventEind;
     }
 
     @Override
@@ -61,13 +66,21 @@ public class CustomBaseAdapterAlleEvents extends BaseAdapter {
             holder.eventTitle = (TextView) convertView.findViewById(R.id.tv_eventnaam);
             holder.eventDesc = (TextView) convertView.findViewById(R.id.tv_eventdescription);
             holder.eventBedrijf = (TextView) convertView.findViewById(R.id.tv_eventvanbedrijf);
+            holder.eventStart = (TextView) convertView.findViewById(R.id.tv_eventstart);
+            holder.eventEind = (TextView) convertView.findViewById(R.id.tv_eventeind);
             convertView.setTag(holder);
         }
         else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-       //  holder.eventTitle.setText();
+
+         SimpleDateFormat df = new SimpleDateFormat("c d MMMM yyyy HH:mm");
+         holder.eventTitle.setText(events.get(position).getName());
+         holder.eventDesc.setText(events.get(position).getDescription());
+         holder.eventBedrijf.setText(events.get(position).getBid()+"");
+         holder.eventStart.setText(df.format(events.get(position).getStartdate()));
+         holder.eventEind.setText(df.format(events.get(position).getEnddate()));
 
         return convertView ;
 

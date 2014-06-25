@@ -95,6 +95,8 @@
                 android:layout_alignParentStart="true"
                 android:background="@color/gray2"
                 android:layout_toLeftOf="@+id/navbtn" />
+
+
             <TextView
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
@@ -102,14 +104,24 @@
                 android:layout_height="wrap_content"
                 android:text="@string/companyinfo_geenreviews"
                 android:id="@+id/tv_reviewtxt"
-                android:layout_below="@+id/tv_reviewkop"
+                android:layout_below="@+id/reviewBtn"
                 android:background="@color/gray3"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_leeg"
+                android:visibility="gone"
+                android:layout_below="@+id/tv_reviewkop"
+
+                />
+
             <LinearLayout
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
                 android:background="@color/darkorange"
-                android:layout_below="@+id/reviewBtn">
+                android:layout_below="@+id/tv_reviewtxt">
             </LinearLayout>
 
             <Button
@@ -124,9 +136,19 @@
                 android:layout_below="@+id/rb_rating"
                 android:layout_alignParentEnd="true" />
 
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:id="@+id/reviewll"
+                android:layout_below="@+id/reviewBtn">
+
+            </LinearLayout>
             <Button
                 android:textColor="@color/darkorange"
-                android:layout_below="@+id/tv_reviewtxt"
+                android:layout_below="@+id/tv_leeg"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="70dp"
@@ -148,7 +170,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/companyinfo_event"
                 android:id="@+id/tv_events"
-                android:layout_below="@+id/reviewBtn"
+                android:layout_below="@+id/reviewll"
                 android:layout_alignEnd="@+id/tv_reviewtxt" />
 
             <TextView
@@ -169,13 +191,6 @@
                 >
 
             </LinearLayout>
-
-
-
-
-
-
-
 
 
         </RelativeLayout>

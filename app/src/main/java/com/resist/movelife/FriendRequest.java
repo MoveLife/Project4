@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.resist.movelife.R;
@@ -29,6 +30,7 @@ public class FriendRequest extends Activity {
     }
 
     public static void setUsers(List<User> l) {
+        Log.d("Iets",""+ l.size());
         users = l;
         if(createNew && context != null && !users.isEmpty()) {
             createNew = false;
