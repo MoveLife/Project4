@@ -191,7 +191,7 @@ public class DatabaseUpdater extends Thread {
                 c.moveToNext();
             }
         }
-        c = LocalDatabaseConnector.get("users","uid");
+        c = LocalDatabaseConnector.get("user","uid");
         List<Integer> users = new ArrayList<Integer>();
         if(c.moveToFirst()) {
             while(!c.isAfterLast()) {
@@ -228,10 +228,10 @@ public class DatabaseUpdater extends Thread {
                     LocalDatabaseConnector.insert("friendlocations",cv);
                 }
                 if(users.contains(uid)) {
-                    LocalDatabaseConnector.update("users",user,"uid = ?",new String[] {uid+""});
+                    LocalDatabaseConnector.update("user",user,"uid = ?",new String[] {uid+""});
                 } else {
                     user.put("uid",uid);
-                    LocalDatabaseConnector.insert("users",user);
+                    LocalDatabaseConnector.insert("user",user);
                 }
             }
         }

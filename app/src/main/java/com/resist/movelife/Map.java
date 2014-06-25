@@ -230,7 +230,7 @@ public class Map extends Activity implements LocationListener {
             change = false;
             MarkerOptions mp = new MarkerOptions();
             mp.position(new LatLng(latitude, longitude));
-            mp.title("my position");
+            mp.title("Mijn positie");
             mMap.addMarker(mp);
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                     new LatLng(latitude, longitude), 16));
@@ -243,7 +243,7 @@ public class Map extends Activity implements LocationListener {
     @Override
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.mapmenu, menu);
         mMap.setMyLocationEnabled(true);
 
         return true;
