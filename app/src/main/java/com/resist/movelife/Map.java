@@ -159,39 +159,40 @@ public class Map extends Activity implements LocationListener {
                 //Currently selected categorie
                 mTitle = categorieën[position];
 
-                if (mTitle.equals("Bakkers")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAKERY), R.drawable.ic_map_bakery);
-                }
-                if (mTitle.equals("Banken")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BANK), R.drawable.ic_map_bank);
-                }
-                if (mTitle.equals("Bars")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAR), R.drawable.ic_map_bar);
-                }
-                if (mTitle.equals("Boeken Winkels")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BOOKSHOP), R.drawable.ic_map_bookshops);
-                }
-                if (mTitle.equals("Cafés")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CAFE), R.drawable.ic_map_cafe);
-                }
-                if (mTitle.equals("Bioscopen")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CINEMA), R.drawable.ic_map_cinema);
-                }
-                if (mTitle.equals("Clubs")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CLUB), R.drawable.ic_map_club);
-                }
-                if (mTitle.equals("Lounges")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_LOUNGE), R.drawable.ic_map_lounge);
-                }
-                if (mTitle.equals("Musea")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_MUSEUM), R.drawable.ic_map_museum);
-                }
-                if (mTitle.equals("Supermarkten")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_SUPERMARKET), R.drawable.ic_map_supermarket);
-                }
-
-                if (mTitle.equals("Restaurants")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_RESTAURANT), R.drawable.ic_map_restaurant);
+                switch(position) {
+                    case 0:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAKERY), R.drawable.ic_map_bakery);
+                        break;
+                    case 1:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BANK), R.drawable.ic_bank);
+                        break;
+                    case 2:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAR), R.drawable.ic_map_bakery);
+                        break;
+                    case 3:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BOOKSHOP), R.drawable.ic_bank);
+                        break;
+                    case 4:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CAFE), R.drawable.ic_map_bakery);
+                        break;
+                    case 5:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CINEMA), R.drawable.ic_bank);
+                        break;
+                    case 6:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CLUB), R.drawable.ic_map_bakery);
+                        break;
+                    case 7:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_LOUNGE), R.drawable.ic_bank);
+                        break;
+                    case 8:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_MUSEUM), R.drawable.ic_map_bakery);
+                        break;
+                    case 9:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_SUPERMARKET), R.drawable.ic_map_bakery);
+                        break;
+                    default:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_RESTAURANT), R.drawable.ic_bank);
+                        break;
                 }
                 // Closing the drawer
                 mDrawerLayout.closeDrawer(mDrawerList);
