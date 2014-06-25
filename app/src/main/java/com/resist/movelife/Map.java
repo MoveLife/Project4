@@ -39,15 +39,15 @@ import java.util.List;
 
 @SuppressLint("NewApi")
 public class Map extends Activity implements LocationListener {
-    Context context = this;
+    private Context context = this;
     // Within which the entire activity is enclosed
-    DrawerLayout mDrawerLayout;
+    private DrawerLayout mDrawerLayout;
     // ListView represents Navigation Drawer
-    ListView mDrawerList;
+    private ListView mDrawerList;
     // ActionBarDrawerToggle indicates the presence of Navigation Drawer in the action bar
-    ActionBarDrawerToggle mDrawerToggle;
+    private ActionBarDrawerToggle mDrawerToggle;
     // Title of the action bar
-    String mTitle = "";
+    private String mTitle = "";
     private GoogleMap mMap;
     private boolean change = true;
     private boolean movedCamera = false;
@@ -297,54 +297,59 @@ public class Map extends Activity implements LocationListener {
         final java.util.Map<Marker, Company> markerMap = new HashMap<Marker, Company>();
         for (Company store : array) {
             LatLng l = new LatLng(store.getLatitude(), store.getLongitude());
-
-            mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-
-                // Use default InfoWindow frame
-
-                @Override
-                public View getInfoWindow(Marker arg0) {
-                    return null;
-                }
-
-
-                @Override
-                public View getInfoContents(Marker arg0) {
-
-                    Company opslag = markerMap.get(arg0);
-
-                    View v = getLayoutInflater().inflate(R.layout.info_window_layout, null);
-                    TextView tvLat = (TextView) v.findViewById(R.id.tv_infowindow_bedrijfsnaam);
-                    RatingBar ratingBar = (RatingBar) v.findViewById(R.id.ratingBarInfoWindow);
-                    tvLat.setText(opslag.getName());
-                    double rating = opslag.getRating();
-                    float frating = (float) rating;
-
-                    if (ratingBar != null) {
-                        ratingBar.setEnabled(false);
-                        ratingBar.setMax(5);
-                        ratingBar.setStepSize(0.01f);
-                        ratingBar.setRating(frating);
-                        ratingBar.invalidate();
-                    }
-
-                    return v;
-
-                }
-            });
-
-
             MarkerOptions marker = new MarkerOptions()
                     .position(l)
-                    .icon(BitmapDescriptorFactory
-                            .defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
 
             Marker m = mMap.addMarker(marker);
             markerMap.put(m, store);
         }
 
-        onInfoClick(markerMap);
+        final List<User> friends = Friends.getFriends();
+        for(User friend : friends) {
+            if(friend.getLatitude() == null || friend.getLongitude() == null) {
+                continue;
+            }
+            LatLng l = new LatLng(friend.getLatitude(), friend.getLongitude());
+            MarkerOptions marker = new MarkerOptions()
+                    .position(l)
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET));
 
+            mMap.addMarker(marker);
+        }
+
+        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+            @Override
+            public View getInfoWindow(Marker arg0) {
+                return null;
+            }
+
+            @Override
+            public View getInfoContents(Marker arg0) {
+
+                Company opslag = markerMap.get(arg0);
+
+                View v = getLayoutInflater().inflate(R.layout.info_window_layout, null);
+                TextView tvLat = (TextView) v.findViewById(R.id.tv_infowindow_bedrijfsnaam);
+                RatingBar ratingBar = (RatingBar) v.findViewById(R.id.ratingBarInfoWindow);
+                tvLat.setText(opslag.getName());
+                double rating = opslag.getRating();
+                float frating = (float) rating;
+
+                if (ratingBar != null) {
+                    ratingBar.setEnabled(false);
+                    ratingBar.setMax(5);
+                    ratingBar.setStepSize(0.01f);
+                    ratingBar.setRating(frating);
+                    ratingBar.invalidate();
+                }
+
+                return v;
+
+            }
+        });
+
+        onInfoClick(markerMap);
     }
 
 
