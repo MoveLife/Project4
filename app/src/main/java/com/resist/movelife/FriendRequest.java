@@ -8,10 +8,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import com.resist.movelife.R;
+
 
 import java.util.List;
 
@@ -26,6 +25,7 @@ public class FriendRequest extends Activity {
     }
     @Override
     protected void onStop() {
+        super.onStop();
         createNew = true;
     }
 
@@ -47,8 +47,8 @@ public class FriendRequest extends Activity {
                     .setContentTitle(title)
                     .setContentText(msg);
             TaskStackBuilder sb = TaskStackBuilder.create(context);
-            sb.addParentStack(FriendRequest.class);
             Intent intent = new Intent(context,FriendRequest.class);
+            sb.addParentStack(FriendRequest.class);
             sb.addNextIntent(intent);
             PendingIntent pi = sb.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
             builder.setContentIntent(pi);

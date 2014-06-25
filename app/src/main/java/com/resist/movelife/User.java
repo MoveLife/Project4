@@ -25,6 +25,7 @@ public class User {
     public User(int uid,String name,String email,double latitude,double longitude) {
         this.uid = uid;
         this.name = name;
+        this.email = email;
         this.latitude = latitude;
         this.longitude = longitude;
     }
@@ -41,7 +42,7 @@ public class User {
             this.name = c.getString(c.getColumnIndex("name"));
         } catch(Exception e) {}
         try {
-            setLastSeen(c.getString(c.getColumnIndex("changed")));
+            setLastSeen(c.getLong(c.getColumnIndex("changed")));
         } catch(Exception e) {}
     }
 
@@ -69,6 +70,10 @@ public class User {
         this.lastSeen = date;
     }
 
+    public void setLastSeen(long date) {
+        setLastSeen(new Date(date*1000));
+    }
+
     public void setLastSeen(String date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date d;
@@ -82,5 +87,9 @@ public class User {
 
     public Date getLastSeen() {
         return lastSeen;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

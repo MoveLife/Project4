@@ -65,7 +65,7 @@ public class DatabaseUpdater extends Thread {
                             update_sleep -= sleep;
                         }
                         if(friend_sleep <= 0) {
-                            if(!FriendRequest.getCreateNew()) {
+                            if(FriendRequest.getCreateNew()) {
                                 getFriendRequests();
                             }
                         } else {
@@ -183,6 +183,9 @@ public class DatabaseUpdater extends Thread {
     }
 
     private void updateFriendLocations(JSONArray locations) {
+        if(LocalDatabaseConnector.hasChanged()) {
+            LocalDatabaseConnector.restart();
+        }
         Cursor c = LocalDatabaseConnector.get("friendlocations","uid");
         List<Integer> uids = new ArrayList<Integer>();
         if(c.moveToFirst()) {
@@ -195,7 +198,7 @@ public class DatabaseUpdater extends Thread {
         List<Integer> users = new ArrayList<Integer>();
         if(c.moveToFirst()) {
             while(!c.isAfterLast()) {
-                uids.add(c.getInt(0));
+                users.add(c.getInt(0));
                 c.moveToNext();
             }
         }

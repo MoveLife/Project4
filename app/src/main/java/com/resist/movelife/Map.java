@@ -1,7 +1,5 @@
 package com.resist.movelife;
 
-
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -37,7 +35,6 @@ import java.util.HashMap;
 import java.util.List;
 
 
-@SuppressLint("NewApi")
 public class Map extends Activity implements LocationListener {
     private Context context = this;
     // Within which the entire activity is enclosed
@@ -164,34 +161,34 @@ public class Map extends Activity implements LocationListener {
                         getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAKERY), R.drawable.ic_map_bakery);
                         break;
                     case 1:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BANK), R.drawable.ic_bank);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BANK), R.drawable.ic_map_bank);
                         break;
                     case 2:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAR), R.drawable.ic_map_bakery);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAR), R.drawable.ic_map_bar);
                         break;
                     case 3:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BOOKSHOP), R.drawable.ic_bank);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BOOKSHOP), R.drawable.ic_map_bookshops);
                         break;
                     case 4:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CAFE), R.drawable.ic_map_bakery);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CAFE), R.drawable.ic_map_cafe);
                         break;
                     case 5:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CINEMA), R.drawable.ic_bank);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CINEMA), R.drawable.ic_map_cinema);
                         break;
                     case 6:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CLUB), R.drawable.ic_map_bakery);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CLUB), R.drawable.ic_map_club);
                         break;
                     case 7:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_LOUNGE), R.drawable.ic_bank);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_LOUNGE), R.drawable.ic_map_lounge);
                         break;
                     case 8:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_MUSEUM), R.drawable.ic_map_bakery);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_MUSEUM), R.drawable.ic_map_museum);
                         break;
                     case 9:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_SUPERMARKET), R.drawable.ic_map_bakery);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_SUPERMARKET), R.drawable.ic_map_supermarket);
                         break;
                     default:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_RESTAURANT), R.drawable.ic_bank);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_RESTAURANT), R.drawable.ic_map_restaurant);
                         break;
                 }
                 // Closing the drawer
@@ -213,11 +210,6 @@ public class Map extends Activity implements LocationListener {
         if (mMap == null) {
             mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
                     .getMap();
-            // Check if we were successful in obtaining the map.
-            if (mMap != null) {
-                // The Map is verified. It is now safe to manipulate the map.
-
-            }
         }
     }
 
@@ -314,7 +306,9 @@ public class Map extends Activity implements LocationListener {
             LatLng l = new LatLng(friend.getLatitude(), friend.getLongitude());
             MarkerOptions marker = new MarkerOptions()
                     .position(l)
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_friend));
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_friend))
+                    .title((friend.getName() != null ? friend.getName() : friend.getEmail()))
+                    .snippet((friend.getLastSeen() != null ? friend.getLastSeen().toString() : ""));
 
             mMap.addMarker(marker);
         }
@@ -334,8 +328,7 @@ public class Map extends Activity implements LocationListener {
                 TextView tvLat = (TextView) v.findViewById(R.id.tv_infowindow_bedrijfsnaam);
                 RatingBar ratingBar = (RatingBar) v.findViewById(R.id.ratingBarInfoWindow);
                 tvLat.setText(opslag.getName());
-                double rating = opslag.getRating();
-                float frating = (float) rating;
+                float frating = (float)opslag.getRating().doubleValue();
 
                 if (ratingBar != null) {
                     ratingBar.setEnabled(false);
