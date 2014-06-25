@@ -25,6 +25,7 @@ public class User {
     public User(int uid,String name,String email,double latitude,double longitude) {
         this.uid = uid;
         this.name = name;
+        this.email = email;
         this.latitude = latitude;
         this.longitude = longitude;
     }
@@ -86,5 +87,9 @@ public class User {
 
     public Date getLastSeen() {
         return lastSeen;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
