@@ -39,7 +39,7 @@ public class Login extends FragmentActivity {
         profilePictureView = (ProfilePictureView) findViewById(R.id.profilePicture);
 
         if(!Menu.getUpdater().isConnected()) {
-            accountText.setText("U heeft geen internet");
+            accountText.setText("U heeft geen internetverbinding");
             loginBtn.setVisibility(View.GONE);
         }
 

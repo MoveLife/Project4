@@ -2,16 +2,18 @@ package com.resist.movelife;
 
 
 import android.app.ListActivity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
-public  class Friends extends ListActivity implements
+public class Friends extends ListActivity implements
         AdapterView.OnItemClickListener{
 
     ListView listView;
@@ -31,22 +33,28 @@ public  class Friends extends ListActivity implements
         adapter = new CustomBaseAdapterAlleVrienden(this, lijst);
 
         listView.setOnItemClickListener(this);
-
-
-
     }
     @Override
     public void onContentChanged() {
         super.onContentChanged();
-
-
-
-
-
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+    }
+
+    public static List<User> getFriends() {
+        List<User> users = new ArrayList<User>();
+        Cursor c = LocalDatabaseConnector.rawQuery("SELECT user.email,user.name,friendlocations.latitude,friendlocations.longitude,friendlocations.changed FROM user,friendlocations WHERE user.uid = friendlocations.uid AND friendlocations.longitude IS NOT NULL AND friendlocations.latitude IS NOT NULL",null);
+        if(c.moveToFirst()) {
+            while(c.isBeforeFirst()) {
+                try {
+                    users.add(new User(c));
+                } catch(Exception e) {}
+                c.moveToNext();
+            }
+        }
+        return users;
     }
 }

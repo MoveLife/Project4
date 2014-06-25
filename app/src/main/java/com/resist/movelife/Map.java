@@ -39,15 +39,15 @@ import java.util.List;
 
 @SuppressLint("NewApi")
 public class Map extends Activity implements LocationListener {
-    Context context = this;
+    private Context context = this;
     // Within which the entire activity is enclosed
-    DrawerLayout mDrawerLayout;
+    private DrawerLayout mDrawerLayout;
     // ListView represents Navigation Drawer
-    ListView mDrawerList;
+    private ListView mDrawerList;
     // ActionBarDrawerToggle indicates the presence of Navigation Drawer in the action bar
-    ActionBarDrawerToggle mDrawerToggle;
+    private ActionBarDrawerToggle mDrawerToggle;
     // Title of the action bar
-    String mTitle = "";
+    private String mTitle = "";
     private GoogleMap mMap;
     private boolean change = true;
     private boolean movedCamera = false;
@@ -159,39 +159,40 @@ public class Map extends Activity implements LocationListener {
                 //Currently selected categorie
                 mTitle = categorieën[position];
 
-                if (mTitle.equals("Bakkers")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAKERY), R.drawable.ic_map_bakery);
-                }
-                if (mTitle.equals("Banken")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BANK), R.drawable.ic_map_bank);
-                }
-                if (mTitle.equals("Bars")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAR), R.drawable.ic_map_bar);
-                }
-                if (mTitle.equals("Boeken Winkels")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BOOKSHOP), R.drawable.ic_map_bookshops);
-                }
-                if (mTitle.equals("Cafés")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CAFE), R.drawable.ic_map_cafe);
-                }
-                if (mTitle.equals("Bioscopen")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CINEMA), R.drawable.ic_map_cinema);
-                }
-                if (mTitle.equals("Clubs")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CLUB), R.drawable.ic_map_club);
-                }
-                if (mTitle.equals("Lounges")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_LOUNGE), R.drawable.ic_map_lounge);
-                }
-                if (mTitle.equals("Musea")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_MUSEUM), R.drawable.ic_map_museum);
-                }
-                if (mTitle.equals("Supermarkten")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_SUPERMARKET), R.drawable.ic_map_supermarket);
-                }
-
-                if (mTitle.equals("Restaurants")) {
-                    getTypeMarker(Company.getCompaniesOfType(Company.TYPE_RESTAURANT), R.drawable.ic_map_restaurant);
+                switch(position) {
+                    case 0:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAKERY), R.drawable.ic_map_bakery);
+                        break;
+                    case 1:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BANK), R.drawable.ic_bank);
+                        break;
+                    case 2:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAR), R.drawable.ic_map_bakery);
+                        break;
+                    case 3:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BOOKSHOP), R.drawable.ic_bank);
+                        break;
+                    case 4:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CAFE), R.drawable.ic_map_bakery);
+                        break;
+                    case 5:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CINEMA), R.drawable.ic_bank);
+                        break;
+                    case 6:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CLUB), R.drawable.ic_map_bakery);
+                        break;
+                    case 7:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_LOUNGE), R.drawable.ic_bank);
+                        break;
+                    case 8:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_MUSEUM), R.drawable.ic_map_bakery);
+                        break;
+                    case 9:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_SUPERMARKET), R.drawable.ic_map_bakery);
+                        break;
+                    default:
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_RESTAURANT), R.drawable.ic_bank);
+                        break;
                 }
                 // Closing the drawer
                 mDrawerLayout.closeDrawer(mDrawerList);
@@ -229,7 +230,7 @@ public class Map extends Activity implements LocationListener {
             change = false;
             MarkerOptions mp = new MarkerOptions();
             mp.position(new LatLng(latitude, longitude));
-            mp.title("my position");
+            mp.title("Mijn positie");
             mMap.addMarker(mp);
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                     new LatLng(latitude, longitude), 16));
@@ -242,7 +243,7 @@ public class Map extends Activity implements LocationListener {
     @Override
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.mapmenu, menu);
         mMap.setMyLocationEnabled(true);
 
         return true;
@@ -297,54 +298,59 @@ public class Map extends Activity implements LocationListener {
         final java.util.Map<Marker, Company> markerMap = new HashMap<Marker, Company>();
         for (Company store : array) {
             LatLng l = new LatLng(store.getLatitude(), store.getLongitude());
-
-            mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-
-                // Use default InfoWindow frame
-
-                @Override
-                public View getInfoWindow(Marker arg0) {
-                    return null;
-                }
-
-
-                @Override
-                public View getInfoContents(Marker arg0) {
-
-                    Company opslag = markerMap.get(arg0);
-
-                    View v = getLayoutInflater().inflate(R.layout.info_window_layout, null);
-                    TextView tvLat = (TextView) v.findViewById(R.id.tv_infowindow_bedrijfsnaam);
-                    RatingBar ratingBar = (RatingBar) v.findViewById(R.id.ratingBarInfoWindow);
-                    tvLat.setText(opslag.getName());
-                    double rating = opslag.getRating();
-                    float frating = (float) rating;
-
-                    if (ratingBar != null) {
-                        ratingBar.setEnabled(false);
-                        ratingBar.setMax(5);
-                        ratingBar.setStepSize(0.01f);
-                        ratingBar.setRating(frating);
-                        ratingBar.invalidate();
-                    }
-
-                    return v;
-
-                }
-            });
-
-
             MarkerOptions marker = new MarkerOptions()
                     .position(l)
-                    .icon(BitmapDescriptorFactory
-                            .defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
 
             Marker m = mMap.addMarker(marker);
             markerMap.put(m, store);
         }
 
-        onInfoClick(markerMap);
+        final List<User> friends = Friends.getFriends();
+        for(User friend : friends) {
+            if(friend.getLatitude() == null || friend.getLongitude() == null) {
+                continue;
+            }
+            LatLng l = new LatLng(friend.getLatitude(), friend.getLongitude());
+            MarkerOptions marker = new MarkerOptions()
+                    .position(l)
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_friend));
 
+            mMap.addMarker(marker);
+        }
+
+        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+            @Override
+            public View getInfoWindow(Marker arg0) {
+                return null;
+            }
+
+            @Override
+            public View getInfoContents(Marker arg0) {
+
+                Company opslag = markerMap.get(arg0);
+
+                View v = getLayoutInflater().inflate(R.layout.info_window_layout, null);
+                TextView tvLat = (TextView) v.findViewById(R.id.tv_infowindow_bedrijfsnaam);
+                RatingBar ratingBar = (RatingBar) v.findViewById(R.id.ratingBarInfoWindow);
+                tvLat.setText(opslag.getName());
+                double rating = opslag.getRating();
+                float frating = (float) rating;
+
+                if (ratingBar != null) {
+                    ratingBar.setEnabled(false);
+                    ratingBar.setMax(5);
+                    ratingBar.setStepSize(0.01f);
+                    ratingBar.setRating(frating);
+                    ratingBar.invalidate();
+                }
+
+                return v;
+
+            }
+        });
+
+        onInfoClick(markerMap);
     }
 
 
