@@ -21,7 +21,7 @@ public class ChangePassword extends Activity{
         if(!Menu.getUpdater().isConnected()) {
             TextView noInternet = (TextView)findViewById(R.id.tv_noInternet);
             noInternet.setVisibility(View.VISIBLE);
-            noInternet.setText("U heeft geen internet");
+            noInternet.setText("U heeft geen internetverbinding");
             btn_ChangePassword.setVisibility(View.GONE);
         } else if(Menu.getUpdater().getUserSetPassword() == null) {
             EditText oldPassword = (EditText)findViewById(R.id.et_OldPassword);
