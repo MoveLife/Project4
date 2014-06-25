@@ -23,6 +23,9 @@ public class ChangePassword extends Activity{
             noInternet.setVisibility(View.VISIBLE);
             noInternet.setText("U heeft geen internet");
             btn_ChangePassword.setVisibility(View.GONE);
+        } else if(Menu.getUpdater().getUserSetPassword() == null) {
+            EditText oldPassword = (EditText)findViewById(R.id.et_OldPassword);
+            oldPassword.setVisibility(View.GONE);
         }
     }
 
@@ -31,11 +34,15 @@ public class ChangePassword extends Activity{
         EditText newPassword = (EditText)findViewById(R.id.et_NewPassword);
         EditText passwordVerify = (EditText)findViewById(R.id.et_PasswordVerify);
 
-        final String oldPw = oldPassword.getText().toString();
+        String opw = oldPassword.getText().toString();
+        if(oldPassword.getVisibility() == View.GONE || opw.isEmpty()) {
+            opw = null;
+        }
+        final String oldPw = opw;
         final String newPw = newPassword.getText().toString();
         String pwVerify = passwordVerify.getText().toString();
 
-        if(oldPw == null || newPw == null || pwVerify == null || !oldPw.equals(newPw)) {
+        if(newPw == null || pwVerify == null || newPw.equals(oldPw)) {
             Toast.makeText(getApplicationContext(), "Voer wachtwoorden in", Toast.LENGTH_SHORT).show();
         } else {
             if (!newPw.equals(pwVerify)) {

@@ -422,7 +422,7 @@ public class DatabaseUpdater extends Thread {
 		return getPassword()+"@movelife.tk";
 	}
 	
-	public String getPassword() {
+	private String getPassword() {
 		String pwd = getUserSetPassword();
 		if(pwd != null) {
 			return pwd;
