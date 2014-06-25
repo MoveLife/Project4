@@ -314,7 +314,7 @@ public class Map extends Activity implements LocationListener {
             LatLng l = new LatLng(friend.getLatitude(), friend.getLongitude());
             MarkerOptions marker = new MarkerOptions()
                     .position(l)
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET));
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_friend));
 
             mMap.addMarker(marker);
         }
