@@ -65,7 +65,7 @@ public class DatabaseUpdater extends Thread {
                             update_sleep -= sleep;
                         }
                         if(friend_sleep <= 0) {
-                            if(!FriendRequest.getCreateNew()) {
+                            if(FriendRequest.getCreateNew()) {
                                 getFriendRequests();
                             }
                         } else {
