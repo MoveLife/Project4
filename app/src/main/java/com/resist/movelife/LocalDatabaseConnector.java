@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class LocalDatabaseConnector {
     private static final String DATABASE_NAME = "MoveLife";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     private static Context context;
     private static DBHelper helper;
     private static SQLiteDatabase database;
@@ -76,6 +76,11 @@ public class LocalDatabaseConnector {
         return b;
     }
 
+    public static Cursor rawQuery(String sql,String[] selectionArgs) {
+        changed = true;
+        return database.rawQuery(sql,selectionArgs);
+    }
+
     public static Cursor get(String table,String[] columns,String selection,String[] selectionArgs) {
         return database.query(table,columns,selection,selectionArgs,null,null,null);
     }
@@ -99,7 +104,7 @@ public class LocalDatabaseConnector {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL("CREATE TABLE user (uid INTEGER, email VARCHAR(255) NOT NULL, password TEXT, PRIMARY KEY(uid));");
+            db.execSQL("CREATE TABLE user (uid INTEGER, email VARCHAR(255) NOT NULL, password TEXT, name VARCHAR(255), PRIMARY KEY(uid));");
             db.execSQL("CREATE TABLE companies (bid INTEGER, uid INTEGER NOT NULL, name VARCHAR(255) NOT NULL, latitude FLOAT NOT NULL, longitude FLOAT NOT NULL, cid INTEGER, postcode VARCHAR(20), address VARCHAR(255), rating FLOAT, tid INTEGER, telephone VARCHAR(20), description TEXT, buystate INTEGER, PRIMARY KEY(bid));");
             db.execSQL("CREATE TABLE reviews (uid INTEGER NOT NULL, bid INTEGER NOT NULL, review TEXT, rating FLOAT, PRIMARY KEY(uid,bid));");
             db.execSQL("CREATE TABLE favourites (bid INTEGER NOT NULL, uid INTEGER NOT NULL, PRIMARY KEY(bid,uid));");
