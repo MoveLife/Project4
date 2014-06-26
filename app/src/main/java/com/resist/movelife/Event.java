@@ -19,7 +19,7 @@ public class Event {
     private String companyName;
     private static List<Event> events;
 
-    public Event(int eid, int bid, int uid, String name, String description, String startdate, String enddate,String companyName){
+    public Event(int eid, int bid, int uid, String name, String description, String startdate, String enddate){
         this.eid = eid;
         this.bid = bid;
         this.uid = uid;
@@ -46,10 +46,11 @@ public class Event {
                 c.getString(c.getColumnIndex("name")),
                 c.getString(c.getColumnIndex("description")),
                 c.getString(c.getColumnIndex("startdate")),
-                c.getString(c.getColumnIndex("enddate")),
-                c.getString(c.getColumnIndex("companyname"))
+                c.getString(c.getColumnIndex("enddate"))
         );
-
+        try {
+            this.companyName = c.getString(c.getColumnIndex("companyname"));
+        } catch(Exception e) {}
     }
 
     public static void createEventList() {
