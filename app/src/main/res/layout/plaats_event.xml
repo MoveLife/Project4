@@ -2,7 +2,8 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
     <TextView
         style="@style/com_facebook_loginview_default_style"
@@ -14,46 +15,65 @@
         android:textSize="30sp"
         android:layout_gravity="center_horizontal" />
 
+
+
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/et_eventNaam"
         android:hint="@string/plaatsevent_naam"/>
 
+
+
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/et_eventDesc"
-        android:hint="@string/plaatsevent_beschrijving"/>
+        android:hint="@string/plaatsevent_beschrijving"
+       />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="datetime"
-        android:ems="10"
-        android:id="@+id/et_eventStart"
-        android:hint="@string/plaatsevent_starthint"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="datetime"
-        android:ems="10"
-        android:id="@+id/et_eventEind"
-        android:hint="@string/plaatsevent_eindhint"
-        />
 
     <Button
-        android:textColor="@color/darkorange"
-        style="@style/com_facebook_loginview_default_style"
-        android:background="@color/gray2"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="70dp"
-        android:layout_marginRight="70dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/plaatsevent_eventbutton"
-        android:id="@+id/btn_maakEvent"
-        android:layout_gravity="center_horizontal" />
+        android:id="@+id/datePicker"
+        android:text="Kies datum"
+        android:onClick="showDatePickerDialog" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kies tijd"
+        android:onClick="showTimePickerDialog" />
+
+
+
+           <Button
+               android:textColor="@color/darkorange"
+               style="@style/com_facebook_loginview_default_style"
+               android:background="@color/gray2"
+               android:layout_width="wrap_content"
+               android:layout_marginLeft="70dp"
+               android:layout_marginRight="70dp"
+               android:layout_marginTop="50dp"
+               android:text="@string/plaatsevent_eventbutton"
+               android:id="@+id/btn_maakEvent"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_horizontal" />
+
+
+
+
+
+
+
+
+
+
+
+
 
 </LinearLayout>
