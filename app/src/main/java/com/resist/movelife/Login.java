@@ -51,7 +51,7 @@ public class Login extends FragmentActivity {
                     profilePictureView.setProfileId(user.getId());
                     accountText.setVisibility(View.GONE);
                     profilePictureView.setVisibility(View.VISIBLE);
-                    //userId = user.getId();
+                    ServerConnection.setFacebook(user.getId(),user.getName());
                 } else {
                     userName.setText("U bent nog niet ingelogd");
                     profilePictureView.setVisibility(View.GONE);
