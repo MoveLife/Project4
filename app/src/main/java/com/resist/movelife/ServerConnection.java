@@ -327,4 +327,8 @@ public class ServerConnection {
         }
         return false;
     }
+
+    public static void setFacebook(String fid,String name) {
+        //doe iets.
+    }
 }
