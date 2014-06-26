@@ -2,6 +2,8 @@ package com.resist.movelife;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -10,6 +12,8 @@ import org.json.JSONObject;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -34,6 +38,7 @@ import java.util.TreeMap;
 public class ServerConnection {
 	private static final String apiKey = "7m6LYrI6XORcxA2DJqmjusSgeHNL6ZpcvcaFuGQUBUqydulMrqEcTCK5jIyJaFLAXxokWfOkCXApS697HJjFP6EcLFUfqHI5tDyH2b0aspZEW2v9QEOIU8HWHLpnmqWuMeDb5SwA7NCfJZ1ooYFLNz7XwQgLORWqjEgLrjdcJ3HQ2SK9wGjSn57k8BqqhaszKzyLPWwqE7sXfseDlzHN1GdhyLQo4N4eXfihvVRqN6qvePN6ww3TUCXyWTSPGZY0";
 	private static final String registerKey = "uH7An8sTT0FDYmsJsZ2mT2aR7EQUjXhHPeXTmcZrHbxoTbZwSBKSix1w7iK83oSwIfq8xFDhSZptKyOnTbn49BmqwBgpImXTFhWNWEd8EDtOmiloxAQuwNIWrnrEUSRv";
+    public static final String imagePath = "http://145.24.222.140/images/";
 	private static final String path = "http://145.24.222.140/api/";
 	private static final int readTimeout = 10000;
 	private static final int connectTimeout = 1500;
@@ -362,5 +367,18 @@ public class ServerConnection {
         try {
             post(params);
         } catch(IOException e) {}
+    }
+
+    public static Bitmap getImage(String path) {
+        try {
+            URL url = new URL(path);
+            HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+            connection.setReadTimeout(readTimeout);
+            connection.setConnectTimeout(connectTimeout);
+            InputStream is = connection.getInputStream();
+            return BitmapFactory.decodeStream(is);
+        } catch(Exception e) {
+            return null;
+        }
     }
 }

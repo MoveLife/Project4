@@ -1,6 +1,7 @@
 package com.resist.movelife;
 
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.util.SparseArray;
 
 import java.util.ArrayList;
@@ -218,5 +219,9 @@ public class Company {
         boolean b = c.moveToFirst();
         c.close();
         return b;
+    }
+
+    public Bitmap getLogo() {
+        return ServerConnection.getImage(ServerConnection.imagePath+"companies/"+bid+".jpg");
     }
 }
