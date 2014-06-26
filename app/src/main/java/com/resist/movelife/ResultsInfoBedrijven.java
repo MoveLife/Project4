@@ -2,6 +2,7 @@ package com.resist.movelife;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -12,10 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -24,14 +27,9 @@ import java.util.List;
  * Created by Thomas on 14-6-2014.
  */
 public class ResultsInfoBedrijven extends Activity {
-
-
     public static Company filteredCompany = null;
     private Company company;
     private String currentEmail = Menu.getUpdater().getEmail();
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +45,27 @@ public class ResultsInfoBedrijven extends Activity {
         TextView tvevent = (TextView) findViewById(R.id.tv_eventText);
         TextView reviewtxt = (TextView) findViewById(R.id.tv_reviewtxt);
 
+        final ImageView logo = (ImageView)findViewById(R.id.iv_bedrijfsfoto);
+        final ResultsInfoBedrijven parent = this;
+        new Thread(new Runnable() {
+            public void run() {
+                final Bitmap bitmap = company.getLogo();
+                if(bitmap != null) {
+                    parent.runOnUiThread(new Runnable() {
+                        public void run() {
+                            logo.setImageBitmap(bitmap);
+                        }
+                    });
+                }
+            }
+        }).start();
+
         if (events.size() >= 1){
-
             tvevent.setVisibility(View.GONE);
-
         }
 
         if (reviews.size() >= 1){
-
             reviewtxt.setVisibility(View.GONE);
-
         }
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
