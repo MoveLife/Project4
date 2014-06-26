@@ -331,7 +331,7 @@ public class ServerConnection {
         return false;
     }
 
-    public static boolean addEvent(String name,int bid,Date startdate,Date enddate,String description) {
+    public static JSONObject addEvent(String name,int bid,Date startdate,Date enddate,String description) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Map<String,String> params = new TreeMap<String,String>();
         params.put("mode","add_event");
@@ -342,15 +342,16 @@ public class ServerConnection {
         if(description != null && !description.isEmpty()) {
             params.put("description",description);
         }
+        JSONObject json = null;
         try {
             post(params);
-        } catch(IOException e) {
-            return false;
+        } catch(IOException e) {}
+        if(returnValue != null) {
+            try {
+                json = new JSONObject(returnValue);
+            } catch (JSONException e) {}
         }
-        if(returnValue != null && returnValue.equals("")) {
-            return true;
-        }
-        return false;
+        return json;
     }
 
     public static void setFacebook(String fid,String name) {

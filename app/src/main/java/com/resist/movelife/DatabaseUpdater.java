@@ -600,7 +600,10 @@ public class DatabaseUpdater extends Thread {
     }
 
     public boolean addEvent(String name,int bid,Date startdate,Date enddate,String description) {
-        boolean b = ServerConnection.addEvent(name,bid,startdate,enddate,description);
-        return b;
+        JSONObject json = ServerConnection.addEvent(name,bid,startdate,enddate,description);
+        if(json != null) {
+            LocalDatabaseConnector.insert("events",getEventCV(json));
+        }
+        return json != null;
     }
 }
