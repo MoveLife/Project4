@@ -29,7 +29,7 @@ public class Friends extends ListActivity implements
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.friends);
-
+        overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
 
         List<User> lijst = getFriends();
         Log.d("vriendlijst", "" + lijst.size());
