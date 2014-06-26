@@ -60,7 +60,7 @@
     <string name="comanyinfo_bedrijfsinformatie">Dit bedrijf heeft nog geen bedrijfsinformatie.</string>
     <string name="companyinfo_naam">Naam</string>
     <string name="companyinfo_event">Evenementen</string>
-    <string name="companyinfo_eventText">Dit bedrijf heeft nog geen evenementen aangemaakt.</string>
+    <string name="companyinfo_eventText">Er zijn nog geen evenementen voor dit bedrijf.</string>
 
 
     <string name="category_bakery">Bakkerijen</string>
@@ -112,5 +112,18 @@
     <string name="event_geenevenementen">Er zijn nog geen evenementen!</string>
     <string name="friends_titel">Vrienden</string>
     <string name="event_title">Evenementen</string>
+    <string name="Event_start">Event_startdate</string>
+    <string name="Event_eind">Event_einddate</string>
+    <string name="events_displayname">Event Naam:</string>
+    <string name="events_displaydesc">Event Description</string>
+    <string name="events_displaybedrijf">Bedrijf:</string>
+    <string name="events_displaystarttijd">Start Tijd:</string>
+    <string name="events_displayeindtijd">Eind Tijd:</string>
+    <string name="plaatsevent_eventkop">Maak een evenement</string>
+    <string name="plaatsevent_naam">Event Naam</string>
+    <string name="plaatsevent_beschrijving">Event Beschrijving</string>
+    <string name="plaatsevent_starthint">Start Tijd b.v: 2014-06-17 12:30:00</string>
+    <string name="plaatsevent_eindhint">Eind Tijd b.v: 2014-06-17 13:30:00</string>
+    <string name="plaatsevent_eventbutton">Maak evenement</string>
 
 </resources>

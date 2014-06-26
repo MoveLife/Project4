@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:context="com.resist.movelife.Menu" >
+
+    <item android:id="@+id/maak_event"
+        android:title="Maak Evenement"
+        android:icon="@drawable/ic_action_event"
+        android:showAsAction="always"
+        />
+</menu>

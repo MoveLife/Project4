@@ -3,8 +3,11 @@ package com.resist.movelife;
 
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+
+import java.util.List;
 
 public class Events extends ListActivity {
 
@@ -17,7 +20,10 @@ public class Events extends ListActivity {
         setContentView(R.layout.events);
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
 
-        //adapter = new CustomBaseAdapterAlleBedrijven(this);
+        List<Event> lijst = Event.getEvents();
+        Log.d("eventlijst","" + lijst.size());
+
+        adapter = new CustomBaseAdapterAlleEvents(this, lijst);
         listView = (ListView) findViewById(android.R.id.list);
         View empty = findViewById(android.R.id.empty);
         listView.setEmptyView(empty);

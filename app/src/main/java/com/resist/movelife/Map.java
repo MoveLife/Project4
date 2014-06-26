@@ -26,7 +26,6 @@ import android.widget.TextView;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -159,37 +158,37 @@ public class Map extends Activity implements LocationListener {
 
                 switch(position) {
                     case 0:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAKERY), R.drawable.ic_map_bakery);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAKERY), R.drawable.ic_map_bakery, R.drawable.ic_map_bank_event);
                         break;
                     case 1:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BANK), R.drawable.ic_map_bank);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BANK), R.drawable.ic_map_bank, R.drawable.ic_map_bank_event);
                         break;
                     case 2:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAR), R.drawable.ic_map_bar);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAR), R.drawable.ic_map_bar, R.drawable.ic_map_bar_event);
                         break;
                     case 3:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BOOKSHOP), R.drawable.ic_map_bookshops);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BOOKSHOP), R.drawable.ic_map_bookshops, R.drawable.ic_map_bookshops_event);
                         break;
                     case 4:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CAFE), R.drawable.ic_map_cafe);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CAFE), R.drawable.ic_map_cafe, R.drawable.ic_map_cafe_event);
                         break;
                     case 5:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CINEMA), R.drawable.ic_map_cinema);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CINEMA), R.drawable.ic_map_cinema, R.drawable.ic_map_cinema_event);
                         break;
                     case 6:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CLUB), R.drawable.ic_map_club);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_CLUB), R.drawable.ic_map_club,R.drawable.ic_map_club_event);
                         break;
                     case 7:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_LOUNGE), R.drawable.ic_map_lounge);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_LOUNGE), R.drawable.ic_map_lounge, R.drawable.ic_map_lounge_event);
                         break;
                     case 8:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_MUSEUM), R.drawable.ic_map_museum);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_MUSEUM), R.drawable.ic_map_museum, R.drawable.ic_map_museum_event);
                         break;
                     case 9:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_SUPERMARKET), R.drawable.ic_map_supermarket);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_SUPERMARKET), R.drawable.ic_map_supermarket, R.drawable.ic_map_supermarket_event);
                         break;
                     default:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_RESTAURANT), R.drawable.ic_map_restaurant);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_RESTAURANT), R.drawable.ic_map_restaurant, R.drawable.ic_map_restaurant_event);
                         break;
                 }
                 // Closing the drawer
@@ -290,14 +289,27 @@ public class Map extends Activity implements LocationListener {
         final List<Company> array = Company.getCompanies();
         final java.util.Map<Marker, Company> markerMap = new HashMap<Marker, Company>();
         for (Company store : array) {
+
+
             LatLng l = new LatLng(store.getLatitude(), store.getLongitude());
+
             MarkerOptions marker = new MarkerOptions()
-                    .position(l)
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                    .position(l);
+
+
+            if (store.hasEvent()){
+                    marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+            } else {
+
+                marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+            }
+
 
             Marker m = mMap.addMarker(marker);
             markerMap.put(m, store);
         }
+
+
 
         final List<User> friends = Friends.getFriends();
         for(User friend : friends) {
@@ -326,6 +338,7 @@ public class Map extends Activity implements LocationListener {
                 Company opslag = markerMap.get(arg0);
 
                 View v = getLayoutInflater().inflate(R.layout.info_window_layout, null);
+
                 TextView tvLat = (TextView) v.findViewById(R.id.tv_infowindow_bedrijfsnaam);
                 RatingBar ratingBar = (RatingBar) v.findViewById(R.id.ratingBarInfoWindow);
                 tvLat.setText(opslag.getName());
@@ -380,7 +393,7 @@ public class Map extends Activity implements LocationListener {
     }
 
 
-    private void getTypeMarker(final List<Company> array, int resource) {
+    private void getTypeMarker(final List<Company> array, int resource, int resourceEvent) {
         mMap.clear();
         final java.util.Map<Marker, Company> markerMap = new HashMap<Marker, Company>();
 
@@ -390,8 +403,19 @@ public class Map extends Activity implements LocationListener {
             MarkerOptions marker = new MarkerOptions()
                     .position(l)
                     .title(store.getName())
-                    .snippet("" + store.getRating())
-                    .icon(BitmapDescriptorFactory.fromResource(resource));
+                    .snippet("" + store.getRating());
+            if (store.hasEvent()){
+                marker.icon(BitmapDescriptorFactory.fromResource(resourceEvent));
+            } else {
+
+                marker.icon(BitmapDescriptorFactory.fromResource(resource));
+            }
+
+
+
+
+
+
             Marker m = mMap.addMarker(marker);
             markerMap.put(m, store);
         }

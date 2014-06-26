@@ -149,6 +149,10 @@ public class Menu extends Activity{
            Intent intent = new Intent(this, ZoekBedrijven.class);
            startActivity(intent);
        }
+
+
+
+
         return super.onOptionsItemSelected(item);
     }
 

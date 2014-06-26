@@ -8,41 +8,44 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomBaseAdapterAlleVrienden extends BaseAdapter {
 
 
     Context context;
-   //List<Company> lijst = new ArrayList<Company>();
+    List<User> users = new ArrayList<User>();
 
-    public CustomBaseAdapterAlleVrienden(Context context, List<Company> items) {
+    public CustomBaseAdapterAlleVrienden(Context context, List<User> items) {
         this.context = context;
-        //this.lijst = items;
+        this.users = items;
 
     }
 
     private class ViewHolder {
         TextView txtTitle;
+        TextView tvLaatst;
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return users.size();
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
+    public Object getItem(int position) {
+        return users.get(position);
     }
 
     @Override
-    public long getItemId(int i) {
-        return 0;
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
-    public View getView(int i, View convertView, ViewGroup viewGroup) {
+    public View getView(int position, View convertView, ViewGroup viewGroup) {
 
 
         ViewHolder holder = null;
@@ -54,14 +57,18 @@ public class CustomBaseAdapterAlleVrienden extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.friends_info, null);
             holder = new ViewHolder();
             assert convertView != null;
-         //   holder.txtTitle = (TextView) convertView.findViewById(R.id.tv_friends);
+              holder.txtTitle = (TextView) convertView.findViewById(R.id.tv_friends);
+              holder.tvLaatst = (TextView) convertView.findViewById(R.id.tv_vriendlaatst);
             convertView.setTag(holder);
         }
         else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        // holder.txtTitle.setText(user.getName());
+        SimpleDateFormat df = new SimpleDateFormat("c d MMMM yyyy HH:mm");
+        holder.txtTitle.setText(users.get(position).getEmail());
+
+        holder.tvLaatst.setText(df.format(users.get(position).getLastSeen()));
 
         return convertView ;
     }

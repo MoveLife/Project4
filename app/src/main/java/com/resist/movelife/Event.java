@@ -17,7 +17,7 @@ public class Event {
     private String description;
     private Date startdate;
     private Date enddate;
-
+    private static List<Event> events;
 
     public Event(int eid, int bid, int uid, String name, String description, String startdate, String enddate ){
 
@@ -51,6 +51,32 @@ public class Event {
         );
 
     }
+
+
+    public static void createEventList() {
+        if(LocalDatabaseConnector.hasChanged()) {
+            LocalDatabaseConnector.restart();
+        }
+        events = new ArrayList<Event>();
+        Cursor c = LocalDatabaseConnector.get("events",new String[]{"eid", "name" , "description" , "startdate" , "enddate" , "bid" , "uid"});
+        if(c.moveToFirst()) {
+            while(!c.isAfterLast()) {
+                events.add(new Event(c));
+                c.moveToNext();
+            }
+        }
+        c.close();
+    }
+
+    public static List<Event> getEvents() {
+        if(events == null) {
+            createEventList();
+        }
+        return events;
+    }
+
+
+
 
     public static List<Event> getEventByCompany(int bid){
 

@@ -215,7 +215,7 @@ public class Company {
 
     public boolean hasEvent() {
         Cursor c = LocalDatabaseConnector.get("events","eid","bid = ?",new String[]{""+bid});
-        boolean b = !c.moveToFirst();
+        boolean b = c.moveToFirst();
         c.close();
         return b;
     }
