@@ -23,6 +23,9 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -326,5 +329,38 @@ public class ServerConnection {
             return true;
         }
         return false;
+    }
+
+    public static JSONObject addEvent(String name,int bid,Date startdate,Date enddate,String description) {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Map<String,String> params = new TreeMap<String,String>();
+        params.put("mode","add_event");
+        params.put("name",name);
+        params.put("bid",""+bid);
+        params.put("startdate",df.format(startdate));
+        params.put("enddate",df.format(enddate));
+        if(description != null && !description.isEmpty()) {
+            params.put("description",description);
+        }
+        JSONObject json = null;
+        try {
+            post(params);
+        } catch(IOException e) {}
+        if(returnValue != null) {
+            try {
+                json = new JSONObject(returnValue);
+            } catch (JSONException e) {}
+        }
+        return json;
+    }
+
+    public static void setFacebook(String fid,String name) {
+        Map<String,String> params = new TreeMap<String,String>();
+        params.put("mode","set_facebook");
+        params.put("fid",fid);
+        params.put("name",name);
+        try {
+            post(params);
+        } catch(IOException e) {}
     }
 }

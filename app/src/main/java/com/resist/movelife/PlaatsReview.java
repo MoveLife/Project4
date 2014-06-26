@@ -37,7 +37,8 @@ public class PlaatsReview extends Activity {
 
                 new Thread(new Runnable() {
                     public void run() {
-                        DatabaseUpdater.addReview(ResultsInfoBedrijven.filteredCompany.getBid(), rating, reviews);
+
+                        Menu.getUpdater().addReview(ResultsInfoBedrijven.filteredCompany.getBid(), rating, reviews);
 
                         parent.runOnUiThread(new Runnable() {
                             public void run() {

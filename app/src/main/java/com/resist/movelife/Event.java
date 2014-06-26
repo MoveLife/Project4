@@ -9,7 +9,6 @@ import java.util.Date;
 import java.util.List;
 
 public class Event {
-
     private int eid;
     private int bid;
     private int uid;
@@ -17,10 +16,10 @@ public class Event {
     private String description;
     private Date startdate;
     private Date enddate;
+    private String companyName;
     private static List<Event> events;
 
-    public Event(int eid, int bid, int uid, String name, String description, String startdate, String enddate ){
-
+    public Event(int eid, int bid, int uid, String name, String description, String startdate, String enddate){
         this.eid = eid;
         this.bid = bid;
         this.uid = uid;
@@ -49,16 +48,18 @@ public class Event {
                 c.getString(c.getColumnIndex("startdate")),
                 c.getString(c.getColumnIndex("enddate"))
         );
-
+        try {
+            this.companyName = c.getString(c.getColumnIndex("companyname"));
+        } catch(Exception e) {}
     }
-
 
     public static void createEventList() {
         if(LocalDatabaseConnector.hasChanged()) {
             LocalDatabaseConnector.restart();
         }
         events = new ArrayList<Event>();
-        Cursor c = LocalDatabaseConnector.get("events",new String[]{"eid", "name" , "description" , "startdate" , "enddate" , "bid" , "uid"});
+        Cursor c = //LocalDatabaseConnector.get("events",new String[]{"eid", "name" , "description" , "startdate" , "enddate" , "bid" , "uid"});
+        LocalDatabaseConnector.rawQuery("SELECT events.eid,events.name,events.description,events.startdate,events.enddate,events.bid,events.uid,companies.name AS companyname FROM events,companies WHERE companies.bid = events.bid",null);
         if(c.moveToFirst()) {
             while(!c.isAfterLast()) {
                 events.add(new Event(c));
@@ -75,9 +76,6 @@ public class Event {
         return events;
     }
 
-
-
-
     public static List<Event> getEventByCompany(int bid){
 
         List<Event> output = new ArrayList<Event>();
@@ -93,7 +91,6 @@ public class Event {
 
         return output;
     }
-
 
     public int getEid() {
         return eid;
@@ -123,8 +120,7 @@ public class Event {
         return enddate;
     }
 
-
-
-
-
+    public String getCompanyName() {
+        return companyName;
+    }
 }

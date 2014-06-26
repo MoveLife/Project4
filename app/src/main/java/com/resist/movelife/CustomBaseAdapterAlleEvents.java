@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +76,7 @@ public class CustomBaseAdapterAlleEvents extends BaseAdapter {
          SimpleDateFormat df = new SimpleDateFormat("c d MMMM yyyy HH:mm");
          holder.eventTitle.setText(events.get(position).getName());
          holder.eventDesc.setText(events.get(position).getDescription());
-         holder.eventBedrijf.setText(events.get(position).getBid()+"");
+         holder.eventBedrijf.setText(events.get(position).getCompanyName());
          holder.eventStart.setText(df.format(events.get(position).getStartdate()));
          holder.eventEind.setText(df.format(events.get(position).getEnddate()));
 

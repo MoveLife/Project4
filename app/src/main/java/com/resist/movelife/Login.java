@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.Session;
 import com.facebook.SessionState;
@@ -22,10 +23,10 @@ public class Login extends FragmentActivity {
     private UiLifecycleHelper uiHelper;
     private TextView accountText;
     private ProfilePictureView profilePictureView;
-    //private String userId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         final LoginButton loginBtn;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
@@ -43,6 +44,7 @@ public class Login extends FragmentActivity {
             loginBtn.setVisibility(View.GONE);
         }
 
+
         loginBtn.setUserInfoChangedCallback(new UserInfoChangedCallback() {
             @Override
             public void onUserInfoFetched(GraphUser user) {
@@ -51,7 +53,15 @@ public class Login extends FragmentActivity {
                     profilePictureView.setProfileId(user.getId());
                     accountText.setVisibility(View.GONE);
                     profilePictureView.setVisibility(View.VISIBLE);
-                    //userId = user.getId();
+
+                    final String userID = user.getId();
+                    final String userName = user.getName();
+                    new Thread(new Runnable() {
+                        public void run() {
+                            ServerConnection.setFacebook(userID,userName);
+                        }
+                    }).start();
+
                 } else {
                     userName.setText("U bent nog niet ingelogd");
                     profilePictureView.setVisibility(View.GONE);
