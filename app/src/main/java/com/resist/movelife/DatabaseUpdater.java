@@ -19,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -570,7 +571,7 @@ public class DatabaseUpdater extends Thread {
 		return ni != null && ni.isConnected() && ni.isAvailable();
 	}
 
-    public static void addReview(int bid,Double rating,String review) {
+    public void addReview(int bid,Double rating,String review) {
         JSONObject json = ServerConnection.addReview(bid,rating,review);
         if(json != null) {
             ContentValues cv = new ContentValues();
@@ -596,5 +597,10 @@ public class DatabaseUpdater extends Thread {
             LocalDatabaseConnector.update("updatetime",cv3);
             Company.createCompanyList();
         }
+    }
+
+    public boolean addEvent(String name,int bid,Date startdate,Date enddate,String description) {
+        boolean b = ServerConnection.addEvent(name,bid,startdate,enddate,description);
+        return b;
     }
 }
