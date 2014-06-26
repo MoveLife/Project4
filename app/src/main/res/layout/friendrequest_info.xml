@@ -4,31 +4,47 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        style="@style/com_facebook_loginview_default_style"
+        android:background="@color/darkorange"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/friendrequest_vriendverzoekkop"
+        android:textSize="30sp"
+        android:gravity="center_horizontal"
+        android:id="@+id/textView3" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email"
+        android:text="@string/friendrequest_email"
         android:id="@+id/tv_friendsrequestnaam"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <Button
+        android:textColor="@color/darkorange"
+        android:background="@color/gray2"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Weiger"
-        android:id="@+id/btn_friendsrequestaccept"
-        android:layout_alignParentTop="true"
+        android:text="@string/friendrequest_weiger"
+        android:id="@+id/btn_friendsrequestweiger"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
     <Button
+        android:textColor="@color/darkorange"
+        android:background="@color/gray2"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Accept"
-        android:id="@+id/btn_friendsrequestweiger"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/btn_friendsrequestaccept" />
+        android:text="@string/friendrequest_accept"
+        android:id="@+id/btn_friendsrequestaccept"
+        android:layout_below="@+id/textView3"
+        android:layout_toLeftOf="@+id/btn_friendsrequestweiger"
+        android:layout_marginRight="26dp" />
 
 </RelativeLayout>

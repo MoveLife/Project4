@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,6 @@ public class CustomBaseAdapterAlleVriendenRequests extends BaseAdapter {
         this.users = items;
 
     }
-
 
 
     private class ViewHolder {
@@ -51,7 +51,7 @@ public class CustomBaseAdapterAlleVriendenRequests extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup viewGroup) {
+    public View getView(final int position, View convertView, ViewGroup viewGroup) {
 
 
         ViewHolder holder = null;
@@ -60,10 +60,12 @@ public class CustomBaseAdapterAlleVriendenRequests extends BaseAdapter {
                 context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
 
-            convertView = mInflater.inflate(R.layout.friends_info, null);
+            convertView = mInflater.inflate(R.layout.friendrequest_info, null);
             holder = new ViewHolder();
             assert convertView != null;
             holder.txtEmail = (TextView) convertView.findViewById(R.id.tv_friendsrequestnaam);
+            holder.buttonAccept = (Button)convertView.findViewById(R.id.btn_friendsrequestaccept);
+            holder.buttonWeiger = (Button)convertView.findViewById(R.id.btn_friendsrequestweiger);
 
             convertView.setTag(holder);
         }
@@ -72,7 +74,59 @@ public class CustomBaseAdapterAlleVriendenRequests extends BaseAdapter {
         }
 
 
-        holder.txtEmail.setText(users.get(position).getEmail());
+        holder.buttonAccept.setOnClickListener(new View.OnClickListener() {
+                                                   @Override
+                                                   public void onClick(View view) {
+
+                                                       new Thread(new Runnable() {
+                                                           public void run() {
+                                                               ServerConnection.acceptFriendRequest(users.get(position).getUid());
+
+                                                               ((Activity)context).runOnUiThread(new Runnable() {
+                                                                   public void run() {
+
+                                                                       Toast.makeText(((Activity)context).getBaseContext(), "Vriend toegevoegd", Toast.LENGTH_LONG).show();
+                                                                       ((Activity)context).finish();
+                                                                   }
+
+                                                               });
+
+                                                           }
+                                                       }).start();
+
+                                                   }
+                                               });
+
+
+             holder.buttonWeiger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                new Thread(new Runnable() {
+                    public void run() {
+                        ServerConnection.removeFriend(users.get(position).getUid());
+
+                        ((Activity)context).runOnUiThread(new Runnable() {
+                            public void run() {
+
+                                Toast.makeText(((Activity)context).getBaseContext(), "Vriend verzoek geweigerd", Toast.LENGTH_LONG).show();
+                                ((Activity)context).finish();
+                            }
+
+                        });
+
+                    }
+                }).start();
+
+
+
+            }
+        });
+
+
+
+
+                holder.txtEmail.setText(users.get(position).getName());
 
 
 

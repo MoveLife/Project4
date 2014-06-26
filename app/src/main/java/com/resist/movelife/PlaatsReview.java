@@ -38,6 +38,7 @@ public class PlaatsReview extends Activity {
                 new Thread(new Runnable() {
                     public void run() {
                         DatabaseUpdater.addReview(ResultsInfoBedrijven.filteredCompany.getBid(), rating, reviews);
+
                         parent.runOnUiThread(new Runnable() {
                             public void run() {
                                 Toast.makeText(parent.getBaseContext(), "Review geplaatst", Toast.LENGTH_LONG).show();

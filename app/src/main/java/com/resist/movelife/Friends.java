@@ -73,7 +73,7 @@ public class Friends extends ListActivity implements
     public static void createFriendList() {
         friends = new ArrayList<User>();
 
-        Cursor c = LocalDatabaseConnector.get("user", new String[]{"uid", "email", "name"});
+        Cursor c = LocalDatabaseConnector.get("user",new String[]{"uid","email","name","user != 1",null});
         if (c.moveToFirst()) {
             while (!c.isAfterLast()) {
                 friends.add(new User(c));
@@ -105,7 +105,7 @@ public class Friends extends ListActivity implements
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.vriendrequests) {
-            Intent intent = new Intent(this, FriendRequest.class);
+            Intent intent = new Intent(this, VriendToevoegen.class);
             startActivity(intent);
         }
 

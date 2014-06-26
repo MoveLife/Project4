@@ -12,7 +12,6 @@ import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.util.Patterns;
-import android.util.SparseArray;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -461,7 +460,7 @@ public class DatabaseUpdater extends Thread {
         if(ServerConnection.changeEmail(email)) {
             ContentValues values = new ContentValues();
             values.put("email", email);
-            LocalDatabaseConnector.update("user", values);
+            LocalDatabaseConnector.update("user", values,"user = 1",null);
             return true;
         }
         return false;
@@ -470,7 +469,7 @@ public class DatabaseUpdater extends Thread {
 	private void setUserPassword(String password) {
 		ContentValues values = new ContentValues();
 		values.put("password",password);
-		LocalDatabaseConnector.update("user",values);
+		LocalDatabaseConnector.update("user",values,"user = 1",null);
 	}
 	
 	public boolean setUserPassword(String newPassword,String oldPassword) {
@@ -491,7 +490,7 @@ public class DatabaseUpdater extends Thread {
 	}
 	
 	public String getUserSetPassword() {
-		Cursor c = LocalDatabaseConnector.get("user","password");
+		Cursor c = LocalDatabaseConnector.get("user","password","user = 1",null);
 		int i = c.getColumnIndex("password");
 		if(!c.moveToFirst() || i == -1 || c.isNull(i)) {
 			return null;
@@ -502,7 +501,7 @@ public class DatabaseUpdater extends Thread {
 	}
 	
 	private String getUserSetEmail() {
-		Cursor c = LocalDatabaseConnector.get("user","email");
+		Cursor c = LocalDatabaseConnector.get("user","email","user = 1",null);
 		int i = c.getColumnIndex("email");
 		if(!c.moveToFirst() || i == -1 || c.isNull(i)) {
 			return null;
@@ -520,6 +519,7 @@ public class DatabaseUpdater extends Thread {
 		ContentValues values = new ContentValues();
 		values.put("uid",uid);
 		values.put("email",email);
+        values.put("user",1);
 		LocalDatabaseConnector.insert("user",values);
 	}
 	
