@@ -17,14 +17,13 @@
         android:id="@+id/tv_eventnaam"
         android:layout_gravity="center_horizontal"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/tv_eventdescription" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/events_description"
         android:id="@+id/tv_eventdescription"
-        android:layout_alignStart="@+id/tv_eventvanbedrijf"
         android:layout_below="@+id/tv_eventnaam"
         android:layout_centerHorizontal="true" />
 
@@ -33,9 +32,9 @@
         android:layout_height="wrap_content"
         android:text="@string/event_vanbedrijf"
         android:id="@+id/tv_eventvanbedrijf"
-        android:layout_alignParentEnd="false"
         android:layout_below="@+id/tv_eventdescription"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -1,9 +1,7 @@
 package com.resist.movelife;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
@@ -12,13 +10,11 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -64,40 +60,6 @@ public class Map extends Activity implements LocationListener {
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
 
-        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
-
-            public void onMapLongClick(final LatLng latlng) {
-                LayoutInflater li = LayoutInflater.from(context);
-                final View v = li.inflate(R.layout.event_alert, null);
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setView(v);
-                builder.setCancelable(false);
-
-                builder.setPositiveButton("Maak evenement", new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int which) {
-                        EditText title = (EditText) v.findViewById(R.id.ettitle);
-                        EditText snippet = (EditText) v.findViewById(R.id.etsnippet);
-                        mMap.addMarker(new MarkerOptions()
-                                        .title(title.getText().toString())
-                                        .snippet(snippet.getText().toString())
-                                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                                        .position(latlng)
-                        );
-                    }
-                });
-
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-                AlertDialog alert = builder.create();
-                alert.show();
-            }
-        });
 
         // Getting reference to the DrawerLayout
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

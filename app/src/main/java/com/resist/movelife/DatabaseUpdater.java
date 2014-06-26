@@ -12,7 +12,6 @@ import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.util.Patterns;
-import android.util.SparseArray;
 
 import org.json.JSONArray;
 import org.json.JSONException;

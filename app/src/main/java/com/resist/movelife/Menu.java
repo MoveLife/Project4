@@ -108,14 +108,7 @@ public class Menu extends Activity{
         Intent intent = new Intent(this, AccountSettings.class);
         startActivity(intent);
     }
-    public void act_Status (View view) {
-        Intent intent = new Intent(this, Status.class);
-        startActivity(intent);
-    }
-    public void act_Categories (View view) {
-        Intent intent = new Intent(this, Categories.class);
-        startActivity(intent);
-    }
+
     public void act_Friends (View view) {
         Intent intent = new Intent(this, Friends.class);
         startActivity(intent);

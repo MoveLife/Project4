@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="E-mail van je vriend:"
+        android:text="@string/friendsinfo_emailvriend"
         android:id="@+id/textView2"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
@@ -17,14 +17,14 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:id="@+id/tv_friends"
-       android:text="Vriend naam"
+       android:text="@string/friendsinfo_vriendnaam"
        android:layout_above="@+id/textView"
        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Laatst gezien op:"
+        android:text="@string/friendsinfo_laatstgezien"
         android:id="@+id/textView"
         android:layout_below="@+id/textView2"
         android:layout_alignParentStart="true" />
@@ -32,7 +32,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Vriend gezien"
+        android:text="@string/friendsinfo_vriendgezien"
         android:id="@+id/tv_vriendlaatst"
         android:layout_alignTop="@+id/textView"
         android:layout_alignParentEnd="true" />

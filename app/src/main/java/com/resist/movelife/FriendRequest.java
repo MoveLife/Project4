@@ -1,6 +1,6 @@
 package com.resist.movelife;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
@@ -8,13 +8,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
-
 import android.util.Log;
-
+import android.widget.ListView;
 
 import java.util.List;
 
-public class FriendRequest extends Activity {
+public class FriendRequest extends ListActivity {
+    ListView listView;
+    private CustomBaseAdapterAlleVriendenRequests adapter = null;
     private static List<User> users;
     private static boolean createNew = true;
     private static Context context;
@@ -22,6 +23,10 @@ public class FriendRequest extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.friendrequest);
+
+        adapter = new CustomBaseAdapterAlleVriendenRequests(this, users);
+        listView = (ListView) findViewById(android.R.id.list);
+        listView.setAdapter(adapter);
     }
     @Override
     protected void onStop() {

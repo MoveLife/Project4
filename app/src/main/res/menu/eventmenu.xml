@@ -4,7 +4,7 @@
     tools:context="com.resist.movelife.Menu" >
 
     <item android:id="@+id/maak_event"
-        android:title="Maak Evenement"
+        android:title="@string/eventmenu_maakevenement"
         android:icon="@drawable/ic_action_event"
         android:showAsAction="always"
         />
