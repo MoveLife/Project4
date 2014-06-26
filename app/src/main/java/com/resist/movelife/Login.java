@@ -23,7 +23,6 @@ public class Login extends FragmentActivity {
     private UiLifecycleHelper uiHelper;
     private TextView accountText;
     private ProfilePictureView profilePictureView;
-    private final Login parent = this;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,15 +54,11 @@ public class Login extends FragmentActivity {
                     accountText.setVisibility(View.GONE);
                     profilePictureView.setVisibility(View.VISIBLE);
 
-                    final String user;
+                    final String userID = user.getId();
+                    final String userName = user.getName();
                     new Thread(new Runnable() {
                         public void run() {
-                            ServerConnection.setFacebook(user.getId(),user.getName());
-                            parent.runOnUiThread(new Runnable() {
-                                public void run() {
-                                    parent.finish();
-                                }
-                            });
+                            ServerConnection.setFacebook(userID,userName);
                         }
                     }).start();
 
