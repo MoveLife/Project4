@@ -158,7 +158,7 @@ public class Map extends Activity implements LocationListener {
 
                 switch(position) {
                     case 0:
-                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAKERY), R.drawable.ic_map_bakery, R.drawable.ic_map_bank_event);
+                        getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BAKERY), R.drawable.ic_map_bakery, R.drawable.ic_map_bakery_event);
                         break;
                     case 1:
                         getTypeMarker(Company.getCompaniesOfType(Company.TYPE_BANK), R.drawable.ic_map_bank, R.drawable.ic_map_bank_event);
@@ -298,7 +298,7 @@ public class Map extends Activity implements LocationListener {
 
 
             if (store.hasEvent()){
-                    marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                    marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_event));
             } else {
 
                 marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
