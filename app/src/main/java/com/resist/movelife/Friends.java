@@ -73,7 +73,7 @@ public class Friends extends ListActivity implements
     public static void createFriendList() {
         friends = new ArrayList<User>();
 
-        Cursor c = LocalDatabaseConnector.rawQuery("SELECT user.uid,user.email,user.name,friendlocations.latitude,friendlocations.longitude,friendlocations.changed FROM user,friendlocations WHERE user.uid = friendlocations.uid AND friendlocations.longitude IS NOT NULL AND friendlocations.latitude IS NOT NULL", null);
+        Cursor c = LocalDatabaseConnector.get("user", new String[]{"uid", "email", "name"});
         if (c.moveToFirst()) {
             while (!c.isAfterLast()) {
                 friends.add(new User(c));
