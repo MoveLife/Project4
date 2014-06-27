@@ -5,7 +5,7 @@
 
     <item android:id="@+id/maak_event"
         android:title="@string/eventmenu_maakevenement"
-        android:icon="@drawable/ic_action_event"
+        android:icon="@drawable/ic_action_new_event"
         android:showAsAction="always"
         />
 </menu>

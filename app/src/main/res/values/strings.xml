@@ -160,5 +160,8 @@
     <string name="friendrequest_email">Email</string>
     <string name="friendrequest_weiger">Weiger</string>
     <string name="friendrequest_accept">Accept</string>
+    <string name="plaatseven_eventnietgemaakt">Evenement is niet aangemaakt</string>
+    <string name="plaatsevent_startmoetnaeind">Startdatum moet na einddatum komen</string>
+    <string name="plaatsevent_vulnaamin">Vul een naam in</string>
 
 </resources>
