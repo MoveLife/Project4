@@ -295,20 +295,22 @@ public class Map extends Activity implements LocationListener {
 
                 Company opslag = markerMap.get(arg0);
 
-                View v = getLayoutInflater().inflate(R.layout.info_window_layout, null);
-                if(opslag != null) {
-                    TextView tvLat = (TextView) v.findViewById(R.id.tv_infowindow_bedrijfsnaam);
-                    RatingBar ratingBar = (RatingBar) v.findViewById(R.id.ratingBarInfoWindow);
-                    tvLat.setText(opslag.getName());
-
-                    if (ratingBar != null && opslag.getRating() != null) {
-                        ratingBar.setEnabled(false);
-                        ratingBar.setMax(5);
-                        ratingBar.setStepSize(0.01f);
-                        ratingBar.setRating((float) opslag.getRating().doubleValue());
-                        ratingBar.invalidate();
-                    }
+                if(opslag == null) {
+                    return null;
                 }
+                View v = getLayoutInflater().inflate(R.layout.info_window_layout, null);
+                TextView tvLat = (TextView) v.findViewById(R.id.tv_infowindow_bedrijfsnaam);
+                RatingBar ratingBar = (RatingBar) v.findViewById(R.id.ratingBarInfoWindow);
+                tvLat.setText(opslag.getName());
+
+                if (ratingBar != null && opslag.getRating() != null) {
+                    ratingBar.setEnabled(false);
+                    ratingBar.setMax(5);
+                    ratingBar.setStepSize(0.01f);
+                    ratingBar.setRating((float) opslag.getRating().doubleValue());
+                    ratingBar.invalidate();
+                }
+
                 return v;
 
             }
@@ -367,16 +369,9 @@ public class Map extends Activity implements LocationListener {
 
                 marker.icon(BitmapDescriptorFactory.fromResource(resource));
             }
-
-
-
-
-
-
             Marker m = mMap.addMarker(marker);
             markerMap.put(m, store);
         }
         onInfoClick(markerMap);
     }
 }
-
