@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Events extends ListActivity {
 
-    ListView listView;
+    private ListView listView;
     private CustomBaseAdapterAlleEvents adapter = null;
 
     @Override
@@ -21,7 +21,6 @@ public class Events extends ListActivity {
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
 
         List<Event> lijst = Event.getEvents();
-        Log.d("eventlijst","" + lijst.size());
 
         adapter = new CustomBaseAdapterAlleEvents(this, lijst);
         listView = (ListView) findViewById(android.R.id.list);

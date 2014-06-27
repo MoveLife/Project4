@@ -12,8 +12,8 @@ import android.widget.Toast;
  * Created by Thomas on 26-6-2014.
  */
 public class VriendToevoegen extends Activity{
-    Button btn;
-    EditText editText;
+    private Button btn;
+    private EditText editText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +37,7 @@ public class VriendToevoegen extends Activity{
 
                             parent.runOnUiThread(new Runnable() {
                                 public void run() {
-                                    Toast.makeText(parent.getBaseContext(), "Vriendschapsverzoek is verstuurd", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(parent.getBaseContext(), parent.getResources().getString(R.string.friendrequest_sent), Toast.LENGTH_LONG).show();
                                     parent.finish();
                                     btn.setVisibility(View.GONE);
                                 }
@@ -45,7 +45,7 @@ public class VriendToevoegen extends Activity{
                         }
                     }).start();
                 }else {
-                    Toast.makeText(getApplicationContext(), "Uw emailformaat is niet juist", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), parent.getResources().getString(R.string.email_not_correct), Toast.LENGTH_SHORT).show();
                 }
             }
         });

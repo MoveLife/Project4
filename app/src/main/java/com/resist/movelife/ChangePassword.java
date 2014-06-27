@@ -21,7 +21,7 @@ public class ChangePassword extends Activity{
         if(!Menu.getUpdater().isConnected()) {
             TextView noInternet = (TextView)findViewById(R.id.tv_noInternet);
             noInternet.setVisibility(View.VISIBLE);
-            noInternet.setText("U heeft geen internetverbinding");
+            noInternet.setText(getResources().getString(R.string.no_internet));
             btn_ChangePassword.setVisibility(View.GONE);
         } else if(Menu.getUpdater().getUserSetPassword() == null) {
             EditText oldPassword = (EditText)findViewById(R.id.et_OldPassword);
@@ -43,18 +43,18 @@ public class ChangePassword extends Activity{
         String pwVerify = passwordVerify.getText().toString();
 
         if(newPw == null || pwVerify == null || newPw.equals(oldPw)) {
-            Toast.makeText(getApplicationContext(), "Voer wachtwoorden in", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.password_empty), Toast.LENGTH_SHORT).show();
         } else {
             if (!newPw.equals(pwVerify)) {
-                Toast.makeText(getApplicationContext(), "Uw nieuwe wachtwoorden zijn niet gelijk", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.password_not_the_same), Toast.LENGTH_SHORT).show();
             } else {
                 btn_ChangePassword.setVisibility(View.GONE);
                 final ChangePassword parent = this;
                 new Thread(new Runnable() {
                     public void run() {
-                        String msg = "Uw wachtwoord is niet veranderd";
+                        String msg = getResources().getString(R.string.password_unchanged);
                         if (Menu.getUpdater().setUserPassword(newPw, oldPw)) {
-                            msg = "Uw wachtwoord is veranderd";
+                            msg = getResources().getString(R.string.password_changed);
                         }
                         final String message = msg;
                         parent.runOnUiThread(new Runnable() {

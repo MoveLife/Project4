@@ -80,7 +80,7 @@ public class Map extends Activity implements LocationListener {
 
             /** Called when a drawer is opened */
             public void onDrawerOpened(View drawerView) {
-                getActionBar().setTitle("Selecteer categorie");
+                getActionBar().setTitle(getResources().getString(R.string.map_select_category));
                 invalidateOptionsMenu();
             }
         };
@@ -184,13 +184,9 @@ public class Map extends Activity implements LocationListener {
             change = false;
             MarkerOptions mp = new MarkerOptions();
             mp.position(new LatLng(latitude, longitude));
-            mp.title("Mijn positie");
+            mp.title(getResources().getString(R.string.map_mijnpositie));
             mMap.addMarker(mp);
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                    new LatLng(latitude, longitude), 16));
-
-            Log.d("Checkingla", "" + latitude);
-            Log.d("Checkinglo", "" + longitude);
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 16));
         }
     }
 
@@ -215,7 +211,7 @@ public class Map extends Activity implements LocationListener {
         }
         MarkerOptions mp = new MarkerOptions();
         mp.position(new LatLng(location.getLatitude(), location.getLongitude()));
-        mp.title("Mijn positie");
+        mp.title(getResources().getString(R.string.map_mijnpositie));
         myPos = mMap.addMarker(mp);
         if (!movedCamera) {
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(

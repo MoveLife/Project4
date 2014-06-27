@@ -17,15 +17,10 @@ import java.util.List;
 /**
  * Created by Thomas on 14-6-2014.
  */
-public class ZoekBedrijven extends ListActivity implements
-        AdapterView.OnItemClickListener {
-
-
-    ListView listView;
+public class ZoekBedrijven extends ListActivity implements AdapterView.OnItemClickListener {
+    private ListView listView;
     private CustomBaseAdapterAlleBedrijven adapter = null;
-    EditText editTxt;
-
-
+    private EditText editTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +29,6 @@ public class ZoekBedrijven extends ListActivity implements
         setContentView(R.layout.bedrijflist);
         LocalDatabaseConnector.init(this);
         editTxt = (EditText) findViewById(R.id.editTxt);
-        Log.d("companysize", "" + Company.getCompanies().size());
         List<Company> lijst = Company.getCompanies();
         adapter = new CustomBaseAdapterAlleBedrijven(this, lijst);
         listView = (ListView) findViewById(android.R.id.list);

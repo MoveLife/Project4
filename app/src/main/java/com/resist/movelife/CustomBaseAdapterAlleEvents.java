@@ -17,8 +17,8 @@ import java.util.List;
  */
 public class CustomBaseAdapterAlleEvents extends BaseAdapter {
 
-    Context context;
-    List<Event> events = new ArrayList<Event>();
+    private Context context;
+    private List<Event> events = new ArrayList<Event>();
 
 
     public CustomBaseAdapterAlleEvents(Context context, List<Event> items) {

@@ -41,7 +41,7 @@ public class PlaatsEvent extends Activity {
                        // DatabaseUpdater.addReview(ResultsInfoBedrijven.filteredCompany.getBid(), rating, reviews);
                         parent.runOnUiThread(new Runnable() {
                             public void run() {
-                                Toast.makeText(parent.getBaseContext(), "Evenement gemaakt!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(parent.getBaseContext(), parent.getResources().getString(R.string.event_made), Toast.LENGTH_LONG).show();
                                 parent.finish();
                                 button.setVisibility(View.GONE);
                             }
