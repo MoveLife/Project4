@@ -40,7 +40,7 @@ public class Login extends FragmentActivity {
         profilePictureView = (ProfilePictureView) findViewById(R.id.profilePicture);
 
         if(!Menu.getUpdater().isConnected()) {
-            accountText.setText("U heeft geen internetverbinding");
+            accountText.setText(getResources().getString(R.string.no_internet));
             loginBtn.setVisibility(View.GONE);
         }
 
@@ -49,7 +49,7 @@ public class Login extends FragmentActivity {
             @Override
             public void onUserInfoFetched(GraphUser user) {
                 if (user != null) {
-                    userName.setText("Hallo, " + user.getName());
+                    userName.setText(String.format(getResources().getString(R.string.facebook_welcome), user.getName()));
                     profilePictureView.setProfileId(user.getId());
                     accountText.setVisibility(View.GONE);
                     profilePictureView.setVisibility(View.VISIBLE);
@@ -63,7 +63,7 @@ public class Login extends FragmentActivity {
                     }).start();
 
                 } else {
-                    userName.setText("U bent nog niet ingelogd");
+                    userName.setText(getResources().getString(R.string.facebook_not_logged_in));
                     profilePictureView.setVisibility(View.GONE);
                 }
             }
@@ -75,9 +75,9 @@ public class Login extends FragmentActivity {
         public void call(Session session, SessionState state,
                          Exception exception) {
             if (state.isOpened()) {
-                Log.d("FacebookSampleActivity", "Facebook session opened");
+                //Log.d("FacebookSampleActivity", "Facebook session opened");
             } else if (state.isClosed()) {
-                Log.d("FacebookSampleActivity", "Facebook session closed");
+               // Log.d("FacebookSampleActivity", "Facebook session closed");
             }
         }
     };

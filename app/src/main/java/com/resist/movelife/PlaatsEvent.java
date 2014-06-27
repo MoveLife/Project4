@@ -13,9 +13,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-/**
- * Created by Thomas on 25-6-2014.
- */
+
 public class PlaatsEvent extends Activity {
 
     Button button;
@@ -45,8 +43,13 @@ public class PlaatsEvent extends Activity {
             public void onClick(View view) {
 
 
-         final String en = etNaam.getText().toString();
-         final String ed = etDesc.getText().toString();
+                final String en = etNaam.getText().toString();
+                if(en == null || en.isEmpty()) {
+                    Toast.makeText(parent.getBaseContext(), getString(R.string.plaatsevent_vulnaamin), Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                final String ed = etDesc.getText().toString();
 
                 Calendar c = Calendar.getInstance();
                 c.set(datePicker.getYear(),datePicker.getMonth(),datePicker.getDayOfMonth(),timePicker.getCurrentHour(),timePicker.getCurrentMinute());
@@ -56,22 +59,25 @@ public class PlaatsEvent extends Activity {
                 calendar.set(datePicker1.getYear(),datePicker1.getMonth(),datePicker1.getDayOfMonth(),timePicker1.getCurrentHour(),timePicker1.getCurrentMinute());
                 final Date eindd = (calendar.getTime());
 
-
-
-
+                if(!eindd.after(startd)) {
+                    Toast.makeText(parent.getBaseContext(), getString(R.string.plaatsevent_startmoetnaeind), Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 new Thread(new Runnable() {
                     public void run() {
                      final boolean b = Menu.getUpdater().addEvent(en,ResultsInfoBedrijven.filteredCompany.getBid(),startd, eindd, ed);
                         parent.runOnUiThread(new Runnable() {
                             public void run() {
+
                                 if (b) {
-                                    Toast.makeText(parent.getBaseContext(), "Evenement gemaakt!", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(parent.getBaseContext(), parent.getResources().getString(R.string.event_made), Toast.LENGTH_LONG).show();
                                     Event.createEventList();
 
                                 } else {
-                                    Toast.makeText(parent.getBaseContext(), "Evenement is niet aangemaakt", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(parent.getBaseContext(), getString(R.string.plaatseven_eventnietgemaakt), Toast.LENGTH_LONG).show();
                                 }
+
                                 parent.finish();
                                 button.setVisibility(View.GONE);
                             }

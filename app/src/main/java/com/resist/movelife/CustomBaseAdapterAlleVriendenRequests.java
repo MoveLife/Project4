@@ -17,17 +17,14 @@ import java.util.List;
  * Created by Thomas on 26-6-2014.
  */
 public class CustomBaseAdapterAlleVriendenRequests extends BaseAdapter {
-
-    Context context;
-    List<User> users = new ArrayList<User>();
-
+    private Context context;
+    private List<User> users = new ArrayList<User>();
 
     public CustomBaseAdapterAlleVriendenRequests(Context context, List<User> items) {
         this.context = context;
         this.users = items;
 
     }
-
 
     private class ViewHolder {
         TextView txtEmail;
@@ -52,14 +49,10 @@ public class CustomBaseAdapterAlleVriendenRequests extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup viewGroup) {
-
-
         ViewHolder holder = null;
 
-        LayoutInflater mInflater = (LayoutInflater)
-                context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater mInflater = (LayoutInflater)context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
-
             convertView = mInflater.inflate(R.layout.friendrequest_info, null);
             holder = new ViewHolder();
             assert convertView != null;
@@ -75,66 +68,55 @@ public class CustomBaseAdapterAlleVriendenRequests extends BaseAdapter {
 
 
         holder.buttonAccept.setOnClickListener(new View.OnClickListener() {
-                                                   @Override
-                                                   public void onClick(View view) {
+                   @Override
+                   public void onClick(View view) {
 
-                                                       new Thread(new Runnable() {
-                                                           public void run() {
-                                                               ServerConnection.acceptFriendRequest(users.get(position).getUid());
+                       final Activity parent = (Activity)context;
+                       new Thread(new Runnable() {
+                           public void run() {
+                               ServerConnection.acceptFriendRequest(users.get(position).getUid());
 
-                                                               ((Activity)context).runOnUiThread(new Runnable() {
-                                                                   public void run() {
+                               parent.runOnUiThread(new Runnable() {
+                                   public void run() {
 
-                                                                       Toast.makeText(((Activity)context).getBaseContext(), "Vriend toegevoegd", Toast.LENGTH_LONG).show();
-                                                                       ((Activity)context).finish();
-                                                                   }
+                                       Toast.makeText(parent.getBaseContext(), parent.getResources().getString(R.string.friend_added), Toast.LENGTH_LONG).show();
+                                       LocalDatabaseConnector.restart();
+                                       parent.finish();
+                                   }
 
-                                                               });
+                               });
 
-                                                           }
-                                                       }).start();
+                           }
+                       }).start();
 
-                                                   }
-                                               });
+                   }
+               });
 
 
              holder.buttonWeiger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                final Activity parent = (Activity)context;
                 new Thread(new Runnable() {
                     public void run() {
                         ServerConnection.removeFriend(users.get(position).getUid());
 
-                        ((Activity)context).runOnUiThread(new Runnable() {
+                        parent.runOnUiThread(new Runnable() {
                             public void run() {
 
-                                Toast.makeText(((Activity)context).getBaseContext(), "Vriend verzoek geweigerd", Toast.LENGTH_LONG).show();
-                                ((Activity)context).finish();
+                                Toast.makeText(parent.getBaseContext(), parent.getResources().getString(R.string.friend_declined), Toast.LENGTH_LONG).show();
+                                parent.finish();
                             }
 
                         });
 
                     }
                 }).start();
-
-
-
             }
         });
-
-
-
-
-                holder.txtEmail.setText(users.get(position).getName());
-
-
+        holder.txtEmail.setText(users.get(position).getName());
 
         return convertView ;
     }
-
-
-
-
-
 }

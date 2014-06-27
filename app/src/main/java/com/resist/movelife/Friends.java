@@ -16,10 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Friends extends ListActivity implements
-        AdapterView.OnItemClickListener {
+public class Friends extends ListActivity implements AdapterView.OnItemClickListener {
 
-    ListView listView;
+    private ListView listView;
     private CustomBaseAdapterAlleVrienden adapter = null;
     private static List<User> friends;
 
@@ -32,7 +31,6 @@ public class Friends extends ListActivity implements
         overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
 
         List<User> lijst = getFriends();
-        Log.d("vriendlijst", "" + lijst.size());
         adapter = new CustomBaseAdapterAlleVrienden(this, lijst);
 
         listView = (ListView) findViewById(android.R.id.list);

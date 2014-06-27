@@ -330,6 +330,35 @@ public class DatabaseUpdater extends Thread {
         }
     }
 
+    private ContentValues getReviewCV(JSONObject review) {
+        final String[] ints = {"uid","bid"};
+        ContentValues cv = new ContentValues();
+        for(String column : ints) {
+            try {
+                cv.put(column, review.getInt(column));
+            } catch (JSONException e) {}
+        }
+        try {
+            cv.put("rating", review.getDouble("rating"));
+        } catch (JSONException e) {}
+        try {
+            cv.put("review", review.getString("review"));
+        } catch (JSONException e) {}
+        return cv;
+    }
+
+    private void insertReviews(JSONArray reviews) {
+        for(int n=0;n < reviews.length();n++) {
+            JSONObject review = null;
+            try {
+                review = reviews.getJSONObject(n);
+            } catch(JSONException e) {}
+            if(review != null) {
+                LocalDatabaseConnector.insert("reviews",getReviewCV(review));
+            }
+        }
+    }
+
     private void update(JSONObject json) {
         boolean rebuildCompanies = false;
         JSONArray companies = null;
@@ -339,6 +368,7 @@ public class DatabaseUpdater extends Thread {
         JSONArray events = null;
         JSONArray events_delete = null;
         JSONArray events_update = null;
+        JSONArray reviews = null;
         try {
             companies = json.getJSONArray("companies");
         } catch (JSONException e) {}
@@ -359,6 +389,9 @@ public class DatabaseUpdater extends Thread {
         } catch (JSONException e) {}
         try {
             events_update = json.getJSONArray("updated_events");
+        } catch (JSONException e) {}
+        try {
+            reviews = json.getJSONArray("reviews");
         } catch (JSONException e) {}
         if(companies != null && companies.length() > 0) {
             insertCompanies(companies);
@@ -383,6 +416,9 @@ public class DatabaseUpdater extends Thread {
         }
         if(events_update != null && events_update.length() > 0) {
             updateEvents(events_update);
+        }
+        if(reviews != null && reviews.length() > 0) {
+            insertReviews(reviews);
         }
         if(rebuildCompanies) {
             update_sleep += ONE_HOUR;

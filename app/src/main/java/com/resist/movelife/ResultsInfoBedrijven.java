@@ -76,7 +76,6 @@ public class ResultsInfoBedrijven extends Activity {
                 RelativeLayout.LayoutParams.FILL_PARENT);
 
         RatingBar ratingBar = (RatingBar) findViewById(R.id.rb_rating);
-        Log.d("reviewlist", ""+ reviews.size());
         for (Review review: reviews){
 
             LinearLayout linearLayout = (LinearLayout) findViewById(R.id.reviewll);
@@ -108,7 +107,6 @@ public class ResultsInfoBedrijven extends Activity {
 
         }
 
-        Log.d("eventlist",""+ events.size());
         for (Event event: events){
             SimpleDateFormat df = new SimpleDateFormat("c d MMMM yyyy HH:mm");
             LinearLayout linearLayout = (LinearLayout) findViewById(R.id.info);
@@ -155,7 +153,6 @@ public class ResultsInfoBedrijven extends Activity {
                 Criteria cri = new Criteria();
                 String bestProvider = locManager.getBestProvider(cri, true);
                 Location loc = locManager.getLastKnownLocation(bestProvider);
-                Log.d("location", "" + loc);
                 String latMy = String.valueOf(loc.getLatitude());
                 String lngMy = String.valueOf(loc.getLongitude());
                 String endLat = String.valueOf(company.getLatitude());

@@ -42,7 +42,7 @@ public class PlaatsReview extends Activity {
 
                         parent.runOnUiThread(new Runnable() {
                             public void run() {
-                                Toast.makeText(parent.getBaseContext(), "Review geplaatst", Toast.LENGTH_LONG).show();
+                                Toast.makeText(parent.getBaseContext(), parent.getResources().getString(R.string.review_made), Toast.LENGTH_LONG).show();
                                 parent.finish();
                                 btn.setVisibility(View.GONE);
                             }

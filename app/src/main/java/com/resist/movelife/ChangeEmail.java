@@ -26,7 +26,7 @@ public class ChangeEmail extends Activity{
         } else {
             TextView t = (TextView) findViewById(R.id.tv_CurrentEmail);
             b.setVisibility(View.GONE);
-            t.setText("U heeft geen internetverbinding");
+            t.setText( getResources().getString(R.string.no_internet));
         }
     }
 
@@ -43,9 +43,9 @@ public class ChangeEmail extends Activity{
                 final ChangeEmail parent = this;
                 new Thread(new Runnable() {
                     public void run() {
-                        String msg = "Uw email is ongewijzigd";
+                        String msg = getResources().getString(R.string.email_unchanged);
                         if(Menu.getUpdater().setUserEmail(e)) {
-                            msg = "Uw email is gewijzigt";
+                            msg = getResources().getString(R.string.email_changed);
                         }
                         final String message = msg;
                         parent.runOnUiThread(new Runnable() {
@@ -57,10 +57,10 @@ public class ChangeEmail extends Activity{
                     }
                 }).start();
             } else {
-                Toast.makeText(getApplicationContext(), "Uw emailformaat is niet juist", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.email_not_correct), Toast.LENGTH_SHORT).show();
             }
         } else {
-            Toast.makeText(getApplicationContext(), "Uw email is niet gelijk", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.email_not_the_same), Toast.LENGTH_SHORT).show();
         }
     }
 

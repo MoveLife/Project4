@@ -15,9 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomBaseAdapterAlleBedrijven extends BaseAdapter implements Filterable {
-    Context context;
-    List<Company> lijst = new ArrayList<Company>();
-
+    private Context context;
+    private List<Company> lijst = new ArrayList<Company>();
     private List<Company> lijstOrig;
     private Filter bedrijfFilter;
 

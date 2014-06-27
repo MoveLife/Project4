@@ -11,8 +11,6 @@ import java.util.List;
  * Created by Thomas on 25-6-2014.
  */
 public class Review {
-
-
     private int uid;
     private Integer bid;
     private String review;
@@ -96,11 +94,4 @@ public class Review {
     public Float getRating() {
         return rating;
     }
-
-
-
-
-
-
-
 }

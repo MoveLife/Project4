@@ -13,10 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomBaseAdapterAlleVrienden extends BaseAdapter {
-
-
-    Context context;
-    List<User> users = new ArrayList<User>();
+    private Context context;
+    private List<User> users = new ArrayList<User>();
 
     public CustomBaseAdapterAlleVrienden(Context context, List<User> items) {
         this.context = context;

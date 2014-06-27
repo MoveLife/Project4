@@ -14,7 +14,7 @@ import android.widget.ListView;
 import java.util.List;
 
 public class FriendRequest extends ListActivity {
-    ListView listView;
+    private ListView listView;
     private CustomBaseAdapterAlleVriendenRequests adapter = null;
     private static List<User> users;
     private static boolean createNew = true;
@@ -35,7 +35,6 @@ public class FriendRequest extends ListActivity {
     }
 
     public static void setUsers(List<User> l) {
-        Log.d("Iets",""+ l.size());
         users = l;
         if(createNew && context != null && !users.isEmpty()) {
             createNew = false;

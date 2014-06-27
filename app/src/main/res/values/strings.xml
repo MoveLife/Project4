@@ -23,6 +23,28 @@
         <item >Restaurants</item>
     </string-array>
 
+    <string name="no_internet">Je hebt geen internet</string>
+    <string name="email_unchanged">E-mail is niet veranderd</string>
+    <string name="email_changed">E-mail is veranderd</string>
+    <string name="email_not_correct">E-mail niet correct</string>
+    <string name="email_not_the_same">E-mailadressen zijn niet gelijk</string>
+    <string name="password_unchanged">Wachtwoord is niet veranderd</string>
+    <string name="password_changed">Wachtwoord is veranderd</string>
+    <string name="password_empty">Voor wachtwoorden in</string>
+    <string name="password_not_the_same">Wachtwoorden zijn niet gelijk</string>
+
+    <string name="friend_added">Vriend toegevoegd</string>
+    <string name="friend_declined">Verzoek geweigerd</string>
+
+    <string name="facebook_not_logged_in">Je bent nog niet ingelogd</string>
+    <string name="facebook_welcome">Hallo, %s</string>
+
+    <string name="map_select_category">Selecteer categorie</string>
+    <string name="event_made">Evenement gemaakt</string>
+    <string name="review_made">Review geplaats</string>
+
+    <string name="friendrequest_sent">Vriendverzoek verstuurd</string>
+
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 
@@ -138,5 +160,8 @@
     <string name="friendrequest_email">Email</string>
     <string name="friendrequest_weiger">Weiger</string>
     <string name="friendrequest_accept">Accept</string>
+    <string name="plaatseven_eventnietgemaakt">Evenement is niet aangemaakt</string>
+    <string name="plaatsevent_startmoetnaeind">Startdatum moet na einddatum komen</string>
+    <string name="plaatsevent_vulnaamin">Vul een naam in</string>
 
 </resources>
