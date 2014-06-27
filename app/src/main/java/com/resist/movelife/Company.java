@@ -35,7 +35,7 @@ public class Company {
 	private String description;
 	private Integer buystate;
 
-	private void setAll(Integer cid,String postcode,String address,Double rating,Integer type,String telephone,String description,Integer buystate) {
+	private void setAll(Integer cid, String postcode, String address, Double rating, Integer type, String telephone, String description, Integer buystate) {
 		this.cid = cid;
 		this.postcode = postcode;
 		this.address = address;
@@ -45,28 +45,22 @@ public class Company {
 		this.description = description;
 		this.buystate = buystate;
 	}
-	
-	public Company(int bid,int uid,String name,double latitude,double longitude) {
+
+	public Company(int bid, int uid, String name, double latitude, double longitude) {
 		this.bid = bid;
 		this.uid = uid;
 		this.name = name;
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
-	
-	public Company(int bid,int uid,String name,double latitude,double longitude,Integer cid,String postcode,String address,Double rating,Integer type,String telephone,String description,Integer buystate) {
-		this(bid,uid,name,latitude,longitude);
-		setAll(cid,postcode,address,rating,type,telephone,description,buystate);
+
+	public Company(int bid, int uid, String name, double latitude, double longitude, Integer cid, String postcode, String address, Double rating, Integer type, String telephone, String description, Integer buystate) {
+		this(bid, uid, name, latitude, longitude);
+		setAll(cid, postcode, address, rating, type, telephone, description, buystate);
 	}
-	
+
 	private Company(Cursor c) {
-		this(
-				c.getInt(c.getColumnIndex("bid")),
-				c.getInt(c.getColumnIndex("uid")),
-				c.getString(c.getColumnIndex("name")),
-				c.getDouble(c.getColumnIndex("latitude")),
-				c.getDouble(c.getColumnIndex("longitude"))
-			);
+		this(c.getInt(c.getColumnIndex("bid")), c.getInt(c.getColumnIndex("uid")), c.getString(c.getColumnIndex("name")), c.getDouble(c.getColumnIndex("latitude")), c.getDouble(c.getColumnIndex("longitude")));
 		Integer cid = null;
 		String postcode = null;
 		String address = null;
@@ -77,37 +71,45 @@ public class Company {
 		Integer buystate = null;
 		try {
 			cid = c.getInt(c.getColumnIndex("cid"));
-		} catch(Exception e) {}
+		} catch(Exception e) {
+		}
 		try {
 			postcode = c.getString(c.getColumnIndex("postcode"));
-		} catch(Exception e) {}
+		} catch(Exception e) {
+		}
 		try {
 			address = c.getString(c.getColumnIndex("address"));
-		} catch(Exception e) {}
+		} catch(Exception e) {
+		}
 		try {
 			rating = c.getDouble(c.getColumnIndex("rating"));
-		} catch(Exception e) {}
+		} catch(Exception e) {
+		}
 		try {
 			type = c.getInt(c.getColumnIndex("tid"));
-		} catch(Exception e) {}
+		} catch(Exception e) {
+		}
 		try {
 			telephone = c.getString(c.getColumnIndex("telephone"));
-		} catch(Exception e) {}
+		} catch(Exception e) {
+		}
 		try {
 			description = c.getString(c.getColumnIndex("description"));
-		} catch(Exception e) {}
+		} catch(Exception e) {
+		}
 		try {
 			buystate = c.getInt(c.getColumnIndex("buystate"));
-		} catch(Exception e) {}
-		setAll(cid,postcode,address,rating,type,telephone,description,buystate);
+		} catch(Exception e) {
+		}
+		setAll(cid, postcode, address, rating, type, telephone, description, buystate);
 	}
-	
+
 	public static void createCompanyList() {
-        if(LocalDatabaseConnector.hasChanged()) {
-            LocalDatabaseConnector.restart();
-        }
+		if(LocalDatabaseConnector.hasChanged()) {
+			LocalDatabaseConnector.restart();
+		}
 		companies = new ArrayList<Company>();
-		Cursor c = LocalDatabaseConnector.get("companies",new String[]{"bid","uid","name","latitude","longitude","cid","postcode","address","rating","tid","telephone","description","buystate"});
+		Cursor c = LocalDatabaseConnector.get("companies", new String[]{"bid", "uid", "name", "latitude", "longitude", "cid", "postcode", "address", "rating", "tid", "telephone", "description", "buystate"});
 		if(c.moveToFirst()) {
 			while(!c.isAfterLast()) {
 				companies.add(new Company(c));
@@ -116,14 +118,13 @@ public class Company {
 		}
 		c.close();
 	}
-	
+
 	public static List<Company> getCompanies() {
 		if(companies == null) {
 			createCompanyList();
 		}
 		return companies;
 	}
-
 
 	public static List<Company> getCompaniesOfType(Integer type) {
 		if(companiesOfType.indexOfKey(type) < 0) {
@@ -134,13 +135,13 @@ public class Company {
 					filtered.add(c);
 				}
 			}
-			companiesOfType.put(type,filtered);
+			companiesOfType.put(type, filtered);
 		}
 		return companiesOfType.get(type);
 	}
 
 	public static int[] getCompanyIDs() {
-		Cursor c = LocalDatabaseConnector.get("companies","bid");
+		Cursor c = LocalDatabaseConnector.get("companies", "bid");
 		int[] out = new int[c.getCount()];
 		if(c.moveToFirst()) {
 			int n = 0;
@@ -153,12 +154,11 @@ public class Company {
 		c.close();
 		return out;
 	}
-	
 
 	public int getBid() {
 		return bid;
 	}
-	
+
 	public int getUid() {
 		return uid;
 	}
@@ -206,22 +206,22 @@ public class Company {
 	public Integer getBuystate() {
 		return buystate;
 	}
-	
+
 	public boolean equals(Object that) {
 		if(that instanceof Company) {
-			return this.bid == ((Company)that).bid;
+			return this.bid == ((Company) that).bid;
 		}
 		return false;
 	}
 
-    public boolean hasEvent() {
-        Cursor c = LocalDatabaseConnector.get("events","eid","bid = ?",new String[]{""+bid});
-        boolean b = c.moveToFirst();
-        c.close();
-        return b;
-    }
+	public boolean hasEvent() {
+		Cursor c = LocalDatabaseConnector.get("events", "eid", "bid = ?", new String[]{"" + bid});
+		boolean b = c.moveToFirst();
+		c.close();
+		return b;
+	}
 
-    public Bitmap getLogo() {
-        return ServerConnection.getImage(ServerConnection.imagePath+"companies/"+bid+".jpg");
-    }
+	public Bitmap getLogo() {
+		return ServerConnection.getImage(ServerConnection.imagePath + "companies/" + bid + ".jpg");
+	}
 }

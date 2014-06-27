@@ -11,7 +11,9 @@
         android:text="@string/friendsinfo_emailvriend"
         android:id="@+id/textView2"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"/>
 
    <TextView
        android:layout_width="wrap_content"
@@ -19,7 +21,9 @@
        android:id="@+id/tv_friends"
        android:text="@string/friendsinfo_vriendnaam"
        android:layout_above="@+id/textView"
-       android:layout_alignParentEnd="true" />
+       android:layout_alignParentEnd="true"
+       android:paddingLeft="10dp"
+       android:paddingRight="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -27,7 +31,9 @@
         android:text="@string/friendsinfo_laatstgezien"
         android:id="@+id/textView"
         android:layout_below="@+id/textView2"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,6 +41,8 @@
         android:text="@string/friendsinfo_vriendgezien"
         android:id="@+id/tv_vriendlaatst"
         android:layout_alignTop="@+id/textView"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"/>
 
 </RelativeLayout>

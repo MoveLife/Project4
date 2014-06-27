@@ -13,61 +13,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomBaseAdapterAlleVrienden extends BaseAdapter {
-    private Context context;
-    private List<User> users = new ArrayList<User>();
+	private Context context;
+	private List<User> users = new ArrayList<User>();
 
-    public CustomBaseAdapterAlleVrienden(Context context, List<User> items) {
-        this.context = context;
-        this.users = items;
+	public CustomBaseAdapterAlleVrienden(Context context, List<User> items) {
+		this.context = context;
+		this.users = items;
+	}
 
-    }
+	private class ViewHolder {
+		TextView txtTitle;
+		TextView tvLaatst;
+	}
 
-    private class ViewHolder {
-        TextView txtTitle;
-        TextView tvLaatst;
-    }
+	@Override
+	public int getCount() {
+		return users.size();
+	}
 
-    @Override
-    public int getCount() {
-        return users.size();
-    }
+	@Override
+	public Object getItem(int position) {
+		return users.get(position);
+	}
 
-    @Override
-    public Object getItem(int position) {
-        return users.get(position);
-    }
+	@Override
+	public long getItemId(int position) {
+		return position;
+	}
 
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup viewGroup) {
-
-
-        ViewHolder holder = null;
-
-        LayoutInflater mInflater = (LayoutInflater)
-                context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        if (convertView == null) {
-
-            convertView = mInflater.inflate(R.layout.friends_info, null);
-            holder = new ViewHolder();
-            assert convertView != null;
-              holder.txtTitle = (TextView) convertView.findViewById(R.id.tv_friends);
-              holder.tvLaatst = (TextView) convertView.findViewById(R.id.tv_vriendlaatst);
-            convertView.setTag(holder);
-        }
-        else {
-            holder = (ViewHolder) convertView.getTag();
-        }
-
-        SimpleDateFormat df = new SimpleDateFormat("c d MMMM yyyy HH:mm");
-        holder.txtTitle.setText(users.get(position).getEmail());
-
-        holder.tvLaatst.setText(df.format(users.get(position).getLastSeen()));
-
-        return convertView ;
-    }
+	@Override
+	public View getView(int position, View convertView, ViewGroup viewGroup) {
+		ViewHolder holder = null;
+		LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+		if(convertView == null) {
+			convertView = mInflater.inflate(R.layout.friends_info, null);
+			holder = new ViewHolder();
+			assert convertView != null;
+			holder.txtTitle = (TextView) convertView.findViewById(R.id.tv_friends);
+			holder.tvLaatst = (TextView) convertView.findViewById(R.id.tv_vriendlaatst);
+			convertView.setTag(holder);
+		} else {
+			holder = (ViewHolder) convertView.getTag();
+		}
+		SimpleDateFormat df = new SimpleDateFormat("c d MMMM yyyy HH:mm");
+		holder.txtTitle.setText(users.get(position).getEmail());
+		holder.tvLaatst.setText(df.format(users.get(position).getLastSeen()));
+		return convertView;
+	}
 }
