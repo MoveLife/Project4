@@ -357,6 +357,7 @@ public class DatabaseUpdater extends Thread {
                 LocalDatabaseConnector.insert("reviews",getReviewCV(review));
             }
         }
+        LocalDatabaseConnector.restart();
     }
 
     private void update(JSONObject json) {
