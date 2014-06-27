@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * Created by Thomas on 25-6-2014.
@@ -17,7 +20,8 @@ public class PlaatsEvent extends Activity {
 
     Button button;
     EditText etNaam, etDesc;
-
+    DatePicker datePicker, datePicker1;
+    TimePicker timePicker, timePicker1;
 
 
     @Override
@@ -28,7 +32,12 @@ public class PlaatsEvent extends Activity {
 
         etNaam = (EditText) findViewById(R.id.et_eventNaam);
         etDesc = (EditText) findViewById(R.id.et_eventDesc);
-
+        datePicker = (DatePicker) findViewById(R.id.datePicker);
+        timePicker = (TimePicker) findViewById(R.id.timePicker);
+        datePicker1 = (DatePicker) findViewById(R.id.datePicker2);
+        timePicker1 = (TimePicker) findViewById(R.id.timePicker2);
+        timePicker.setIs24HourView(true);
+        timePicker1.setIs24HourView(true);
         button = (Button) findViewById(R.id.btn_maakEvent);
         final PlaatsEvent parent = this;
         button.setOnClickListener(new View.OnClickListener() {
@@ -41,15 +50,28 @@ public class PlaatsEvent extends Activity {
 
                 Calendar c = Calendar.getInstance();
                 c.set(datePicker.getYear(),datePicker.getMonth(),datePicker.getDayOfMonth(),timePicker.getCurrentHour(),timePicker.getCurrentMinute());
-                Date d = new Date(d.getTime());
+                final Date startd = (c.getTime());
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(datePicker1.getYear(),datePicker1.getMonth(),datePicker1.getDayOfMonth(),timePicker1.getCurrentHour(),timePicker1.getCurrentMinute());
+                final Date eindd = (calendar.getTime());
+
+
+
 
 
                 new Thread(new Runnable() {
                     public void run() {
-                       ServerConnection.addEvent(en,ResultsInfoBedrijven.filteredCompany.getBid(),datePicker, etEind, ed);
+                     final boolean b = Menu.getUpdater().addEvent(en,ResultsInfoBedrijven.filteredCompany.getBid(),startd, eindd, ed);
                         parent.runOnUiThread(new Runnable() {
                             public void run() {
-                                Toast.makeText(parent.getBaseContext(), "Evenement gemaakt!", Toast.LENGTH_LONG).show();
+                                if (b) {
+                                    Toast.makeText(parent.getBaseContext(), "Evenement gemaakt!", Toast.LENGTH_LONG).show();
+                                    Event.createEventList();
+
+                                } else {
+                                    Toast.makeText(parent.getBaseContext(), "Evenement is niet aangemaakt", Toast.LENGTH_LONG).show();
+                                }
                                 parent.finish();
                                 button.setVisibility(View.GONE);
                             }

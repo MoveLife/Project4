@@ -14,6 +14,13 @@
         android:id="@+id/tv_eventTitel"
         android:textSize="30sp"
         android:layout_gravity="center_horizontal" />
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
 
 
@@ -25,55 +32,80 @@
         android:hint="@string/plaatsevent_naam"/>
 
 
-
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/et_eventDesc"
         android:hint="@string/plaatsevent_beschrijving"
-       />
+        android:layout_below="@+id/et_eventNaam"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Datum"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:layout_below="@+id/et_eventDesc"
+        android:id="@+id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eind Datum"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:layout_below="@+id/timePicker"
+        android:id="@+id/textView2" />
+
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timePicker"
+        android:layout_below="@+id/datePicker"
+        />
 
 
-    <Button
+
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/datePicker2"
+        android:layout_below="@+id/textView2"
+        />
+
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timePicker2"
+        android:layout_below="@+id/datePicker2"
+        />
+
+    <DatePicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/datePicker"
-        android:text="Kies datum"
-        android:onClick="showDatePickerDialog" />
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
     <Button
+        android:textColor="@color/darkorange"
+        style="@style/com_facebook_loginview_default_style"
+        android:background="@color/gray2"
         android:layout_width="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/plaatsevent_eventbutton"
+        android:id="@+id/btn_maakEvent"
+        android:layout_below="@+id/timePicker2"
         android:layout_height="wrap_content"
-        android:text="Kies tijd"
-        android:onClick="showTimePickerDialog" />
+        android:layout_gravity="center_horizontal" />
 
+</RelativeLayout>
 
-
-           <Button
-               android:textColor="@color/darkorange"
-               style="@style/com_facebook_loginview_default_style"
-               android:background="@color/gray2"
-               android:layout_width="wrap_content"
-               android:layout_marginLeft="70dp"
-               android:layout_marginRight="70dp"
-               android:layout_marginTop="50dp"
-               android:text="@string/plaatsevent_eventbutton"
-               android:id="@+id/btn_maakEvent"
-               android:layout_height="wrap_content"
-               android:layout_gravity="center_horizontal" />
-
-
-
-
-
-
-
-
-
-
-
-
+</ScrollView>
 
 </LinearLayout>
