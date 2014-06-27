@@ -17,17 +17,14 @@ import java.util.List;
  * Created by Thomas on 26-6-2014.
  */
 public class CustomBaseAdapterAlleVriendenRequests extends BaseAdapter {
-
     private Context context;
     private List<User> users = new ArrayList<User>();
-
 
     public CustomBaseAdapterAlleVriendenRequests(Context context, List<User> items) {
         this.context = context;
         this.users = items;
 
     }
-
 
     private class ViewHolder {
         TextView txtEmail;
@@ -52,14 +49,10 @@ public class CustomBaseAdapterAlleVriendenRequests extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup viewGroup) {
-
-
         ViewHolder holder = null;
 
-        LayoutInflater mInflater = (LayoutInflater)
-                context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater mInflater = (LayoutInflater)context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
-
             convertView = mInflater.inflate(R.layout.friendrequest_info, null);
             holder = new ViewHolder();
             assert convertView != null;
@@ -87,6 +80,7 @@ public class CustomBaseAdapterAlleVriendenRequests extends BaseAdapter {
                                    public void run() {
 
                                        Toast.makeText(parent.getBaseContext(), parent.getResources().getString(R.string.friend_added), Toast.LENGTH_LONG).show();
+                                       LocalDatabaseConnector.restart();
                                        parent.finish();
                                    }
 
@@ -119,24 +113,10 @@ public class CustomBaseAdapterAlleVriendenRequests extends BaseAdapter {
 
                     }
                 }).start();
-
-
-
             }
         });
-
-
-
-
-                holder.txtEmail.setText(users.get(position).getName());
-
-
+        holder.txtEmail.setText(users.get(position).getName());
 
         return convertView ;
     }
-
-
-
-
-
 }
