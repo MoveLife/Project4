@@ -123,7 +123,7 @@
     <string name="friends_geenvrienden">Je hebt nog geen vrienden!</string>
     <string name="events_allebedrijvenevenementen">Alle bedrijf evenementen</string>
     <string name="events_naam">Event_naam</string>
-    <string name="events_description">Event_description</string>
+    <string name="events_description">Event_description:</string>
     <string name="event_vanbedrijf">Event_vanbedrijf</string>
     <string name="map_mijnpositie">Mijn positie</string>
     <string name="map_maakevenement">Maak evenement</string>
