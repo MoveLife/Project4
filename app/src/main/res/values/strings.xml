@@ -30,7 +30,7 @@
     <string name="email_not_the_same">E-mailadressen zijn niet gelijk</string>
     <string name="password_unchanged">Wachtwoord is niet veranderd</string>
     <string name="password_changed">Wachtwoord is veranderd</string>
-    <string name="password_empty">Voor wachtwoorden in</string>
+    <string name="password_empty">Voer wachtwoorden in</string>
     <string name="password_not_the_same">Wachtwoorden zijn niet gelijk</string>
 
     <string name="friend_added">Vriend toegevoegd</string>
@@ -126,8 +126,6 @@
     <string name="events_description">Event_description:</string>
     <string name="event_vanbedrijf">Event_vanbedrijf</string>
     <string name="map_mijnpositie">Mijn positie</string>
-    <string name="map_maakevenement">Maak evenement</string>
-    <string name="map_cancelevenement">Cancel</string>
     <string name="notification_friend_request_title">Nieuw Vriend Verzoek</string>
     <string name="notification_friend_request_msg">Je hebt %d nieuwe vriend verzoeken.</string>
     <string name="notification_friend_request_msg_one">Je hebt een nieuw vriend verzoek van %s.</string>
@@ -136,16 +134,14 @@
     <string name="event_title">Evenementen</string>
     <string name="Event_start">Event_startdate</string>
     <string name="Event_eind">Event_einddate</string>
-    <string name="events_displayname">Event Naam:</string>
-    <string name="events_displaydesc">Event Beschrijving:</string>
+    <string name="events_displayname">Evenement Naam:</string>
+    <string name="events_displaydesc">Evenement Beschrijving:</string>
     <string name="events_displaybedrijf">Bedrijf:</string>
     <string name="events_displaystarttijd">Start Tijd:</string>
     <string name="events_displayeindtijd">Eind Tijd:</string>
     <string name="plaatsevent_eventkop">Maak een evenement</string>
     <string name="plaatsevent_naam">Event Naam</string>
     <string name="plaatsevent_beschrijving">Event Beschrijving</string>
-    <string name="plaatsevent_starthint">Start Tijd b.v: 2014–06-17 12:30:00</string>
-    <string name="plaatsevent_eindhint">Eind Tijd b.v: 2014–06-17 13:30:00</string>
     <string name="plaatsevent_eventbutton">Maak evenement</string>
     <string name="vriendmenu_request">Vriend requests</string>
     <string name="eventmenu_maakevenement">Maak Evenement</string>
