@@ -1,163 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MoveLife</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="search_title">Zoeken...</string>
-    <string name="empty_list">Geen data</string>
-    <string name="bedrijfsnaam">Bedrijfsnaam1</string>
-    <string name="description">Description</string>
-    <string name="empty_list_bedrijven">Er zijn helaas geen bedrijven gevonden</string>
+	<string name="app_name">MoveLife</string>
+	<string name="hello_world">Hello world!</string>
+	<string name="action_settings">Instellingen</string>
+	<string name="search_title">Zoeken...</string>
+	<string name="empty_list">Geen data</string>
+	<string name="description">Description</string>
+	<string name="empty_list_bedrijven">Er zijn helaas geen bedrijven gevonden</string>
 
-    <string-array name="categorieën">
-        <item >Bakkers</item>
-        <item >Banken</item>
-        <item >Bars</item>
-        <item >Boekwinkels</item>
-        <item >Café\'s</item>
-        <item >Bioscopen</item>
-        <item >Clubs</item>
-        <item >Lounges</item>
-        <item >Musea</item>
-        <item >Supermarkten</item>
-        <item >Restaurants</item>
-    </string-array>
+	<string-array name="categorieën">
+		<item>Bakkers</item>
+		<item>Banken</item>
+		<item>Bars</item>
+		<item>Boekwinkels</item>
+		<item>Café\'s</item>
+		<item>Bioscopen</item>
+		<item>Clubs</item>
+		<item>Lounges</item>
+		<item>Musea</item>
+		<item>Supermarkten</item>
+		<item>Restaurants</item>
+	</string-array>
 
-    <string name="no_internet">Je hebt geen internet</string>
-    <string name="email_unchanged">E-mail is niet veranderd</string>
-    <string name="email_changed">E-mail is veranderd</string>
-    <string name="email_not_correct">E-mail niet correct</string>
-    <string name="email_not_the_same">E-mailadressen zijn niet gelijk</string>
-    <string name="password_unchanged">Wachtwoord is niet veranderd</string>
-    <string name="password_changed">Wachtwoord is veranderd</string>
-    <string name="password_empty">Voer wachtwoorden in</string>
-    <string name="password_not_the_same">Wachtwoorden zijn niet gelijk</string>
+	<string name="no_internet">Je hebt geen internet</string>
+	<string name="email_unchanged">E-mail is niet veranderd</string>
+	<string name="email_changed">E-mail is veranderd</string>
+	<string name="email_not_correct">E-mail niet correct</string>
+	<string name="email_not_the_same">E-mailadressen zijn niet gelijk</string>
+	<string name="password_unchanged">Wachtwoord is niet veranderd</string>
+	<string name="password_changed">Wachtwoord is veranderd</string>
+	<string name="password_empty">Voer wachtwoorden in</string>
+	<string name="password_not_the_same">Wachtwoorden zijn niet gelijk</string>
 
-    <string name="friend_added">Vriend toegevoegd</string>
-    <string name="friend_declined">Verzoek geweigerd</string>
+	<string name="friend_added">Vriend toegevoegd</string>
+	<string name="friend_declined">Verzoek geweigerd</string>
 
-    <string name="facebook_not_logged_in">Je bent nog niet ingelogd</string>
-    <string name="facebook_welcome">Hallo, %s</string>
+	<string name="facebook_not_logged_in">Je bent nog niet ingelogd</string>
+	<string name="facebook_welcome">Hallo, %s</string>
 
-    <string name="map_select_category">Selecteer categorie</string>
-    <string name="event_made">Evenement gemaakt</string>
-    <string name="review_made">Review geplaats</string>
+	<string name="map_select_category">Selecteer categorie</string>
+	<string name="event_made">Evenement gemaakt</string>
+	<string name="review_made">Review geplaats</string>
 
-    <string name="friendrequest_sent">Vriendverzoek verstuurd</string>
+	<string name="friendrequest_sent">Vriendverzoek verstuurd</string>
 
-    <string name="drawer_open">Open navigation drawer</string>
-    <string name="drawer_close">Close navigation drawer</string>
+	<string name="drawer_open">Open categorieën selectie</string>
+	<string name="drawer_close">Sluit categorieën selectie</string>
 
-    <string name="APP_ID">1494630767419558</string>
-    <string name="search_label">Search</string>
-    <string name="search_hint">Zoek Bedrijven</string>
+	<string name="APP_ID">1494630767419558</string>
+	<string name="search_label">Zoek</string>
+	<string name="search_hint">Zoek Bedrijven</string>
 
-    <string name="login_header">Inloggen</string>
-    <string name="login_greeting">Hallo,</string>
-    <string name="login_notloggedin">U bent nog niet ingelogd</string>
-    <string name="login_accounttext">Wilt u inloggen met een ander account?</string>
+	<string name="login_header">Inloggen</string>
+	<string name="login_greeting">Hallo,</string>
+	<string name="login_notloggedin">Je bent nog niet ingelogd</string>
+	<string name="login_accounttext">Wil je inloggen met een ander account?</string>
 
-    <string name="optionsmenu_myaccount">Mijn account</string>
-    <string name="optionsmenu_search">Zoeken</string>
-    <string name="menu_map">Kaart</string>
-    <string name="menu_status">Status</string>
-    <string name="menu_friends">Vrienden</string>
-    <string name="menu_events">Evenementen</string>
-    <string name="menu_categories">Categorieën</string>
-    <string name="menu_login">Inloggen</string>
+	<string name="optionsmenu_myaccount">Mijn account</string>
+	<string name="optionsmenu_search">Zoeken</string>
+	<string name="menu_map">Kaart</string>
+	<string name="menu_status">Status</string>
+	<string name="menu_friends">Vrienden</string>
+	<string name="menu_events">Evenementen</string>
+	<string name="menu_categories">Categorieën</string>
+	<string name="menu_login">Inloggen</string>
 
-    <string name="accountsettings_header">Mijn account</string>
-    <string name="accountsettings_currentemail">Huidige E-mail:</string>
-    <string name="accountsettings_changeemail">Verander E-mailadres</string>
-    <string name="accountsettings_changepassword">Verander paswoord</string>
+	<string name="accountsettings_header">Mijn account</string>
+	<string name="accountsettings_currentemail">Huidige E-mail:</string>
+	<string name="accountsettings_changeemail">Verander E-mailadres</string>
+	<string name="accountsettings_changepassword">Verander wachtwoord</string>
 
-    <string name="bedrijflist_searchbar">Zoek bedrijven</string>
+	<string name="bedrijflist_searchbar">Zoek bedrijven</string>
 
-    <string name="companyinfo_mapbutton">Bekijk op kaart</string>
-    <string name="companyinfo_info">Informatie</string>
-    <string name="companyinfo_review">Reviews</string>
-    <string name="companyinfo_submitreview">Plaats review</string>
-    <string name="companyinfo_navigation">Routebeschrijving</string>
-    <string name="companyinfo_geenreviews">Er zijn nog geen reviews voor dit bedrijf.</string>
-    <string name="comanyinfo_bedrijfsinformatie">Dit bedrijf heeft nog geen bedrijfsinformatie.</string>
-    <string name="companyinfo_naam">Naam</string>
-    <string name="companyinfo_event">Evenementen</string>
-    <string name="companyinfo_eventText">Er zijn nog geen evenementen voor dit bedrijf.</string>
+	<string name="companyinfo_mapbutton">Bekijk op kaart</string>
+	<string name="companyinfo_info">Informatie</string>
+	<string name="companyinfo_review">Reviews</string>
+	<string name="companyinfo_submitreview">Plaats review</string>
+	<string name="companyinfo_navigation">Routebeschrijving</string>
+	<string name="companyinfo_geenreviews">Er zijn nog geen reviews voor dit bedrijf.</string>
+	<string name="comanyinfo_bedrijfsinformatie">Dit bedrijf heeft nog geen bedrijfsinformatie.</string>
+	<string name="companyinfo_naam">Naam</string>
+	<string name="companyinfo_event">Evenementen</string>
+	<string name="companyinfo_eventText">Er zijn nog geen evenementen voor dit bedrijf.</string>
 
 
-    <string name="category_bakery">Bakkerijen</string>
-    <string name="category_bank">Banken</string>
-    <string name="category_bar">Bars</string>
-    <string name="category_bookshop">Boekenwinkels</string>
-    <string name="category_cafe">Café\'s</string>
-    <string name="category_cinema">Bioscopen</string>
-    <string name="category_club">Clubs</string>
-    <string name="category_lounge">Lounges</string>
-    <string name="category_museum">Museums</string>
-    <string name="category_rental">Huurauto</string>
-    <string name="category_restaurant">Restaurants</string>
-    <string name="category_supermarkt">Supermarkten</string>
+	<string name="category_bakery">Bakkerijen</string>
+	<string name="category_bank">Banken</string>
+	<string name="category_bar">Bars</string>
+	<string name="category_bookshop">Boekenwinkels</string>
+	<string name="category_cafe">Café\'s</string>
+	<string name="category_cinema">Bioscopen</string>
+	<string name="category_club">Clubs</string>
+	<string name="category_lounge">Lounges</string>
+	<string name="category_museum">Museums</string>
+	<string name="category_rental">Huurauto</string>
+	<string name="category_restaurant">Restaurants</string>
+	<string name="category_supermarkt">Supermarkten</string>
 
-    <string name="changeemail_header">Verander E-mailadres</string>
-    <string name="changeemail_currentemail">Huidige E-mail</string>
-    <string name="changeemail_newemail">Nieuw E-mailadres</string>
-    <string name="changeemail_newemailverify">Herhaal E-mailadres</string>
-    <string name="changeemail_button">Verander E-mailadres</string>
+	<string name="changeemail_header">Verander E-mailadres</string>
+	<string name="changeemail_currentemail">Huidige E-mail</string>
+	<string name="changeemail_newemail">Nieuw E-mailadres</string>
+	<string name="changeemail_newemailverify">Herhaal E-mailadres</string>
+	<string name="changeemail_button">Verander E-mailadres</string>
 
-    <string name="changepassword_header">Verander wachtwoord</string>
-    <string name="changepassword_oldpassword">Oude wachtwoord</string>
-    <string name="changepassword_newpassword">Nieuw wachtwoord</string>
-    <string name="changepassword_newpasswordverify">Herhaal wachtwoord</string>
-    <string name="changepassword_button">Verander wachtwoord</string>
+	<string name="changepassword_header">Verander wachtwoord</string>
+	<string name="changepassword_oldpassword">Oude wachtwoord</string>
+	<string name="changepassword_newpassword">Nieuw wachtwoord</string>
+	<string name="changepassword_newpasswordverify">Herhaal wachtwoord</string>
+	<string name="changepassword_button">Verander wachtwoord</string>
 
-    <string name="eventalert_title">Titel:</string>
-    <string name="eventalert_titelhint">Voer titel van evenement in</string>
-    <string name="eventalert_description">Beschrijving</string>
-    <string name="eventalert_descriptionhint">Voer beschrijving van evenement in</string>
+	<string name="eventalert_title">Titel:</string>
+	<string name="eventalert_titelhint">Voer titel van evenement in</string>
+	<string name="eventalert_description">Beschrijving</string>
+	<string name="eventalert_descriptionhint">Voer beschrijving van evenement in</string>
 
-    <string name="review_header">Plaats uw review</string>
-    <string name="review_button">Plaats review</string>
+	<string name="review_header">Plaats een review</string>
+	<string name="review_button">Plaats review</string>
 
-    <string name="companyinfo_eventButton">Bekijk evenement op kaart</string>
+	<string name="companyinfo_eventButton">Bekijk evenement op kaart</string>
 
-    <string name="friends_geenvrienden">Je hebt nog geen vrienden!</string>
-    <string name="events_allebedrijvenevenementen">Alle bedrijf evenementen</string>
-    <string name="events_naam">Event_naam</string>
-    <string name="events_description">Event_description:</string>
-    <string name="event_vanbedrijf">Event_vanbedrijf</string>
-    <string name="map_mijnpositie">Mijn positie</string>
-    <string name="notification_friend_request_title">Nieuw Vriend Verzoek</string>
-    <string name="notification_friend_request_msg">Je hebt %d nieuwe vriend verzoeken.</string>
-    <string name="notification_friend_request_msg_one">Je hebt een nieuw vriend verzoek van %s.</string>
-    <string name="event_geenevenementen">Er zijn nog geen evenementen!</string>
-    <string name="friends_titel">Vrienden</string>
-    <string name="event_title">Evenementen</string>
-    <string name="Event_start">Event_startdate</string>
-    <string name="Event_eind">Event_einddate</string>
-    <string name="events_displayname">Evenement Naam:</string>
-    <string name="events_displaydesc">Evenement Beschrijving:</string>
-    <string name="events_displaybedrijf">Bedrijf:</string>
-    <string name="events_displaystarttijd">Start Tijd:</string>
-    <string name="events_displayeindtijd">Eind Tijd:</string>
-    <string name="plaatsevent_eventkop">Maak een evenement</string>
-    <string name="plaatsevent_naam">Event Naam</string>
-    <string name="plaatsevent_beschrijving">Event Beschrijving</string>
-    <string name="plaatsevent_eventbutton">Maak evenement</string>
-    <string name="vriendmenu_request">Vriend requests</string>
-    <string name="eventmenu_maakevenement">Maak Evenement</string>
-    <string name="vriendtoevoegen_kop">Zoek vrienden</string>
-    <string name="vriendtoevoegen_zoekemail">Zoek op e-mail adres</string>
-    <string name="vriendtoevoegen_stuurvriend">Stuur vriendschapsverzoek</string>
-    <string name="friendsinfo_emailvriend">E-mail van je vriend:</string>
-    <string name="friendsinfo_vriendnaam">Vriend naam</string>
-    <string name="friendsinfo_laatstgezien">Laatst gezien op:</string>
-    <string name="friendsinfo_vriendgezien">Vriend gezien</string>
-    <string name="friendrequest_vriendverzoekkop">Vriend verzoeken</string>
-    <string name="friendrequest_email">Email</string>
-    <string name="friendrequest_weiger">Weiger</string>
-    <string name="friendrequest_accept">Accept</string>
-    <string name="plaatseven_eventnietgemaakt">Evenement is niet aangemaakt</string>
-    <string name="plaatsevent_startmoetnaeind">Startdatum moet na einddatum komen</string>
-    <string name="plaatsevent_vulnaamin">Vul een naam in</string>
+	<string name="friends_geenvrienden">Je hebt nog geen vrienden!</string>
+	<string name="events_allebedrijvenevenementen">Alle bedrijf evenementen</string>
+	<string name="map_mijnpositie">Mijn positie</string>
+	<string name="notification_friend_request_title">Nieuw Vriend Verzoek</string>
+	<string name="notification_friend_request_msg">Je hebt %d nieuwe vriend verzoeken.</string>
+	<string name="notification_friend_request_msg_one">Je hebt een nieuw vriend verzoek van %s.</string>
+	<string name="event_geenevenementen">Er zijn nog geen evenementen!</string>
+	<string name="friends_titel">Vrienden</string>
+	<string name="event_title">Evenementen</string>
+	<string name="events_displayname">Evenement Naam:</string>
+	<string name="events_displaydesc">Evenement Beschrijving:</string>
+	<string name="events_displaybedrijf">Bedrijf:</string>
+	<string name="events_displaystarttijd">Starttijd:</string>
+	<string name="events_displayeindtijd">Eindtijd:</string>
+	<string name="plaatsevent_eventkop">Maak een evenement</string>
+	<string name="plaatsevent_naam">Evenement Naam</string>
+	<string name="plaatsevent_beschrijving">Evenement Beschrijving</string>
+	<string name="plaatsevent_eventbutton">Maak evenement</string>
+	<string name="vriendmenu_request">Vriend requests</string>
+	<string name="eventmenu_maakevenement">Maak Evenement</string>
+	<string name="vriendtoevoegen_kop">Zoek vrienden</string>
+	<string name="vriendtoevoegen_zoekemail">Zoek op e-mailadres</string>
+	<string name="vriendtoevoegen_stuurvriend">Stuur vriendschapsverzoek</string>
+	<string name="friendsinfo_emailvriend">E-mail van je vriend:</string>
+	<string name="friendsinfo_vriendnaam">Naam van je vriend</string>
+	<string name="friendsinfo_laatstgezien">Laatst gezien op:</string>
+	<string name="friendsinfo_vriendgezien">Vriend gezien</string>
+	<string name="friendrequest_vriendverzoekkop">Vriendverzoeken</string>
+	<string name="friendrequest_email">E-mail</string>
+	<string name="friendrequest_weiger">Weiger</string>
+	<string name="friendrequest_accept">Accepteer</string>
+	<string name="plaatseven_eventnietgemaakt">Evenement is niet aangemaakt</string>
+	<string name="plaatsevent_startmoetnaeind">Startdatum moet na einddatum komen</string>
+	<string name="plaatsevent_vulnaamin">Vul een naam in</string>
+
+	<string name="Event_start">Event_startdate</string>
+	<string name="Event_eind">Event_einddate</string>
+	<string name="events_naam">Event_naam</string>
+	<string name="events_description">Event_description:</string>
+	<string name="event_vanbedrijf">Event_vanbedrijf</string>
+	<string name="bedrijfsnaam">Bedrijfsnaam1</string>
 
 </resources>
