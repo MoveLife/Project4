@@ -250,6 +250,9 @@ public class DatabaseUpdater extends Thread {
 			cv.put("users", time);
 			LocalDatabaseConnector.update("updatetime", cv, "users < ?", new String[]{"" + time});
 		}
+		if(LocalDatabaseConnector.hasChanged()) {
+			LocalDatabaseConnector.restart();
+		}
 	}
 
 	private void updateLocation() {
