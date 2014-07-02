@@ -39,7 +39,7 @@ public class ChangePassword extends Activity {
 		final String oldPw = opw;
 		final String newPw = newPassword.getText().toString();
 		String pwVerify = passwordVerify.getText().toString();
-		if(newPw == null || pwVerify == null || newPw.equals(oldPw)) {
+		if(newPw == null || pwVerify == null || newPw.isEmpty() || newPw.equals(oldPw)) {
 			Toast.makeText(getApplicationContext(), getResources().getString(R.string.password_empty), Toast.LENGTH_SHORT).show();
 		} else {
 			if(!newPw.equals(pwVerify)) {
