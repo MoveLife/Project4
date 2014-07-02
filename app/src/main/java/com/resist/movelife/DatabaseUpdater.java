@@ -220,8 +220,8 @@ public class DatabaseUpdater extends Thread {
 				try {
 					cv.put("uid", location.getInt("uid"));
 					cv.put("changed", location.getInt("changed"));
-					cv.put("latitude", location.getInt("latitude"));
-					cv.put("longitude", location.getInt("longitude"));
+					cv.put("latitude", location.getDouble("latitude"));
+					cv.put("longitude", location.getDouble("longitude"));
 					user.put("email", location.getString("email"));
 				} catch(JSONException e) {
 					continue;
